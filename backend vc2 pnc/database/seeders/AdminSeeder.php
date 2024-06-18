@@ -21,13 +21,31 @@ class AdminSeeder extends Seeder
             'name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
-            'profile' => 'user.avif'
+            'profile' => 'user.avif',
+            'user_role' => 'admin',
         ]);
 
-        $writer = User::create([
-            'name'=>'User',
-            'email'=>'user@gmail.com',
-            'password'=>bcrypt('password')
+        $traveler = User::create([
+            'name'=>'traveler',
+            'email'=>'traveler@gmail.com',
+            'password'=>bcrypt('password'),
+            'profile' => 'user.avif',
+            'user_role' => 'traveler',
+        ]);
+
+        $carOwner = User::create([
+            'name'=>'carowner',
+            'email'=>'carowner@gmail.com',
+            'password'=>bcrypt('password'),
+            'profile' => 'user.avif',
+            'user_role' => 'carOwner',
+        ]);
+        $hotelOwner = User::create([
+            'name'=>'hoteolowner',
+            'email'=>'hoteolowner@gmail.com',
+            'password'=>bcrypt('password'),
+            'profile' => 'user.avif',
+            'user_role' => 'hotelOwner',
         ]);
         
 
@@ -60,8 +78,8 @@ class AdminSeeder extends Seeder
 
 
 
-        $admin->assignRole($admin_role);
-        $writer->assignRole($writer_role);
+        // $admin->assignRole($admin_role);
+        // $writer->assignRole($writer_role);
 
 
         $admin_role->givePermissionTo(Permission::all());
