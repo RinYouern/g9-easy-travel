@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+import { userStore } from '@/stores/user-list'
+const user = userStore()
+const logout = () => {
+  user.logout()
+  window.location.reload()
+}
+
 </script>
 <template>
   <header class="flex justify-between px-50 py-3 bg-white items-center">
@@ -34,8 +41,8 @@ import { Icon } from '@iconify/vue'
     </nav>
 
     <!-- Sign In -->
-    <div>
-      <div class="px-4 py-2 rounded font-semibold">Sign In</div>
-    </div>
+    <button @click="logout" class="px-4 py-2 rounded font-semibold cursor-pointer">
+      Logout
+    </button>
   </header>
 </template>
