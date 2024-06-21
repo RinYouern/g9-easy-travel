@@ -26,12 +26,22 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/Web/HomeView.vue')
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../views/Admin/Auth/RegisterView.vue')
+    },
+    {
+      path: '/homepage',
+      name: 'homepage',
+      component: () => import('../HomePage.vue')
+    },
 
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/login']
+  const publicPages = ['/login','/register','/homepage']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
@@ -57,7 +67,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (authRequired && !store.isAuthenticated) {
-    next('/login')
+    next('/homepage')
   } else {
     next()
   }
