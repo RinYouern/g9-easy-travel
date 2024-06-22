@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Components/Layouts/user/WebLayout.vue'
 import { usePostStore } from '@/stores/post-list'
 
 export default {

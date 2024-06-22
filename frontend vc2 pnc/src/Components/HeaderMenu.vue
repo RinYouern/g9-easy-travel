@@ -1,57 +1,38 @@
-<!-- src/components/HeaderMenu.vue -->
 <template>
-  <header class="text-white px-50 py-3 bg-white flex justify-between items-center">
-    <div class="flex items-center text-black font-bold">
-      <Icon icon="skill-icons:devto-dark" style="font-size: 45px" />
-      <div class="ml-5 flex font-semibold">
-        <div
-          v-for="(item, index) in menu"
-          :key="index"
-          v-permission="item.meta.permission"
-          class="p-3 rounded hover:text-blue cursor-pointer"
-        >
-          {{ item.title }}
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <div class="container">
+      <a class="navbar-brand" style="margin-left: 7%" href="#"
+        ><img src="/src/assets/image/logo.png" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav" style="margin-right: 7%">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button class="btn btn-primary mt-3" @click="logout">Logout</button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="#">
+              <img
+                src="https://i.pinimg.com/474x/60/07/0e/60070ed889df308cbe80253e8c36b3a3.jpg"
+                alt="Profile Image"
+                style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px"
+              />
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    <nav :class="['flex', 'items-center', { hidden: !isMenuOpen, 'flex-col': isMenuOpen }]">
-      <ul class="flex space-x-4 text-black">
-        <Icon icon="pepicons-pencil:person-circle" style="font-size: 32px" />
-      </ul>
-    </nav>
-  </header>
+  </nav>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
-
-const isMenuOpen = ref(false)
-const menu = [
-  {
-    title: 'User',
-    meta: {
-      permission: 'view_users'
-    },
-    link: '/users'
-  },
-  {
-    title: 'Role',
-    meta: {
-      permission: 'view_roles'
-    },
-    link: '/roles'
-  },
-  {
-    title: 'Permission',
-    meta: {
-      permission: 'view_permissions'
-    },
-    link: '/permissions'
-  }
-]
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
+import { userStore } from '@/stores/user-list'
+const user = userStore()
+const logout = () => {
+  user.logout()
+  window.location.reload()
 }
 </script>
+
+<style>
+</style>

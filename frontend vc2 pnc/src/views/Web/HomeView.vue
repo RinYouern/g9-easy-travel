@@ -1,26 +1,33 @@
 <template>
-    <WebLayoutAdmin v-if="store.users.user_role ==='admin'">
-      <AdminPage> </AdminPage>
-  </WebLayoutAdmin>
+  <section v-if="store.users.user_role === 'admin'">
+    <WebLayoutAdmin> </WebLayoutAdmin>
+    <listUser></listUser>
+  </section>
 
-  <WebLayout v-if="store.users.user_role ==='traveler'">
-    <Traveler></Traveler>
-  </WebLayout>
+  <section v-if="store.users.user_role === 'traveler'">
+    <WebLayout>
+      <Traveler></Traveler>
+    </WebLayout>
+  </section>
 
-  <WebLayout v-if="store.users.user_role ==='carOwner'">
-    <CarOwner>  </CarOwner>
-  </WebLayout>
+  <section v-if="store.users.user_role === 'carOwner'">
+    <WebLayout>
+      <CarOwner> </CarOwner>
+    </WebLayout>
+  </section>
 
-  <WebLayout v-if="store.users.user_role ==='hotelOwner'">
-    <HotelOwner>  </HotelOwner>
-  </WebLayout>
-
+  <section v-if="store.users.user_role === 'hotelOwner'">
+    <WebLayout>
+      <HotelOwner> </HotelOwner>
+    </WebLayout>
+  </section>
 </template>
 
 
 <script>
-import WebLayout from '@/Components/Layouts/WebLayout.vue'
-import WebLayoutAdmin from '@/Components/Layouts/AdminLayout.vue'
+import WebLayout from '@/Components/Layouts/users/WebLayout.vue'
+import WebLayoutAdmin from '@/Components/Layouts/admin/AdminLayout.vue'
+import listUser from '@/Components/Layouts/admin/ListUserLayout.vue'
 import { userStore } from '@/stores/user-list'
 
 // add paage user

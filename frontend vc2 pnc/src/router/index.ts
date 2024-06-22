@@ -36,6 +36,11 @@ const router = createRouter({
       name: 'homepage',
       component: () => import('../HomePage.vue')
     },
+    {
+      path: '/listuser',
+      name: 'listuser',
+      component: () => import('@/Components/Layouts/admin/ListUserLayout.vue')
+    },
 
   ]
 })

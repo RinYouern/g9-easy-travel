@@ -6,7 +6,6 @@ const logout = () => {
   user.logout()
   window.location.reload()
 }
-
 </script>
 <template>
   <header class="flex justify-between px-50 py-3 bg-white items-center">
