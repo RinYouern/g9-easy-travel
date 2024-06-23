@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,8 @@ Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sa
 
 // routes/api.php
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');
+
+// booking car
+Route::post('/bookingCar',[BookingController::class, 'bookingCar'])->middleware('auth:sanctum');
+Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
+Route::get('/recordAll', [BookingController::class, 'recordAll'])->middleware('auth:sanctum');
