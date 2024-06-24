@@ -1,4 +1,10 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+  />
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="style.css" />
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-white">
       <div class="container">
@@ -197,14 +203,71 @@
         </div>
       </div>
     </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.013908327777!2d104.88050867470945!3d11.550859788648934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951add5e2cd81%3A0x171e0b69c7c6f7ba!2sPasserelles%20num%C3%A9riques%20Cambodia%20(PNC)!5e0!3m2!1sen!2skh!4v1693396053804!5m2!1sen!2skh"
+      width="1000"
+      height="600"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+
+    <footer class="footer-distributed">
+      <div class="footer-left">
+        <h3>Easy<span>Travel</span></h3>
+
+        <p class="footer-links">
+          <a href="#">Home</a>
+          |
+          <a href="#">About</a>
+          |
+          <a href="#">Contact</a>
+          
+        </p>
+
+        <p class="footer-company-name">
+          Copyright © 2024 <strong>EasyTravel</strong> All rights reserved
+        </p>
+      </div>
+
+      <div class="footer-center">
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span>Phnom Penh</span> Cambodia</p>
+        </div>
+
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>+885-43-21-539</p>
+        </div>
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:sagar00001.co@gmail.com">easytravel@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-company-about">
+          <span>Contact Information</span>
+          <strong>Easy Travel</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, tempora natus fuga eos alias nobis.
+        </p>
+        <div class="footer-icons">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
-  
-  <script>
+
+<script>
 export default {}
 </script>
-  
-  <style>
+
+<style>
 .modal {
   display: block;
   position: fixed;
@@ -311,4 +374,178 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
+
+/*google maps*/
+
+iframe {
+  width: 100%;
+  margin-top: 20px;
+}
+.mapouter {
+  width: 100%;
+}
+.gmap_canvas {
+  background: none;
+  width: 100%;
+  height: 400px;
+}
+.gmap_iframe {
+  width: 600px;
+  height: 400px;
+}
+.google-map h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+/*footer*/
+
+.footer-distributed {
+    background-color: #060607;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+    margin-top: 50px;
+}
+
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 30%;
+}
+
+.footer-distributed h3 {
+    color: #ffffff;
+    font: normal 36px 'Cookie', cursive;
+    margin: 0;
+}
+
+
+.footer-distributed h3 span {
+    color: #e0ac1c;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    color: #ffffff;
+    margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: #e0ac1c;
+    text-decoration: none;
+    ;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right {
+    width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: #3F71EA;
+}
+
+.footer-links a:hover {
+    color: #3F71EA;
+}
+
+
+     
 </style>
