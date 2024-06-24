@@ -1,5 +1,5 @@
 <template>
-  <h2>welcome hotel owner</h2>
+  <h2 class="text-dark">welcome hotel owner</h2>
 </template>
 
 <script>

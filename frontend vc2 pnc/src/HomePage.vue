@@ -19,7 +19,7 @@
         </div>
       </div>
     </main>
-    <h3 class="m-4 text-center">Famouse Plces</h3>
+    <h3 class="m-4 text-center text-dark">Famouse Plces</h3>
     <div class="container image-list">
       <div class="image-item">
         <img
@@ -78,7 +78,7 @@
         <div class="caption">Caption for Image 4</div>
       </div>
     </div>
-    <h3 class="m-4 text-center">Famous Hotel</h3>
+    <h3 class="m-4 text-center text-dark">Famous Hotel</h3>
     <div class="container">
       <div class="row">
         <div class="col-md-4">

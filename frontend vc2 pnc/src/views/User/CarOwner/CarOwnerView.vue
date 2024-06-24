@@ -1,5 +1,5 @@
 <template>
-        <h2>welcome car owner</h2>
+        <h2 class="text-dark">welcome car owner</h2>
 </template>
 
 <script>

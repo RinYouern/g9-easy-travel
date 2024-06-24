@@ -1,5 +1,5 @@
 <template>
-    <h1>Hello traveller</h1>
+    <h1 class="text-dark">Hello traveller</h1>
 </template>
 
 <script>
