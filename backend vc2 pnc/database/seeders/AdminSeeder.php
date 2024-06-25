@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             'name'=>'Admin',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
-            'profile' => 'user.avif',
+            'profile' => 'https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg',
             'user_role' => 'admin',
         ]);
 
@@ -29,7 +29,7 @@ class AdminSeeder extends Seeder
             'name'=>'traveler',
             'email'=>'traveler@gmail.com',
             'password'=>bcrypt('password'),
-            'profile' => 'user.avif',
+            'profile' => 'https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg',
             'user_role' => 'traveler',
         ]);
 
@@ -37,15 +37,22 @@ class AdminSeeder extends Seeder
             'name'=>'carowner',
             'email'=>'carowner@gmail.com',
             'password'=>bcrypt('password'),
-            'profile' => 'user.avif',
+            'profile' => 'https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg',
             'user_role' => 'carOwner',
         ]);
         $hotelOwner = User::create([
             'name'=>'hoteolowner',
             'email'=>'hoteolowner@gmail.com',
             'password'=>bcrypt('password'),
-            'profile' => 'user.avif',
+            'profile' => 'https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg',
             'user_role' => 'hotelOwner',
+        ]);
+        $hotelOwner = User::create([
+            'name'=>'driver',
+            'email'=>'driver@gmail.com',
+            'password'=>bcrypt('password'),
+            'profile' => 'https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg',
+            'user_role' => 'driver',
         ]);
         
 

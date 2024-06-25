@@ -11,18 +11,22 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+        public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_id');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->decimal('total_cost', 10, 2);
             $table->string('status')->default('pending');
+            $table->string('where');
+            $table->string('quantity');
+            $table->string('driver_id')->nullable(); 
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
