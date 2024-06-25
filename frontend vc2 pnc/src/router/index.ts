@@ -37,16 +37,32 @@ const router = createRouter({
       component: () => import('../HomePage.vue')
     },
     {
+      path: '/hotelowner',
+      name: 'hotelowner',
+      component: () => import('../views/User/HotelOwner/HotelOwnerView.vue')
+    },
+    {
+      path: '/room_managemant',
+      name: 'room_managemant',
+      component: () => import('../views/User/HotelOwner/page/RoomManagementView.vue')
+    },
+    {
+      path: '/customers_payment',
+      name: 'customers_payment',
+      component: () => import('../views/User/HotelOwner/page/CustomerPaymentView.vue')
+    },
+    {
       path: '/listuser',
       name: 'listuser',
       component: () => import('@/Components/Layouts/admin/ListUserLayout.vue')
     },
 
+
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/login','/register','/homepage']
+  const publicPages = ['/login','/register','/homepage', '/hotelowner', '/room_managemant', '/customers_payment']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
