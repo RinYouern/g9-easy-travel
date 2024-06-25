@@ -8,6 +8,7 @@
             <el-option label="Traveler" value="traveler"></el-option>
             <el-option label="Car Company" value="carOwner"></el-option>
             <el-option label="Hotel" value="hotelOwner"></el-option>
+            <el-option label="Driver" value="driver"></el-option>
           </el-select>
         </el-form-item>
 
@@ -51,7 +52,7 @@ const formSchema = yup.object({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email address'),
   password: yup.string().required().label('Password'),
-  user_role: yup.string().oneOf(['traveler', 'carOwner', 'hotelOwner']).required().label('Role')
+  // user_role: yup.string().oneOf(['traveler', 'carOwner', 'hotelOwner','driver']).required().label('Role')
 })
 
 const { handleSubmit, isSubmitting } = useForm({
