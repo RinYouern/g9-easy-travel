@@ -17,9 +17,7 @@
   </section>
 
   <section v-if="store.users.user_role === 'hotelOwner'">
-    <WebLayout>
       <HotelOwner> </HotelOwner>
-    </WebLayout>
   </section>
 </template>
 
