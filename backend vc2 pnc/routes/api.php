@@ -26,6 +26,9 @@ Route::post('/register', [AuthController::class,'register']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+//user 
+Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
+Route::get('/users/all', [AuthController::class, 'getAll']);
 
 // routes/api.php
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');

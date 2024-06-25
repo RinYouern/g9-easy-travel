@@ -85,4 +85,22 @@ class AuthController extends Controller
            'message' => 'Logout successful'
         ]);
     }
+
+    public function getUsersByRole(Request $request, $role): JsonResponse
+    {
+        $users = User::where('user_role', $role)->get();
+        return response()->json([
+            'message' => 'Users retrieved successfully',
+            'data' => $users,
+        ]);
+    }
+
+    public function getAll(): JsonResponse
+    {
+        $user = User::all();
+        return response()->json([
+           'message' => 'Users retrieved successfully',
+            'data' => $user,
+        ]);
+    }
 }
