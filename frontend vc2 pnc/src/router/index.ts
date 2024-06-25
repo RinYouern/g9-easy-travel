@@ -41,6 +41,21 @@ const router = createRouter({
       name: 'listuser',
       component: () => import('@/Components/Layouts/admin/ListUserLayout.vue')
     },
+    {
+      path: '/place-traveler',
+      name: 'place-traveler',
+      component: () => import('@/views/User/Traveller/PlaceView.vue')
+    },
+    {
+      path: '/car-traveler',
+      name: 'car-traveler',
+      component: () => import('@/views/User/Traveller/CarView.vue')
+    },
+    {
+      path: '/hotel-traveler',
+      name: 'hotel-traveler',
+      component: () => import('@/views/User/Traveller/HotelView.vue')
+    },
 
   ]
 })
