@@ -40,3 +40,4 @@ Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware
 Route::post('/bookingCar', [BookingController::class, 'bookingCar'])->middleware('auth:sanctum');
 Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
 Route::get('/recordAll', [BookingController::class, 'recordAll'])->middleware('auth:sanctum');
+Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooking'])->middleware('auth:sanctum');
