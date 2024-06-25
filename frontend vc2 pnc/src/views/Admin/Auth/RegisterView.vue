@@ -1,4 +1,6 @@
 <template>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
       <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
@@ -8,19 +10,23 @@
             <el-option label="Traveler" value="traveler"></el-option>
             <el-option label="Car Company" value="carOwner"></el-option>
             <el-option label="Hotel" value="hotelOwner"></el-option>
+            <el-option label="Driver" value="driver"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item :error="nameError">
           <el-input placeholder="Name" v-model="name" size="large" />
+          <i class="bx bxs-user"></i>
         </el-form-item>
 
         <el-form-item :error="emailError">
           <el-input placeholder="Email Address" v-model="email" size="large" />
+          <i class="bx bxs-envelope"></i>
         </el-form-item>
 
         <el-form-item :error="passwordError" class="mt-8">
           <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <i class="bx bxs-lock-alt"></i>
         </el-form-item>
 
         <div>
@@ -30,7 +36,7 @@
             :disabled="isSubmitting"
             type="primary"
             native-type="submit"
-            >Submit</el-button
+            >Register</el-button
           >
         </div>
       </el-form>
@@ -51,7 +57,7 @@ const formSchema = yup.object({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email address'),
   password: yup.string().required().label('Password'),
-  user_role: yup.string().oneOf(['traveler', 'carOwner', 'hotelOwner']).required().label('Role')
+  // user_role: yup.string().oneOf(['traveler', 'carOwner', 'hotelOwner','driver']).required().label('Role')
 })
 
 const { handleSubmit, isSubmitting } = useForm({
@@ -82,6 +88,54 @@ const { value: user_role, errorMessage: roleError } = useField('user_role')
 
 <style scoped>
 .min-h-screen {
+  /* background-image: url(https://i.pinimg.com/564x/c4/60/25/c46025c855d83c100a3a6a9481774e0a.jpg);
+  background-size: cover; */
   min-height: 100vh;
+  background:skyblue;
+}
+.min-h-screen h2 {
+  font-size: 40px;       
+}
+.w-full {
+  border-radius: 30px;
+  box-shadow: 0 0 50px rgba(2, 1, 1, 0.1);
+  padding: 20px;
+}
+i {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  transform: translate(-50%);
+  font-size: 20px;
+}
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 3px;
+}
+.remember-forgot a {
+  color: blue;
+  text-decoration: none;
+  margin-left: 90px;
+}
+.remember-forgot a:hover {
+  text-decoration: underline;
+  color: purple;
+}
+.register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+.register-link p {
+  color: black;
+}
+.register-link p a {
+  color: blue;
+  text-decoration: none;
+  font-weight: 600;
+}
+.register-link p a:hover {
+  text-decoration: underline;
+  color: purple;
 }
 </style>

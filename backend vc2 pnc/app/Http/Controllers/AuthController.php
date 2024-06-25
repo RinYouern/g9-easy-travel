@@ -69,6 +69,7 @@ class AuthController extends Controller
         ]);
     }
 
+
     public function index(Request $request)
     {
         $user = $request->user();
@@ -82,7 +83,74 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json([
-           'message' => 'Logout successful'
+            'message' => 'Logout successful'
+        ]);
+    }
+
+    public function getUsersByRole(Request $request, $role): JsonResponse
+    {
+        $users = User::where('user_role', $role)->get();
+        return response()->json([
+            'message' => 'Users retrieved successfully',
+            'data' => $users,
+        ]);
+    }
+
+    public function getAll(): JsonResponse
+    {
+        $user = User::all();
+        return response()->json([
+            'message' => 'Users retrieved successfully',
+            'data' => $user,
+        ]);
+    }
+
+    public function edit(Request $request, $id): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'sometimes|required|string|min:6',
+            'user_role' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->user_role = $request->user_role;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => $user,
+        ]);
+    }
+
+    public function delete($id): JsonResponse
+    {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ]);
+    }
+
+    public function detail($id): JsonResponse
+    {
+        $user = User::findOrFail($id);
+        return response()->json([
+            'data' => $user,
         ]);
     }
 }
