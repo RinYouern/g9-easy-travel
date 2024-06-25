@@ -50,12 +50,12 @@ export default {
     WebLayout,
     WebLayoutAdmin,
     //user components
-    AdminPage,
+    // AdminPage,
     listUser,
     //travler
     Traveler,
     navbar,
-    place_traveler,
+    // place_traveler,
 
     //car owner
     CarOwner,
