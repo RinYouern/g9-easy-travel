@@ -1,5 +1,21 @@
 <template>
-    <h1>Hello traveller</h1>
+  <div class="bg-light">
+    <div class="bg-white  p-5" id="slide">
+      <slide></slide>
+    </div>
+    <div class="bg-white m-3 p-5" id="slide">
+      <h3>Popular Attractions</h3>
+      <place></place>
+    </div>
+    <div class="bg-white m-3 p-5" id="slide">
+      <h3>Recommended Car Rentals</h3>
+      <car></car>
+    </div>
+    <div class="bg-white m-3 p-5" id="slide">
+      <h3>Popular Attractions</h3>
+      <hotel></hotel>
+    </div>
+  </div>
 </template>
   
   <script>
@@ -22,7 +38,7 @@ export default {
 #header {
   height: 500px;
 }
-#content {
+#slide {
   height: 400px;
 }
 </style>
