@@ -1,17 +1,23 @@
-<!-- src/components/Login.vue -->
 <template>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
       <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
       <el-form @submit="onSubmit">
         <el-form-item :error="emailError">
           <el-input placeholder="Email Address" v-model="email" size="large" />
+          <i class="bx bxs-envelope"></i>
         </el-form-item>
 
         <el-form-item :error="nameError" class="mt-8">
           <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <i class="bx bxs-lock-alt"></i>
         </el-form-item>
-
+        <div class="remember-forgot">
+          <label><input type="checkbox" v-model="rememberMe" />Remember Me</label>
+          <a href="#">Forgot Password</a>
+        </div>
         <div>
           <el-button
             size="large"
@@ -19,8 +25,11 @@
             :disabled="isSubmitting"
             type="primary"
             native-type="submit"
-            >Submit</el-button
+            >Login</el-button
           >
+          <div class="register-link">
+            <p>Don't have an account? <a href="/register">Register</a></p>
+          </div>
         </div>
       </el-form>
     </el-card>
@@ -64,6 +73,54 @@ const { value: email, errorMessage: emailError } = useField('email')
 
 <style scoped>
 .min-h-screen {
+  /* background-image: url(https://i.pinimg.com/564x/c4/60/25/c46025c855d83c100a3a6a9481774e0a.jpg);
+  background-size: cover; */
   min-height: 100vh;
+  background:skyblue;
+}
+.min-h-screen h2 {
+  font-size: 40px;       
+}
+.w-full {
+  border-radius: 30px;
+  box-shadow: 0 0 50px rgba(2, 1, 1, 0.1);
+  padding: 20px;
+}
+i {
+  position: absolute;
+  right: 20px;
+  top: 30%;
+  transform: translate(-50%);
+  font-size: 20px;
+}
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 3px;
+}
+.remember-forgot a {
+  color: blue;
+  text-decoration: none;
+  margin-left: 90px;
+}
+.remember-forgot a:hover {
+  text-decoration: underline;
+  color: purple;
+}
+.register-link {
+  font-size: 14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+.register-link p {
+  color: black;
+}
+.register-link p a {
+  color: blue;
+  text-decoration: none;
+  font-weight: 600;
+}
+.register-link p a:hover {
+  text-decoration: underline;
+  color: purple;
 }
 </style>
