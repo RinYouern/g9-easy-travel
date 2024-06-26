@@ -29,4 +29,12 @@ class VehicleController extends Controller
 
         return response()->json($vehicle, 201);
     }
+
+    public function getVehiclesByCompany(Request $request)
+    {
+        $user = Auth::user();
+        $vehicles = Vehicle::where('owner_id', $user->id)->get();
+        return response()->json($vehicles);
+    }
+
 }
