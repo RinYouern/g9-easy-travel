@@ -105,7 +105,7 @@
 <script>
 export default {
 }
-</script>
+</script >
 
 <style scoped>
   *{
@@ -165,6 +165,7 @@ body {
 }
 
 .main-content {
+    margin-left: 25%;
     flex-grow: 1;
     padding: 20px;
     background: #fff;

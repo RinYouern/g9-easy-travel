@@ -1,7 +1,6 @@
 <template>
   <section v-if="store.users.user_role === 'admin'">
     <WebLayoutAdmin> </WebLayoutAdmin>
-    <listUser></listUser>
   </section>
 
   <section v-if="store.users.user_role === 'traveler'">
@@ -12,9 +11,7 @@
   </section>
 
   <section v-if="store.users.user_role === 'carOwner'">
-    <WebLayout>
       <CarOwner> </CarOwner>
-    </WebLayout>
   </section>
 
   <section v-if="store.users.user_role === 'hotelOwner'">

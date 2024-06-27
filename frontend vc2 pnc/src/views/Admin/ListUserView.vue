@@ -1,152 +1,167 @@
 <template>
-  <el-tabs v-model="activeName" type="card" class="demo-tabs" @tab-click="handleClick">
-    <el-tab-pane label="Users" name="first">
-      <div>
-        <el-table :data="users" style="width: 100%;">
-          <el-table-column label="Picture and Image" align="center">
-            <template #default="{ row }">
-              <img :src="row.profile" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-            </template>
-          </el-table-column>
-          <el-table-column prop="name" label="Name" align="center"></el-table-column>
-          <el-table-column prop="email" label="Email" align="center"></el-table-column>
-          <el-table-column prop="password" label="Password" align="center"></el-table-column>
-          <el-table-column label="Action" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" size="small" @click="editUser(row)">Edit</el-button>
-              <el-button type="danger" size="small" @click="deleteUser(row)">Delete</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </el-tab-pane>
+  <div>
+    <div class="role-buttons">
+      <button type="button" class="btn btn-outline-white m-l2 bg-warning" @click="fetchUsers">
+        All Users
+      </button>
+      <button type="button" class="btn btn-outline-white m-l2 bg-warning" @click="fetchTravelers">
+        Travelers
+      </button>
+      <button type="button" class="btn btn-outline-white m-l2 bg-warning" @click="fetchCarOwners">
+        Car Owners
+      </button>
+      <button type="button" class="btn btn-outline-white m-l2 bg-warning" @click="fetchHotelOwners">
+        Hotel Owners
+      </button>
+    </div>
 
-    <el-tab-pane label="Traveler" name="second">
-      <div>
-        <el-table :data="travelers" style="width: 100%;">
-          <el-table-column label="Picture and Image" align="center">
-            <template #default="{ row }">
-              <img :src="row.profile" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-            </template>
-          </el-table-column>
-          <el-table-column prop="name" label="Name" align="center"></el-table-column>
-          <el-table-column prop="email" label="Email" align="center"></el-table-column>
-          <el-table-column prop="password" label="Password" align="center"></el-table-column>
-          <el-table-column label="Action" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" size="small" @click="editTraveler(row)">Edit</el-button>
-              <el-button type="danger" size="small" @click="deleteTraveler(row)">Delete</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </el-tab-pane>
+    <table class="table  table-bordered text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"><strong>Role</strong></th>
+          <th scope="col"><strong>Profile</strong></th>
+          <th scope="col"><strong>Name</strong></th>
+          <th scope="col"><strong>Email</strong></th>
+          <th scope="col"><strong>Actions</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <th scope="row">{{ user.user_role }}</th>
+          <td class="align-middle">
+            <img
+              v-if="user.profile"
+              :src="user.profile"
+              alt="Profile Picture"
+              class="img-fluid rounded-circle"
+              style="max-width: 40px; max-height: 40px"
+            />
+            <span v-else>No Profile Picture</span>
+          </td>
+          <td class="align-middle">{{ user.name }}</td>
+          <td class="align-middle">{{ user.email }}</td>
+          <td class="align-middle">
+            <el-button plain @click="showUserDetails(user)"> detail </el-button>
+            <button type="button" class="btn btn-danger btn-sm mx-1" @click="deleteUser(user.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <el-tab-pane label="Companies Car" name="third">
-      <div>
-        <el-table :data="companiesCar" style="width: 100%;">
-          <el-table-column label="Picture and Image" align="center">
-            <template #default="{ row }">
-              <img :src="row.profile" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-            </template>
-          </el-table-column>
-          <el-table-column prop="name" label="Name" align="center"></el-table-column>
-          <el-table-column prop="email" label="Email" align="center"></el-table-column>
-          <el-table-column prop="password" label="Password" align="center"></el-table-column>
-          <el-table-column label="Action" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" size="small" @click="editCompanyCar(row)">Edit</el-button>
-              <el-button type="danger" size="small" @click="deleteCompanyCar(row)">Delete</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+    <!-- Dialog for Table -->
+    <el-dialog v-model="dialogTableVisible" width="800" style="padding: 5%;">
+  <div class="d-flex justify-content-center">
+    <div class="d-flex align-items-center">
+      <div class="profile-image-container" style="margin-right: 100px;">
+        <img v-if="selectedUser.profile" :src="selectedUser.profile" alt="Profile Picture" class="img-fluid rounded-circle" />
+        <span v-else>No Profile Picture</span>
       </div>
-    </el-tab-pane>
-
-    <el-tab-pane label="Hotels" name="fourth">
-      <div>
-        <el-table :data="hotels" style="width: 100%;">
-          <el-table-column label="Picture and Image" align="center">
-            <template #default="{ row }">
-              <img :src="row.profile" style="max-width: 50px; max-height: 50px; border-radius: 50%;">
-            </template>
-          </el-table-column>
-          <el-table-column prop="name" label="Name" align="center"></el-table-column>
-          <el-table-column prop="email" label="Email" align="center"></el-table-column>
-          <el-table-column prop="password" label="Password" align="center"></el-table-column>
-          <el-table-column label="Action" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" size="small" @click="editHotel(row)">Edit</el-button>
-              <el-button type="danger" size="small" @click="deleteHotel(row)">Delete</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </el-tab-pane>
-  </el-tabs>
+      <div class="user-info-container">
+        <p><strong>Name:</strong> {{ selectedUser.name }}</p>
+        <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+        <p><strong>Password:</strong> {{ selectedUser.password }}</p>
+        <p v-if="selectedUser.user_role !== 'traveler'"><strong>Location:</strong> {{ selectedUser.location }}</p>      </div>
+    </div>
+  </div>
+</el-dialog>
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      activeName: 'first',
-      users: [],
-      travelers: [],
-      companiesCar: [],
-      hotels: []
-    };
-  },
-  methods: {
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
 
-  },
-  created() {
-  this.fetchUserData();
-  this.fetchTravelerData();
-  this.fetchCompanyCarData();
-  this.fetchHotelData();
-},
+const dialogTableVisible = ref(false)
+const selectedUser = ref({})
 
-methods: {
-  async fetchUserData() {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/all');
-      const data = await response.json();
-      this.users = data.data;
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  },
+const users = ref([])
 
-  async fetchTravelerData() {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/role/traveler');
-      const data = await response.json();
-      this.travelers = data.data;
-    } catch (error) {
-      console.error('Error fetching traveler data:', error);
-    }
-  },
-
-  async fetchCompanyCarData() {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/role/carOwner');
-      const data = await response.json();
-      this.companiesCar = data.data;
-    } catch (error) {
-      console.error('Error fetching company car data:', error);
-    }
-  },
-
-  async fetchHotelData() {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/role/hotelOwner');
-      const data = await response.json();
-      this.hotels = data.data;
-    } catch (error) {
-      console.error('Error fetching hotel data:', error);
-    }
-  }
+const fetchUsers = () => {
+  axios
+    .get('http://127.0.0.1:8000/api/users/all')
+    .then((response) => {
+      users.value = response.data.data
+    })
+    .catch((error) => {
+      console.error('Error fetching users:', error)
+    })
 }
-};
+
+const fetchTravelers = () => {
+  axios
+    .get('http://127.0.0.1:8000/api/users/role/traveler')
+    .then((response) => {
+      users.value = response.data.data
+    })
+    .catch((error) => {
+      console.error('Error fetching travelers:', error)
+    })
+}
+
+const fetchCarOwners = () => {
+  axios
+    .get('http://127.0.0.1:8000/api/users/role/carOwner')
+    .then((response) => {
+      users.value = response.data.data
+    })
+    .catch((error) => {
+      console.error('Error fetching car owners:', error)
+    })
+}
+
+const fetchHotelOwners = () => {
+  axios
+    .get('http://127.0.0.1:8000/api/users/role/hotelOwner')
+    .then((response) => {
+      users.value = response.data.data
+    })
+    .catch((error) => {
+      console.error('Error fetching hotel owners:', error)
+    })
+}
+
+const showUserDetails = (user) => {
+  selectedUser.value = user
+  dialogTableVisible.value = true
+}
+
+const deleteUser = (userId) => {
+  axios
+    .delete(`http://127.0.0.1:8000/api/users/${userId}`)
+    .then(() => {
+      fetchUsers()
+    })
+    .catch((error) => {
+      console.error('Error deleting user:', error)
+    })
+}
+
+// Fetch initial data
+fetchUsers()
 </script>
+
+<style scoped>
+.role-buttons {
+  margin-bottom: 20px;
+}
+.profile-image-container {
+  max-width: 200px;
+  max-height: 200px;
+  margin-right: 30px;
+}
+
+.user-info-container {
+  flex-grow: 1;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+</style>

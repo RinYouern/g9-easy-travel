@@ -76,6 +76,16 @@ const router = createRouter({
       name: 'hotel-traveler',
       component: () => import('@/views/User/Traveller/BookingFormView.vue')
     },
+    {
+      path: '/edit',
+      name: 'edit',
+      component: () => import('@/views/Admin/AdminEdit.vue')
+    },
+    {
+      path: '/detail',
+      name: 'detail',
+      component: () => import('@/views/Admin/DetailView.vue')
+    },
 
 
   ]
