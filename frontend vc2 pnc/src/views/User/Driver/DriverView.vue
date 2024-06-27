@@ -1,43 +1,8 @@
 <template>
- <header class="flex justify-between px-50 py-3 bg-white items-center">
-    <!-- Logo -->
-    <div class="flex items-center space-x-2 bg-dark">
-      <Icon icon="skill-icons:devto-dark" style="font-size: 45px" />
-      <span class="text-xl font-bold">I-KNOW</span>
-    </div>
+  <navbar></navbar>
 
-    <!-- Menu Items -->
-    <nav class="flex justify-center space-x-4">
-      <a
-        href="/post"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Post</a
-      >
-      <a
-        href="/team"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Team</a
-      >
-      <a
-        href="/projects"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Projects</a
-      >
-      <a
-        href="/reports"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Reports</a
-      >
-    </nav>
-
-    <!-- Sign In -->
-    <button @click="logout" class="px-4 py-2 rounded font-semibold cursor-pointer">
-      Logout
-    </button>
-  </header>
-  <!-- <div class="container my-5"> -->
-    <body>
-      <div class="welcome-message bg p-5 text-center text-white rounded">
+  <body>
+    <div class="welcome-message bg p-5 text-center text-white rounded">
       <h1 class="display-4">Welcome Driver</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt itaque placeat ut tempore assumenda nostrum,
         alias et laudantium? Non pariatur rem a ab velit assumenda accusamus tenetur sed reprehenderit ad!
@@ -45,27 +10,27 @@
     </div>
     <div class="container">
       <div class="row text-center mt-5">
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Total Booking</div>
-          <div class="display-4 text-primary">{{ totalBooking }}</div> <!-- Blue color -->
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Total Booking</div>
+            <div class="display-4 text-primary">{{ totalBooking }}</div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Approve/Reject</div>
-          <div class="display-4 text-success">{{ approveReject }}</div> <!-- Green color -->
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Approve/Reject</div>
+            <div class="display-4 text-success">{{ approveReject }}</div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Pending/Done</div>
-          <div class="display-4 text-warning">{{ pendingDone }}</div> <!-- Orange color -->
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Pending/Done</div>
+            <div class="display-4 text-warning">{{ pendingDone }}</div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    
+
     <div class="mt-5 p-3 bg-light rounded">
       <h2 class="mb-4">List Booking</h2>
       <table class="table table-hover">
@@ -87,18 +52,19 @@
         </tbody>
       </table>
     </div>
-    </body>
-    
-  <!-- </div> -->
+  </body>
 </template>
-<script>
+<script>import navbar from '@/Components/Traveler/navbarTraveler.vue'
 export default {
   name: 'DriverDashboard',
+  components: {
+    navbar
+  },
   data() {
     return {
-      totalBooking: 5, // Example value
-      approveReject: '3/2', // Example value
-      pendingDone: '2/3', // Example value
+      totalBooking: 5,
+      approveReject: '3/2',
+      pendingDone: '2/3',
       bookings: [
         { id: 1, startDate: '22/06/2024', endDate: '24/06/2024' },
         { id: 2, startDate: '22/06/2024', endDate: '24/06/2024' },
@@ -111,11 +77,11 @@ export default {
 };
 </script>
 <style scoped>
-
-body{ 
+body {
   margin: 0;
   padding: 0;
 }
+
 .bg {
   background-image: url('src/assets/image/driver3.jpg');
   background-size: cover;
@@ -133,7 +99,6 @@ h1 {
 
 p {
   color: whitesmoke;
-  /* background-color: rgba(0, 0, 0, 0.7); */
   border-radius: 10px;
   padding: 15px;
 }
