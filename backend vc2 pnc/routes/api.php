@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Http\Request;
@@ -41,3 +42,7 @@ Route::post('/bookingCar', [BookingController::class, 'bookingCar'])->middleware
 Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
 Route::get('/recordAll', [BookingController::class, 'recordAll'])->middleware('auth:sanctum');
 Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooking'])->middleware('auth:sanctum');
+
+//room
+Route::post('/room/create', [RoomController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/room/list', [RoomController::class, 'index']);
