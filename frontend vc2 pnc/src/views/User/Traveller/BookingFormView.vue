@@ -1,7 +1,6 @@
 <template>
     <navbar></navbar>
-    <div class="container bg">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center bg">
             <div class="col-md-8">
                 <div class="card d-flex flex-row justify-content-between">
                     <div class="card-body d-flex flex-column justify-content-start">
@@ -76,7 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -95,7 +93,7 @@ export default {
                 pickupLocation: '',
                 pickupDate: '',
                 returnDate: '',
-                Passengers: 0,
+                Passengers: 1,
                 totalPrice: 0
             }
         }
@@ -110,10 +108,13 @@ export default {
 </script>
 
 <style scoped>
+*{
+    font-family: sans-serif;
+}
 .card {
     /* background-image: url(src/assets/image/route.jpg); */
     /* background-size: cover; */
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-top: 30px;
@@ -128,5 +129,6 @@ export default {
 .bg {
     background-image: url('src/assets/image/route.jpg');
     background-size: cover;
+    height: inherit;
 }
 </style>
