@@ -38,6 +38,7 @@ Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware
 Route::get('/vehicles', [VehicleController::class, 'getVehiclesByCompany'])->middleware('auth:sanctum');
 
 // booking car
+Route::post('/add-driver', [AuthController::class, 'addDriver'])->middleware('auth:sanctum');
 Route::post('/bookingCar', [BookingController::class, 'bookingCar'])->middleware('auth:sanctum');
 Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
 Route::get('/recordAll', [BookingController::class, 'recordAll'])->middleware('auth:sanctum');

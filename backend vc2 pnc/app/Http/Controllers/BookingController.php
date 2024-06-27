@@ -22,10 +22,12 @@ class BookingController extends Controller
 
         $validatedData = $request->validate([
             'vehicle_id' => 'required|exists:vehicles,id',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
+            'start_date' => 'required',
+            'end_date' => 'required|after:start_date',
             'total_cost' => 'required|numeric',
             'where' => 'required|string',
+            'name' => 'required|string',
+            'phone' => 'required|string',
             'quantity' => 'required|numeric',
             // 'driver_response'=>'required|string',
         ]);
@@ -37,6 +39,8 @@ class BookingController extends Controller
             'end_date' => $validatedData['end_date'],
             'total_cost' => $validatedData['total_cost'],
             'where' => $validatedData['where'],
+            'name' => $validatedData['name'],
+            'phone' => $validatedData['phone'],
             'quantity' => $validatedData['quantity'],
             // 'driver_response'=>$validatedData['driver_response'],
         ]);
