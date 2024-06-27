@@ -111,8 +111,6 @@ export default {
 
 <style scoped>
 .card {
-    /* background-image: url(src/assets/image/route.jpg); */
-    /* background-size: cover; */
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;

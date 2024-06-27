@@ -48,7 +48,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .admin-aside {
   background-color: #f5f5f5;
