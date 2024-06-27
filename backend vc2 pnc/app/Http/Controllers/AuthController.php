@@ -58,6 +58,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'user_role' => $request->user_role,
+            'profile' => "https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg"
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -68,6 +69,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+
 
     public function index(Request $request)
     {
@@ -82,7 +84,7 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json([
-           'message' => 'Logout successful'
+            'message' => 'Logout successful'
         ]);
     }
 
@@ -99,8 +101,89 @@ class AuthController extends Controller
     {
         $user = User::all();
         return response()->json([
-           'message' => 'Users retrieved successfully',
+            'message' => 'Users retrieved successfully',
             'data' => $user,
+        ]);
+    }
+
+    public function edit(Request $request, $id): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'sometimes|required|string|min:6',
+            'user_role' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->user_role = $request->user_role;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'User updated successfully',
+            'data' => $user,
+        ]);
+    }
+
+    public function delete($id): JsonResponse
+    {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully',
+        ]);
+    }
+
+    public function detail($id): JsonResponse
+    {
+        $user = User::findOrFail($id);
+        return response()->json([
+            'data' => $user,
+        ]);
+    }
+
+    public function addDriver(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $company = Auth::user();
+
+        $driver = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'user_role' => 'driver',
+            'company' => $company->id,
+            'profile' => "https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg", // Default profile image URL
+        ]);
+
+        $token = $driver->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Driver registration successful',
+            'access_token' => $token,
+            'token_type' => 'Bearer',
         ]);
     }
 }

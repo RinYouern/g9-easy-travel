@@ -1,7 +1,6 @@
 <template>
   <section v-if="store.users.user_role === 'admin'">
     <WebLayoutAdmin> </WebLayoutAdmin>
-    <listUser></listUser>
   </section>
 
   <section v-if="store.users.user_role === 'traveler'">
@@ -12,15 +11,14 @@
   </section>
 
   <section v-if="store.users.user_role === 'carOwner'">
-    <WebLayout>
       <CarOwner> </CarOwner>
-    </WebLayout>
   </section>
 
   <section v-if="store.users.user_role === 'hotelOwner'">
-    <WebLayout>
       <HotelOwner> </HotelOwner>
-    </WebLayout>
+  </section>
+  <section v-if="store.users.user_role === 'driver'">
+      <Driver> </Driver>
   </section>
 </template>
 
@@ -40,22 +38,24 @@ import place_traveler from '@/views/User/Traveller/PlaceView.vue'
 
 import CarOwner from '@/views/User/CarOwner/CarOwnerView.vue'
 import HotelOwner from '@/views/User/HotelOwner/HotelOwnerView.vue'
+import Driver from '@/views/User/Driver/DriverView.vue'
 export default {
   name: 'user-list',
   components: {
     WebLayout,
     WebLayoutAdmin,
     //user components
-    AdminPage,
+    // AdminPage,
     listUser,
     //travler
     Traveler,
     navbar,
-    place_traveler,
+    // place_traveler,
 
     //car owner
     CarOwner,
-    HotelOwner
+    HotelOwner,
+    Driver
   },
   data() {
     return {
