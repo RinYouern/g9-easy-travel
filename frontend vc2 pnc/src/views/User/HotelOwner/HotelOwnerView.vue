@@ -9,14 +9,14 @@
             </div>
             <ul>
                 <a href="#">
-                  <li class="active d-flex"><span class="material-symbols-outlined mr-4">dashboard</span>Dashboard</li>
+                  <li class="active d-flex"><span class="material-symbols-outlined mx-3">dashboard</span>Dashboard</li>
                 </a>
                 <a href="/room_managemant">
-                  <li class="d-flex"><span class="material-symbols-outlined mr-4">apartment</span>Rooms Management</li>
+                  <li class="d-flex"><span class="material-symbols-outlined mx-3">apartment</span>Rooms Management</li>
                 </a>
                 <a href="/customers_payment">
                   <li class="d-flex">
-                    <span class="material-symbols-outlined mr-4">payments</span>Customers Payment
+                    <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
                   </li>
                 </a>
             </ul>
@@ -56,8 +56,8 @@
                 </div>
             </div>
             <div class="list_customer">
-              <h2 class="text-dark">List Customers</h2>
-              <table class="table">
+              <h2 class="text-dark mb-2">List Customers</h2>
+              <table class="table shadow rounded">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -105,7 +105,7 @@
 <script>
 export default {
 }
-</script >
+</script>
 
 <style scoped>
   *{
@@ -116,12 +116,10 @@ export default {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #ffffff;
     margin-left: 25%;
 }
 
 .dashboard {
-    background: #ffffff;
     display: flex;
     height: 100vh;
 }
@@ -168,7 +166,6 @@ body {
     margin-left: 25%;
     flex-grow: 1;
     padding: 20px;
-    background: #fff;
 }
 
 .header {
