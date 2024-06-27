@@ -10,6 +10,7 @@ class Room extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'room_id',
         'people',
         'status',
     ];
@@ -17,5 +18,6 @@ class Room extends Model
         'created_at',
         'updated_at',
     ];
+
     
 }
