@@ -11,9 +11,7 @@
   </section>
 
   <section v-if="store.users.user_role === 'carOwner'">
-    <WebLayout>
       <CarOwner> </CarOwner>
-    </WebLayout>
   </section>
 
   <section v-if="store.users.user_role === 'hotelOwner'">
