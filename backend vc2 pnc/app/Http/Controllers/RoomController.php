@@ -23,14 +23,19 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => 'required',
-            'people' => 'required',
-            'status' => 'required',
+            'room_id' => 'required',
+            'people' => 'required|integer|min:1',
+            'status' => 'sometime|boolean',
         ]);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 400);
+        }
         $room = Room::create([
+            'room_id' => $request->room_id,
             'people' => $request->people,
-            'status' => $request->status,
+            'status' => $request->input('status', true),
         ]);
+
         return response()->json(["success"=>true, "room"=>$room], 200);
     }
 
