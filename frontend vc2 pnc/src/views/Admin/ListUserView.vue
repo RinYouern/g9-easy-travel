@@ -138,7 +138,6 @@ const deleteUser = (userId) => {
     })
 }
 
-// Fetch initial data
 fetchUsers()
 </script>
 
