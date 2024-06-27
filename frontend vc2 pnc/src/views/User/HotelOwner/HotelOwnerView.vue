@@ -107,7 +107,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   *{
     margin: 0;
     padding: 0;
@@ -165,6 +165,7 @@ body {
 }
 
 .main-content {
+    margin-left: 25%;
     flex-grow: 1;
     padding: 20px;
     background: #fff;
