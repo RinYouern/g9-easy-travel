@@ -96,9 +96,9 @@ const { value: user_role, errorMessage: roleError } = useField('user_role')
   font-size: 40px;       
 }
 .w-full {
-  border-radius: 30px;
-  box-shadow: 0 0 50px rgba(2, 1, 1, 0.1);
+  border-radius: 10px;
   padding: 20px;
+  
 }
 i {
   position: absolute;
@@ -107,15 +107,22 @@ i {
   transform: translate(-50%);
   font-size: 20px;
 }
+.el-button{
+  font-size: 20px;
+  font-weight: bold;
+  
+}
 .remember-forgot label input {
-  accent-color: #fff;
+  /* accent-color: #fff; */
   margin-right: 3px;
+  
 }
 .remember-forgot a {
   color: blue;
   text-decoration: none;
   margin-left: 90px;
 }
+
 .remember-forgot a:hover {
   text-decoration: underline;
   color: purple;

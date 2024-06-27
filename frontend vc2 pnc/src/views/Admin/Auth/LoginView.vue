@@ -73,8 +73,7 @@ const { value: email, errorMessage: emailError } = useField('email')
 
 <style scoped>
 .min-h-screen {
-  /* background-image: url(https://i.pinimg.com/564x/c4/60/25/c46025c855d83c100a3a6a9481774e0a.jpg);
-  background-size: cover; */
+  
   min-height: 100vh;
   background:skyblue;
 }
@@ -82,8 +81,7 @@ const { value: email, errorMessage: emailError } = useField('email')
   font-size: 40px;       
 }
 .w-full {
-  border-radius: 30px;
-  box-shadow: 0 0 50px rgba(2, 1, 1, 0.1);
+  border-radius: 10px;
   padding: 20px;
 }
 i {
@@ -94,13 +92,18 @@ i {
   font-size: 20px;
 }
 .remember-forgot label input {
-  accent-color: #fff;
+  /* accent-color: #fff; */
   margin-right: 3px;
 }
 .remember-forgot a {
   color: blue;
   text-decoration: none;
   margin-left: 90px;
+}
+.el-button{
+  font-size: 20px;
+  font-weight: bold;
+  
 }
 .remember-forgot a:hover {
   text-decoration: underline;
