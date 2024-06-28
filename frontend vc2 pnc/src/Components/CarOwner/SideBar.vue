@@ -3,9 +3,7 @@
       <div class="text-center profile-section mt-4">
         <div class="position-relative d-inline-block">
           <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
-          <button class="btn btn-primary edit-profile position-absolute" style="top: 0; right: 0">
-            <font-awesome-icon icon="edit" />
-          </button>
+
         </div>
         <h2>{{ userName }}</h2>
       </div>
@@ -30,13 +28,13 @@
         profileImage: '/src/assets/image/profile.jpg',
         menuItems: [
           { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
-          { text: 'Car Category', icon: 'car', path: '/car-category' },
+          // { text: 'Car Category', icon: 'car', path: '/car-category' },
           { text: 'List Cars', icon: 'list', path: '/list-car' },
           { text: 'List of Driver', icon: 'users', path: '/list-drivers' },
           { text: 'Booking Car', icon: 'book', path: '/booking-car' },
           { text: 'Travelers', icon: 'user-friends', path: '/travelers' },
           { text: 'Payment', icon: 'dollar-sign', path: '/payment' },
-          { text: 'Edit Profile', icon: 'edit', path: '/edit-profile' }
+          // { text: 'Edit Profile', icon: 'edit', path: '/edit-profile' }
         ]
       }
     }

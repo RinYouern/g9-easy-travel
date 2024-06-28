@@ -4,10 +4,12 @@
       <sidebar />
       <main class="col-md-9 col-lg-10 main-content p-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h4 class="text-left text-primary font-weight-bold">
-            <i class="fas fa-car mr-2"></i>Vehicles List
+          <h4 class="text-center text-primary font-weight-bold">
+            Vehicles List
           </h4>
-          <el-button plain @click="showUserDetails(selectedUser)"> detail </el-button>
+          <el-button type="warning" plain @click="showUserDetails()" class="custom-button">
+            Add new vehicle
+          </el-button>
         </div>
         <div class="row">
           <div class="col-md-6 mb-4" v-for="car in cars" :key="car.id">
@@ -174,7 +176,8 @@ const onSubmit = handleSubmit(async (values) => {
 })
 
 const { value: make, errorMessage: makeError } = useField('make')
-const { value: traveler_capacity, errorMessage: travelerCapacityError } = useField('traveler_capacity')
+const { value: traveler_capacity, errorMessage: travelerCapacityError } =
+  useField('traveler_capacity')
 const { value: year, errorMessage: yearError } = useField('year')
 const { value: color, errorMessage: colorError } = useField('color')
 const { value: size, errorMessage: sizeError } = useField('size')
@@ -188,9 +191,9 @@ export default {
   },
   data() {
     return {
-    store: listCarStore(),
-    dialogTableVisible: false, 
-  };
+      store: listCarStore(),
+      dialogTableVisible: false
+    }
   },
   computed: {
     cars() {
@@ -212,4 +215,12 @@ export default {
 </script>
   
   <style scoped>
+.custom-button {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #333;
+  font-weight: bold;
+  padding: 20px 20px;
+  transition: all 0.3s ease;
+}
 </style>
