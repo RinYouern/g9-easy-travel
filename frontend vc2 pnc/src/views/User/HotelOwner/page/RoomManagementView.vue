@@ -43,6 +43,7 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">People</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Status</th>
                     <th scope="col">Active</th>
                   </tr>
@@ -51,6 +52,7 @@
                   <tr>
                     <th scope="row">2C</th>
                     <td>3</td>
+                    <td>30$</td>
                     <td class="text-danger">Not available</td>
                     <td>
                         <button class="btn btn-success p-2 mx-2">Edit</button>

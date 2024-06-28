@@ -14,6 +14,10 @@
           <label for="people" class="text-dark">People:</label>
           <input type="number" id="people" v-model="people" required />
         </div>
+        <div class="form-group">
+          <label for="price" class="text-dark">Price:</label>
+          <input type="number" id="price" v-model="price" required />
+        </div>
         <button type="submit" class="btn btn_add">Add Room</button>
       </form>
     </div>
@@ -25,12 +29,13 @@ export default {
   data() {
     return {
       roomId: '',
-      people: 0
+      people: 0,
+      price: 0
     };
   },
   methods: {
     addRoom() {
-      console.log(`Room ID: ${this.roomId}, People: ${this.people}`);
+      console.log(`Room ID: ${this.roomId}, People: ${this.people}, Price: ${this.price}`);
       this.$emit('close');
     }
   }
