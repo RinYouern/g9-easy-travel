@@ -10,7 +10,7 @@
             <button class="btn btn-primary mt-3" @click="logout">Logout</button>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="/information">
               <img
                 src="https://i.pinimg.com/474x/60/07/0e/60070ed889df308cbe80253e8c36b3a3.jpg"
                 alt="Profile Image"

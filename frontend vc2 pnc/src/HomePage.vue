@@ -1,6 +1,10 @@
 <template>
   <link
     rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
     href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
   />
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
@@ -25,84 +29,97 @@
         </div>
       </div>
     </main>
-    <h3 class="m-4 text-center text-dark">Famouse Plces</h3>
+    <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
     <div class="container image-list">
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/9e/99/59/9e99598e000183c79910463f1d156cf7.jpg"
+          src="https://www.khmertimeskh.com/wp-content/uploads/2022/03/Angkor-Wat-Equinox-expected-to-draw-crowds.jpg"
           alt="Image 1"
         />
-        <div class="caption">Caption for Image 1</div>
+        <div class="caption">Angkor Wat in Siem reap</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/b2/a7/39/b2a7392c3c8d52d1f88f3a1fa28417b5.jpg"
+          src="https://d13jio720g7qcs.cloudfront.net/images/destinations/origin/5d89daa658750.jpg"
           alt="Image 2"
         />
-        <div class="caption">Caption for Image 2</div>
+        <div class="caption">Koh Kae in Preas Vihear</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/84/1f/2a/841f2a1a17f99e8f7025f436d8f6f1ed.jpg"
+          src="https://image.freshnewsasia.com/2018/10/fn-2018-07-10-11-06-16-0.jpg"
           alt="Image 3"
         />
-        <div class="caption">Caption for Image 3</div>
+        <div class="caption">Preas Vihear Temple</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/91/42/55/91425598c15b3aa089fe49b20bd03b9a.jpg"
+          src="https://ucarecdn.com/4cc71750-d4cc-4ba4-a1dd-63c81e6bdd24/-/crop/737x415/1,0/-/preview/"
           alt="Image 4"
         />
-        <div class="caption">Caption for Image 4</div>
+        <div class="caption">Bayon temple in Siem reap</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/564x/75/2e/7b/752e7be6b7faba58beb80f3c6bd7c15f.jpg"
+          src="https://gadttravel.com/uploads/cambodia/phnom-penh/phnom-penh-royal-palace.jpg"
           alt="Image 4"
         />
-        <div class="caption">Caption for Image 5</div>
+        <div class="caption">Royal place in Phnom Penh</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/42/72/e6/4272e68edfa1462383a3812b610d3bd3.jpg"
+          src="https://cms.siemreaper.com/uploads/mondulkiri_cambodia2712_f92cfcf15d.jpeg"
           alt="Image 4"
         />
-        <div class="caption">Caption for Image 6</div>
+        <div class="caption">Mondulkiri</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/474x/c9/64/f0/c964f06db57b765f3042a6f081d20757.jpg"
+          src="https://cms.siemreaper.com/uploads/sok_san_beach_cambodia2712_922e94086d.jpeg"
           alt="Image 4"
         />
-        <div class="caption">Caption for Image 7</div>
+        <div class="caption">Koh Rong</div>
       </div>
       <div class="image-item">
         <img
-          src="https://i.pinimg.com/564x/19/11/30/191130b286712105e16dc111ceadea22.jpg"
+          src="https://cms.siemreaper.com/uploads/kirirrom_cambodia2712_f38d1898b1.jpeg"
           alt="Image 4"
         />
-        <div class="caption">Caption for Image 4</div>
+        <div class="caption">Kirirom National Park</div>
+      </div>
+      <div class="image-item">
+        <img
+          src="https://cms.siemreaper.com/uploads/best_place_to_visit_in_cambodia2712_4177967e59.jpeg"
+          alt="Image 4"
+        />
+        <div class="caption">Ratanakiri</div>
+      </div>
+      <div class="image-item">
+        <img
+          src="https://www.guidetrip.info/asset/img/gallery_resort/5ad5772fb5244.jpg"
+          alt="Image 4"
+        />
+        <div class="caption">Ang Teuk Trapeang Thmor in Banteaymeanchey</div>
       </div>
     </div>
-    <h3 class="m-4 text-center text-dark">Famous Hotel</h3>
+    <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/30/2e/ce/302ece7e47bb0d368226a8787ac787aa.jpg"
+              src="https://z.cdrst.com/foto/hotel-sf/54bab/granderesp/moonlight-resort-general-7c5a392.jpg"
               alt="Hotel 1"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Hotel Grand Plaza</h3>
-              <p class="hotel-location card-text">New York, USA</p>
-              <p class="hotel-rating card-text">4.8 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Moonlight Resort</h3>
+              <p class="hotel-location card-text">KR 12,000</p>
+              <p class="hotel-rating card-text">4.6 <i class="fa fa-star"></i>(51)</p>
               <p class="hotel-description card-text">
-                Experience the best of New York City at Hotel Grand Plaza, located in the heart of
-                the city.
+                Koh Rong Samleom
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
@@ -110,18 +127,18 @@
         <div class="col-md-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/d6/64/27/d664276e8403041c0f8ee72ce98364dd.jpg"
+              src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/23/1312/Park-Hyatt-Siem-Reap-P143-Park-View-King.jpg/Park-Hyatt-Siem-Reap-P143-Park-View-King.16x9.jpg?imwidth=1920"
               alt="Hotel 2"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Oceanview Resort</h3>
-              <p class="hotel-location card-text">Bali, Indonesia</p>
-              <p class="hotel-rating card-text">4.5 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Park Hyatt Siem Reap</h3>
+              <p class="hotel-location card-text">KHR 84,399</p>
+              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(70)</p>
               <p class="hotel-description card-text">
-                Relax and unwind at the Oceanview Resort, nestled in the beautiful beaches of Bali.
+                Siem Reap, Cambodia
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
@@ -129,80 +146,80 @@
         <div class="col-md-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/d6/64/27/d664276e8403041c0f8ee72ce98364dd.jpg"
+              src="https://cache.marriott.com/content/dam/marriott-renditions/PNHCY/pnhcy-guestroom-2884-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
               alt="Hotel 2"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Oceanview Resort</h3>
-              <p class="hotel-location card-text">Bali, Indonesia</p>
-              <p class="hotel-rating card-text">4.5 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Courtyard Phnom Penh</h3>
+              <p class="hotel-location card-text">KHR 592,012</p>
+              <p class="hotel-rating card-text">4.4 <i class="fa fa-star"></i>(614)</p>
               <p class="hotel-description card-text">
-                Relax and unwind at the Oceanview Resort, nestled in the beautiful beaches of Bali.
+                Phnom Penh, Cambodia
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
         <div class="col-md-4 mt-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/30/2e/ce/302ece7e47bb0d368226a8787ac787aa.jpg"
+              src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/420254973.jpg?k=ef0ddf81a60bdcb7e09a8d7d82ccb8a4af8a45f95abee35bf48c32d2c0c6b1a0&o=&hp=1"
               alt="Hotel 1"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Hotel Grand Plaza</h3>
-              <p class="hotel-location card-text">New York, USA</p>
-              <p class="hotel-rating card-text">4.8 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Sun & Moon, Riverside Hotel</h3>
+              <p class="hotel-location card-text">KHR 357,320</p>
+              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(272)</p>
               <p class="hotel-description card-text">
-                Experience the best of New York City at Hotel Grand Plaza, located in the heart of
-                the city.
+                Phnom Penh, Cambodia
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
         <div class="col-md-4 mt-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/30/2e/ce/302ece7e47bb0d368226a8787ac787aa.jpg"
+              src="https://images.trvl-media.com/lodging/88000000/87390000/87387400/87387315/65c55b71.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium"
               alt="Hotel 1"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Hotel Grand Plaza</h3>
-              <p class="hotel-location card-text">New York, USA</p>
-              <p class="hotel-rating card-text">4.8 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Sunshine Hotel</h3>
+              <p class="hotel-location card-text">KHR 12,000</p>
+              <p class="hotel-rating card-text">7.5 <i class="fa fa-star"></i></p>
               <p class="hotel-description card-text">
-                Experience the best of New York City at Hotel Grand Plaza, located in the heart of
-                the city.
+                Phnom Penh, Cambodia
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
         <div class="col-md-4 mt-4">
           <div class="hotel-card card border">
             <img
-              src="https://i.pinimg.com/474x/30/2e/ce/302ece7e47bb0d368226a8787ac787aa.jpg"
+              src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/86/65/6c/family-suite-room-with.jpg?w=700&h=-1&s=1"
               alt="Hotel 1"
               class="hotel-image card-img-top"
             />
             <div class="card-body">
-              <h3 class="hotel-name card-title">Hotel Grand Plaza</h3>
-              <p class="hotel-location card-text">New York, USA</p>
-              <p class="hotel-rating card-text">4.8 <i class="fas fa-star"></i></p>
+              <h3 class="hotel-name card-title">Montagne Residence</h3>
+              <p class="hotel-location card-text">139,120</p>
+              <p class="hotel-rating card-text">4.8 <i class="fa fa-star"></i>(22)</p>
               <p class="hotel-description card-text">
-                Experience the best of New York City at Hotel Grand Plaza, located in the heart of
-                the city.
+                Krong Kampot, Cambodia
               </p>
-              <button class="btn btn-primary btn-detail">Show Details</button>
+              <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    
+
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.013908327777!2d104.88050867470945!3d11.550859788648934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951add5e2cd81%3A0x171e0b69c7c6f7ba!2sPasserelles%20num%C3%A9riques%20Cambodia%20(PNC)!5e0!3m2!1sen!2skh!4v1693396053804!5m2!1sen!2skh"
       width="1000"
@@ -225,15 +242,13 @@
           <a href="#">Contact</a>
         </p>
 
-        <p class="footer-company-name">
-          Copyright © 2024 <strong>EasyTravel</strong> All rights reserved
-        </p>
+        <p class="footer-company-name">Copyright © 2024 <strong>EasyTravel</strong></p>
       </div>
 
       <div class="footer-center">
         <div>
           <i class="fa fa-map-marker"></i>
-          <p><span>Phnom Penh</span> Cambodia</p>
+          <p><span>Phnom Penh, Cambodia</span></p>
         </div>
 
         <div>
@@ -303,7 +318,7 @@ export default {}
 }
 
 .bg-image {
-  background-image: url('src/assets/image/angkor.png');
+  background-image: url('https://www.getvisavietnam.com/wp-content/uploads/2023/10/Angkor-Wat-Cambodia.jpg');
   background-size: cover;
   background-position: center;
   height: 85vh;
@@ -374,7 +389,6 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
-
 /*google maps*/
 
 iframe {
@@ -521,30 +535,51 @@ iframe {
   margin-bottom: 20px;
 }
 
-.footer-distributed .footer-icons {
-  margin-top: 25px;
+.footer-icons {
+  display: flex;
+  justify-content: center;
 }
 
-.footer-distributed .footer-icons a {
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  background-color: #33383b;
-  border-radius: 2px;
-  font-size: 20px;
-  color: #ffffff;
-  text-align: center;
-  line-height: 35px;
-  margin-right: 3px;
-  margin-bottom: 5px;
+.footer-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  background-color: #636161;
+  color: #fff;
+  text-decoration: none;
 }
 
-.footer-distributed .footer-icons a:hover {
-  background-color: #3f71ea;
+.footer-icons a:hover {
+  background-color: #333;
 }
 
-.footer-links a:hover {
-  color: #3f71ea;
+.footer-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 5px;
+  background-color: #5a5656;
+  color: #fff;
+  text-decoration: none;
+}
+
+.gold-icon {
+  background-color: gold;
+}
+
+.footer-icons a:hover {
+  background-color: #333;
 }
 </style>

@@ -29,15 +29,15 @@
       </div>
       <div class="container">
         <h1 class="text-dark">Customers Payment</h1>
-        <div class="d-flex justify-content-between mt-3 mb-3">
-            <select class="form-select w-25 p-2" aria-label="Default select example" >
+        <div class="d-flex justify-content-between mt-3 mb-3 ">
+            <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example" >
                 <option selected>All floors</option>
                 <option value="1">Fist floor</option>
                 <option value="2">Second floor</option>
                 <option value="3">Third floor</option>
             </select>
         </div>
-        <table class="table">
+        <table class="table shadow rounded">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -129,7 +129,7 @@ body {
 .container {
   width: 75%;
   margin-left: 25%;
-  padding: 0 40px;
+  padding: 20px;
 }
 .table thead tr th{
   background-color:  #a8c4ec;
