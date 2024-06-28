@@ -10,24 +10,24 @@ use Illuminate\Support\Facades\Auth;
 class VehicleController extends Controller
 {
     public function addVehicle(Request $request)
-{
-    $user = Auth::user();
-    $validatedData = $request->validate([
-        'make' => 'required|string',
-        'image' => '',
-        'year' => 'required|integer|min:1900|max:' . date('Y'),
-        'color' => 'required|string',
-        'size' => 'required|string',
-        'price' => 'required|numeric|min:0',
-        'description' => 'required|string',
-        'traveler_capacity' => 'required|integer|min:1',
-    ]);
+    {
+        $user = Auth::user();
+        $validatedData = $request->validate([
+            'make' => 'required|string',
+            'image' => '',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
+            'color' => 'required|string',
+            'size' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string',
+            'traveler_capacity' => 'required|integer|min:1',
+        ]);
 
-    $validatedData['owner_id'] = $user->id;
-    $vehicle = Vehicle::create($validatedData);
+        $validatedData['owner_id'] = $user->id;
+        $vehicle = Vehicle::create($validatedData);
 
-    return response()->json($vehicle, 201);
-}
+        return response()->json($vehicle, 201);
+    }
 
     public function getVehiclesByCompany(Request $request)
     {
@@ -36,4 +36,9 @@ class VehicleController extends Controller
         return response()->json($vehicles);
     }
 
+    public function getVehicleBooking(Request $request)
+    {
+        $vehicle = Vehicle::all();
+        return response()->json($vehicle);
+    }
 }

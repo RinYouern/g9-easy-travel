@@ -27,7 +27,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-//user 
+//user
 Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
 Route::get('/users/all', [AuthController::class, 'getAll']);
 Route::put('/users/{id}', [AuthController::class, 'edit']);
@@ -37,6 +37,7 @@ Route::get('/user/{id}', [AuthController::class, 'detail']);
 // routes/api.php
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');
 Route::get('/vehicles', [VehicleController::class, 'getVehiclesByCompany'])->middleware('auth:sanctum');
+Route::get('/vehicles-all', [VehicleController::class, 'getVehicleBooking']);
 
 // booking car
 Route::post('/add-driver', [AuthController::class, 'addDriver'])->middleware('auth:sanctum');
