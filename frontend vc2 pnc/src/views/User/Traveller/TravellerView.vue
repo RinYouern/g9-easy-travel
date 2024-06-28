@@ -24,7 +24,7 @@ import hotel from '@/Components/Traveler/HotelTraveler.vue'
 import place from '@/Components/Traveler/PlaceTraveler.vue'
 import slide from '@/Components/Traveler/SlideShow.vue'
 export default {
-  name: 'traveller',
+  name: 'travellerPage',
   components: {
     car,
     hotel,

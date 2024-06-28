@@ -1,71 +1,42 @@
 <template>
- <header class="flex justify-between px-50 py-3 bg-white items-center">
-    <!-- Logo -->
-    <div class="flex items-center space-x-2 bg-dark">
-      <Icon icon="skill-icons:devto-dark" style="font-size: 45px" />
-      <span class="text-xl font-bold">I-KNOW</span>
-    </div>
-
-    <!-- Menu Items -->
-    <nav class="flex justify-center space-x-4">
-      <a
-        href="/post"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Post</a
-      >
-      <a
-        href="/team"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Team</a
-      >
-      <a
-        href="/projects"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Projects</a
-      >
-      <a
-        href="/reports"
-        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
-        >Reports</a
-      >
-    </nav>
-
-    <!-- Sign In -->
-    <button @click="logout" class="px-4 py-2 rounded font-semibold cursor-pointer">
-      Logout
-    </button>
-  </header>
+  <HeaderMenu />
   <!-- <div class="container my-5"> -->
-    <body>
-      <div class="welcome-message bg p-5 text-center text-white rounded">
-      <h1 class="display-4">Welcome Driver</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt itaque placeat ut tempore assumenda nostrum,
-        alias et laudantium? Non pariatur rem a ab velit assumenda accusamus tenetur sed reprehenderit ad!
+  <body>
+    <div class="welcome-message bg p-5 text-center text-white rounded">
+      <div id="cover">
+        <h1 >Welcome Driver</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt itaque placeat ut tempore
+        assumenda nostrum, alias et laudantium? Non pariatur rem a ab velit assumenda accusamus
+        tenetur sed reprehenderit ad!
       </p>
       </div>
 
     </div>
     <div class="container">
       <div class="row text-center mt-5">
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Total Booking</div>
-          <div class="display-4 text-primary">{{ totalBooking }}</div> <!-- Blue color -->
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Total Booking</div>
+            <div class="display-4 text-primary">{{ totalBooking }}</div>
+            <!-- Blue color -->
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Approve/Reject</div>
+            <div class="display-4 text-success">{{ approveReject }}</div>
+            <!-- Green color -->
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="p-4 bg-dark text-white rounded">
+            <div class="h4">Pending/Done</div>
+            <div class="display-4 text-warning">{{ pendingDone }}</div>
+            <!-- Orange color -->
+          </div>
         </div>
       </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Approve/Reject</div>
-          <div class="display-4 text-success">{{ approveReject }}</div> <!-- Green color -->
-        </div>
-      </div>
-      <div class="col-md-4 mb-4">
-        <div class="p-4 bg-dark text-white rounded">
-          <div class="h4">Pending/Done</div>
-          <div class="display-4 text-warning">{{ pendingDone }}</div> <!-- Orange color -->
-        </div>
-      </div>
-    </div>
     </div>
 
     <div class="mt-5 p-3 bg-light rounded">
@@ -93,19 +64,18 @@
 </tbody>
       </table>
     </div>
-    </body>
-    
+  </body>
+
   <!-- </div> -->
 </template>
 <script>
+import HeaderMenu from '@/Components/HeaderMenu.vue'
 export default {
   components: {
     HeaderMenu
   },
   name: 'DriverDashboard',
-  components: {
-    navbar
-  },
+
   data() {
     return {
       totalBooking: 5,
