@@ -12,6 +12,7 @@ class Room extends Model
         'id',
         'room_id',
         'people',
+        'price',
         'status',
     ];
     protected $hidden = [

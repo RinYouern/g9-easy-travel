@@ -25,6 +25,7 @@ class RoomController extends Controller
         $validator = Validator::make($request->all(), [
             'room_id' => 'required',
             'people' => 'required|integer|min:1',
+            'price' => 'required',
             'status' => 'sometime|boolean',
         ]);
         if ($validator->fails()) {
@@ -33,10 +34,11 @@ class RoomController extends Controller
         $room = Room::create([
             'room_id' => $request->room_id,
             'people' => $request->people,
+            'price' => $request->price,
             'status' => $request->input('status', true),
         ]);
 
-        return response()->json(["success"=>true, "room"=>$room], 200);
+        return response()->json(["success"=>true, "massage"=> "Room created successfully!", "room"=>$room], 200);
     }
 
     /**
@@ -44,7 +46,21 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $room = Room::find($id);
+        if (!$room) {
+            return response()->json(['success' => false, 'message' => 'Room not found'], 404);
+        }
+        return response()->json([
+            'success' => true,
+            'room' => [
+                'room_id' => $room->room_id,
+                'people' => $room->people,
+                'price' => $room->price,
+                'status' => $room->status,
+                'created_at' => $room->created_at,
+                'updated_at' => $room->updated_at,
+            ]
+        ], 200);
     }
 
     /**
@@ -52,7 +68,31 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'room_id' => 'required',
+            'people' => 'required|integer|min:1',
+            'price' => 'required',
+            'status' => 'sometimes|boolean',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()], 400);
+        }
+    
+        $room = Room::find($id);
+    
+        if (!$room) {
+            return response()->json(['success' => false, 'message' => 'Room not found'], 404);
+        }
+    
+        $room->room_id = $request->room_id;
+        $room->people = $request->people;
+        $room->price = $request->price;
+        $room->status = $request->input('status', $room->status);
+    
+        $room->save();
+    
+        return response()->json(['success' => true, 'massage'=>'Room updated successfully!', 'room' => $room], 200);
     }
 
     /**
@@ -60,6 +100,8 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $room = Room::find($id);
+        $room -> delete();
+        return response()->json(["success"=>true, "message"=>"Room deleted successfully"], 200);
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('room_id');
             $table->integer('people');
+            $table->integer('price');
             $table->boolean('status');
             $table->timestamps();
         });
