@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
   <div class="bg-light">
     <div class="bg-white  p-5" id="slide">
       <slide></slide>
@@ -23,13 +24,15 @@ import car from '@/Components/Traveler/CarTraveler.vue'
 import hotel from '@/Components/Traveler/HotelTraveler.vue'
 import place from '@/Components/Traveler/PlaceTraveler.vue'
 import slide from '@/Components/Traveler/SlideShow.vue'
+import navbar from '@/Components/Traveler/navbarTraveler.vue'
 export default {
   name: 'travellerPage',
   components: {
     car,
     hotel,
     place,
-    slide
+    slide,
+    navbar
   }
 }
 </script>
