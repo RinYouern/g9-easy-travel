@@ -4,7 +4,7 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
   />
   <div>
-    <navbar></navbar>
+    <Navbar></Navbar>
     <div class="bg-light">
       <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
         <div class="p-5" id="bg-warning">
@@ -25,43 +25,26 @@
         </div>
       </div>
     </div>
-
-    <div class="d-flex justify-content-center mt-5">
-      <div
-        class="card m-3"
-        style="width: 18rem"
-        v-for="vehicle in filteredVehicles"
-        :key="vehicle.id"
-      >
-        <img
-          class="card-img-top"
-          :src="vehicle.image"
-          style="height: 150px; object-fit: cover"
-          :alt="vehicle.name"
-        />
-        <div class="card-body">
-          <div class="d-flex">
-            <div class="d-flex justify-content-center">
-              <div class="d-flex">
-                <i class="bi bi-star text-warning"></i>
-                <i class="bi bi-star text-warning"></i>
-                <i class="bi bi-star text-warning"></i>
-                <i class="bi bi-star"></i>
-                <i class="bi bi-star"></i>
-              </div>
-              <div class="d-flex align-items-center ml-3">
-                <p class="mr-2"><i class="bi bi-coin"></i> {{ vehicle.price }}</p>
-              </div>
-              <div class="d-flex align-items-center ml-3">
-                <p class="mr-2"><i class="bi bi-people"></i> {{ vehicle.capacity }}</p>
-              </div>
+    <div class="row m-3">
+      <div v-for="vehicle in vehicles" :key="vehicle.id" class="col-md-3 mb-4">
+        <div class="card" style="width: 100%">
+          <img
+            src="https://i.pinimg.com/474x/f4/26/cb/f426cb3e90d7b918060cd2fe0449fb3b.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ vehicle.make }}</h5>
+            <p class="card-text">{{ vehicle.description }}</p>
+            <div class="d-flex">
+              <p class="ml-2"><i class="bi bi-people"></i> {{ vehicle.traveler_capacity }}</p>
+              <p class="ml-2"><i class="bi bi-coin"></i> {{ vehicle.price }} USD</p>
             </div>
-          </div>
-          <div class="button d-flex justify-content-center">
-            <button class="btn btn-primary" @click="bookVehicle(vehicle)">Book Now</button>
-            <button class="btn btn-primary ms-2" @click="viewVehicleDetails(vehicle)">
-              View Details
-            </button>
+
+            <div class="d-flex justify-content-evenly">
+              <button class="btn btn-primary">See Detail</button>
+              <button class="btn btn-primary">Book Now</button>
+            </div>
           </div>
         </div>
       </div>
@@ -71,6 +54,7 @@
 
 <script>
 import Navbar from '@/Components/Traveler/navbarTraveler.vue'
+import axios from 'axios'
 
 export default {
   name: 'place-traveler',
@@ -80,44 +64,7 @@ export default {
   data() {
     return {
       searchText: '',
-      vehicles: [
-        {
-          id: 1,
-          name: 'Bus',
-          type: 'bus',
-          capacity: 40,
-          price: 20,
-          rating: 4.5,
-          image: 'https://i.pinimg.com/474x/fd/ec/31/fdec319b8efbdb17a28278c743d9ffaf.jpg'
-        },
-        {
-          id: 2,
-          name: 'Sedan',
-          type: 'car',
-          capacity: 4,
-          price: 30,
-          rating: 4.2,
-          image: 'https://i.pinimg.com/474x/fd/ec/31/fdec319b8efbdb17a28278c743d9ffaf.jpg'
-        },
-        {
-          id: 3,
-          name: 'Van',
-          type: 'van',
-          capacity: 8,
-          price: 45,
-          rating: 4.7,
-          image: 'https://i.pinimg.com/474x/fd/ec/31/fdec319b8efbdb17a28278c743d9ffaf.jpg'
-        },
-        {
-          id: 4,
-          name: 'Tuk Tuk',
-          type: 'tuk-tuk',
-          capacity: 3,
-          price: 10,
-          rating: 3.9,
-          image: 'https://i.pinimg.com/474x/fd/ec/31/fdec319b8efbdb17a28278c743d9ffaf.jpg'
-        }
-      ]
+      vehicles: []
     }
   },
   computed: {
@@ -128,9 +75,18 @@ export default {
     }
   },
   methods: {
-    searchVehicles() {
-      // Add any additional logic to search for vehicles based on the searchText
+    searchVehicles() {},
+    async fetchVehicles() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/vehicles-all')
+        this.vehicles = response.data
+      } catch (error) {
+        console.error('Error fetching vehicles:', error)
+      }
     }
+  },
+  mounted() {
+    this.fetchVehicles()
   }
 }
 </script>
