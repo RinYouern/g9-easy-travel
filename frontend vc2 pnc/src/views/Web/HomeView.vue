@@ -1,24 +1,25 @@
 <template>
   <section v-if="store.users.user_role === 'admin'">
     <WebLayoutAdmin> </WebLayoutAdmin>
+    <listUser></listUser>
   </section>
 
   <section v-if="store.users.user_role === 'traveler'">
-    <navbar> </navbar>
-    <main>
+    <WebLayout>
       <Traveler></Traveler>
-    </main>
+    </WebLayout>
   </section>
 
   <section v-if="store.users.user_role === 'carOwner'">
+    <WebLayout>
       <CarOwner> </CarOwner>
+    </WebLayout>
   </section>
 
   <section v-if="store.users.user_role === 'hotelOwner'">
+    <WebLayout>
       <HotelOwner> </HotelOwner>
-  </section>
-  <section v-if="store.users.user_role === 'driver'">
-      <Driver> </Driver>
+    </WebLayout>
   </section>
 </template>
 
@@ -31,31 +32,19 @@ import { userStore } from '@/stores/user-list'
 
 // add paage user
 import AdminPage from '@/views/Admin/DashboardView.vue'
-//taveler
 import Traveler from '@/views/User/Traveller/TravellerView.vue'
-import navbar from '@/Components/Traveler/navbarTraveler.vue'
-import place_traveler from '@/views/User/Traveller/PlaceView.vue'
-
 import CarOwner from '@/views/User/CarOwner/CarOwnerView.vue'
 import HotelOwner from '@/views/User/HotelOwner/HotelOwnerView.vue'
-import Driver from '@/views/User/Driver/DriverView.vue'
 export default {
   name: 'user-list',
   components: {
     WebLayout,
     WebLayoutAdmin,
     //user components
-    // AdminPage,
-    listUser,
-    //travler
+    AdminPage,
     Traveler,
-    navbar,
-    // place_traveler,
-
-    //car owner
     CarOwner,
-    HotelOwner,
-    Driver
+    HotelOwner
   },
   data() {
     return {

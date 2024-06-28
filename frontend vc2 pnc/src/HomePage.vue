@@ -482,7 +482,6 @@ iframe {
   font-size: 25px;
   width: 38px;
   height: 38px;
-  border-radius: 50%;
   text-align: center;
   line-height: 42px;
   margin: 10px 15px;
@@ -538,19 +537,23 @@ iframe {
 .footer-icons {
   display: flex;
   justify-content: center;
+  margin-right: 210px;
+  margin-top: 15px;
 }
 
-.footer-icons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 5px;
-  background-color: #636161;
-  color: #fff;
-  text-decoration: none;
+.footer-right .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 36px;
+  margin-right: 3px;
+  margin-bottom: 5px;
 }
 
 .footer-icons a:hover {
