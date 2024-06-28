@@ -48,4 +48,7 @@ Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooki
 
 //room
 Route::post('/room/create', [RoomController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/room/list', [RoomController::class, 'index']);
+Route::get('/room/list', [RoomController::class, 'index'])->middleware('auth:sanctum');;
+Route::delete('/room/delete/{id}',[RoomController::class, 'destroy'])->middleware('auth:sanctum');;
+Route::put('/room/update/{id}',[RoomController::class, 'update'])->middleware('auth:sanctum');
+Route::get('/room/show/{id}', [RoomController::class, 'show'])->middleware('auth:sanctum');
