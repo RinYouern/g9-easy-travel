@@ -7,6 +7,7 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
+use App\Http\Resources\BookingResource;
 
 class BookingController extends Controller
 {
@@ -29,11 +30,10 @@ class BookingController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'quantity' => 'required|numeric',
-            // 'driver_response'=>'required|string',
         ]);
 
         $booking = Booking::create([
-            'user_id' => Auth::id(),
+            'user_id' =>  $user->id,
             'vehicle_id' => $validatedData['vehicle_id'],
             'start_date' => $validatedData['start_date'],
             'end_date' => $validatedData['end_date'],
@@ -42,7 +42,6 @@ class BookingController extends Controller
             'name' => $validatedData['name'],
             'phone' => $validatedData['phone'],
             'quantity' => $validatedData['quantity'],
-            // 'driver_response'=>$validatedData['driver_response'],
         ]);
 
         return response()->json($booking, 201);
@@ -56,36 +55,32 @@ class BookingController extends Controller
 
     public function recordAll()
     {
-        $bookings = Booking::all();
-        return response()->json($bookings, 200);
+        $bookings = Booking::all(); 
+        return BookingResource::collection($bookings)->response();
     }
 
     public function acceptBooking(Request $request, Booking $booking)
-    {
+{
+    $validatedData = $request->validate([
+        'status' => 'required|in:accepted,declined',
+        'driver_id' => 'required|exists:users,id',
+    ]);
 
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Unauthenticated'], 401);
-        }
-
-        $validatedData = $request->validate([
-            'status' => 'required|in:accepted,declined',
-        ]);
-
-        if ($booking->status === 'pending' && $booking->driver_id === null) {
-            if ($validatedData['status'] === 'accepted') {
-                $user = Auth::user();
-                $booking->driver_id = $user->id;
-                $booking->status = 'accepted';
-            } else {
-                $booking->driver_id = null;
-                $booking->status = 'pending';
-            }
-            $booking->save();
-
-            return response()->json($booking, 200);
+    if ($booking->status === 'pending' && $booking->driver_id === null) {
+        if ($validatedData['status'] === 'accepted') {
+            $booking->driver_id = $validatedData['driver_id'];
+            $booking->status = 'accepted';
         } else {
-            return response()->json(['error' => 'Booking could not be updated'], 400);
+            $booking->driver_id = null;
+            $booking->status = 'declined';
         }
+
+        $booking->save();
+
+        return response()->json($booking, 200);
+    } else {
+        return response()->json(['error' => 'Booking could not be updated'], 400);
     }
+}
 
 }

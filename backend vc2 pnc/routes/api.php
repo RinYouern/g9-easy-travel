@@ -43,8 +43,8 @@ Route::get('/vehicles-all', [VehicleController::class, 'getVehicleBooking']);
 Route::post('/add-driver', [AuthController::class, 'addDriver'])->middleware('auth:sanctum');
 Route::post('/bookingCar', [BookingController::class, 'bookingCar'])->middleware('auth:sanctum');
 Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
-Route::get('/recordAll', [BookingController::class, 'recordAll'])->middleware('auth:sanctum');
-Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooking'])->middleware('auth:sanctum');
+Route::get('/recordAll', [BookingController::class, 'recordAll']);
+Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooking']);
 
 //room
 Route::post('/room/create', [RoomController::class, 'store'])->middleware('auth:sanctum');
