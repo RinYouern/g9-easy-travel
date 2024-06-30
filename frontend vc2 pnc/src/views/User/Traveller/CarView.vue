@@ -43,7 +43,7 @@
 
             <div class="d-flex justify-content-evenly">
               <button class="btn btn-primary">See Detail</button>
-              <button class="btn btn-primary">Book Now</button>
+              <a href="/booking-car"><button class="btn btn-primary">Book Now</button></a>
             </div>
           </div>
         </div>

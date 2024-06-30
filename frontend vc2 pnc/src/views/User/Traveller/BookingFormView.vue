@@ -1,130 +1,92 @@
 <template>
-    <navbar></navbar>
-    <div class="container bg">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card d-flex flex-row justify-content-between">
-                    <div class="card-body d-flex flex-column justify-content-start">
-                        <h1 class="text-left mt-10px ">Welcome {{ carName }}</h1>
-                    </div>
-                    <form @submit.prevent="submitForm" class="card-body d-flex flex-column justify-content-center">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Name:</label>
-                                            <input type="text" id="name" v-model="formData.name" class="form-control"
-                                                required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="phoneNumber">Phone Number:</label>
-                                            <input type="tel" id="phoneNumber" v-model="formData.phoneNumber"
-                                                class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="pickupLocation">Pickup Location:</label>
-                                    <input type="text" id="pickupLocation" v-model="formData.pickupLocation"
-                                        class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="pickupDate">Pickup Date:</label>
-                                    <input type="date" id="pickupDate" v-model="formData.pickupDate"
-                                        class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="returnDate">Return Date:</label>
-                                    <input type="date" id="returnDate" v-model="formData.returnDate"
-                                        class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="Passengers">Passengers:</label>
-                                    <input type="number" id="Passengers" v-model.number="formData.Passengers"
-                                        class="form-control" min="1" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="totalPrice">Total Price:</label>
-                                    <input type="number" id="totalPrice" v-model.number="formData.totalPrice"
-                                        class="form-control" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Book Now</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="container mt-5">
+    <h2>Book a Car</h2>
+    <form @submit.prevent="submitBooking">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="vehicle_id">Vehicle ID</label>
+          <input type="text" class="form-control" id="vehicle_id" v-model="form.vehicle_id" required>
         </div>
-    </div>
+        <div class="col-md-6 mb-3">
+          <label for="start_date">Start Date</label>
+          <input type="date" class="form-control" id="start_date" v-model="form.start_date" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="end_date">End Date</label>
+          <input type="date" class="form-control" id="end_date" v-model="form.end_date" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="total_cost">Total Cost</label>
+          <input type="number" class="form-control" id="total_cost" v-model="form.total_cost" required>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="where">Location</label>
+        <input type="text" class="form-control" id="where" v-model="form.where" required>
+      </div>
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" v-model="form.name" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" v-model="form.phone" required>
+      </div>
+      <div class="mb-3">
+        <label for="quantity">Quantity</label>
+        <input type="number" class="form-control" id="quantity" v-model="form.quantity" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+  </div>
 </template>
 
 <script>
-import navbar from '@/Components/Traveler/navbarTraveler.vue'
+import axios from 'axios';
 
 export default {
-    components: {
-        navbar
-    },
-    data() {
-        return {
-            carName: 'Example Car',
-            formData: {
-                name: '',
-                phoneNumber: '',
-                pickupLocation: '',
-                pickupDate: '',
-                returnDate: '',
-                Passengers: 0,
-                totalPrice: 0
-            }
-        }
-    },
-    methods: {
-        submitForm() {
-            // Handle form submission here
-            console.log(this.formData)
-        }
+  data() {
+    return {
+      form: {
+        vehicle_id: '',
+        start_date: '',
+        end_date: '',
+        total_cost: '',
+        where: '',
+        name: '',
+        phone: '',
+        quantity: ''
+      }
+    };
+  },
+  methods: {
+    async submitBooking() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/bookingCar', this.form);
+        alert('Booking successful!');
+        // Clear the form after successful submission
+        this.form = {
+          vehicle_id: '',
+          start_date: '',
+          end_date: '',
+          total_cost: '',
+          where: '',
+          name: '',
+          phone: '',
+          quantity: ''
+        };
+      } catch (error) {
+        console.error('There was an error!');
+      }
     }
-}
+  }
+};
 </script>
 
 <style scoped>
-.card {
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    /* color: white; */
-    margin-bottom: 1.5rem;
-}
-
-.bg {
-    background-image: url('src/assets/image/route.jpg');
-    background-size: cover;
+.container {
+  max-width: 600px;
 }
 </style>

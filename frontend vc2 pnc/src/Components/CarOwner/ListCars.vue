@@ -1,15 +1,14 @@
+
 <template>
   <div class="container-fluid dashboard">
     <div class="row">
       <sidebar />
       <main class="col-md-9 col-lg-10 main-content p-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h4 class="text-center text-primary font-weight-bold">
-            Vehicles List
+          <h4 class="text-left text-primary font-weight-bold">
+            <i class="fas fa-car mr-2"></i>Vehicles List
           </h4>
-          <el-button type="warning" plain @click="showUserDetails()" class="custom-button">
-            Add new vehicle
-          </el-button>
+          <el-button plain @click="dialogTableVisible = true">Add Vehicle</el-button>
         </div>
         <div class="row">
           <div class="col-md-6 mb-4" v-for="car in cars" :key="car.id">
@@ -42,22 +41,17 @@
 
   <el-dialog v-model="dialogTableVisible" width="800" style="padding: 5%">
     <h2 class="text-2xl font-bold mb-6 text-center" style="margin-top: -50px">Add Vehicle</h2>
-    <el-form>
+    <el-form :model="formData" :rules="formRules" ref="vehicleForm" label-width="120px">
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item>
-            <el-input placeholder="Make" v-model="make" size="large" />
+          <el-form-item prop="make" :error="makeError">
+            <el-input placeholder="Make" v-model="formData.make" size="large" />
             <i class="bx bxs-car"></i>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item>
-            <el-input
-              placeholder="Traveler Capacity"
-              v-model="traveler_capacity"
-              size="large"
-              type="number"
-            />
+          <el-form-item prop="traveler_capacity" :error="travelerCapacityError">
+            <el-input placeholder="Traveler Capacity" v-model="formData.traveler_capacity" size="large" type="number" />
             <i class="bx bxs-user-plus"></i>
           </el-form-item>
         </el-col>
@@ -65,14 +59,14 @@
 
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item>
-            <el-input placeholder="Year" v-model="year" size="large" type="number" />
+          <el-form-item prop="year" :error="yearError">
+            <el-input placeholder="Year" v-model="formData.year" size="large" type="number" />
             <i class="bx bxs-calendar"></i>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item>
-            <el-input placeholder="Color" v-model="color" size="large" />
+          <el-form-item prop="color" :error="colorError">
+            <el-input placeholder="Color" v-model="formData.color" size="large" />
             <i class="bx bxs-paint"></i>
           </el-form-item>
         </el-col>
@@ -80,14 +74,14 @@
 
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item>
-            <el-input placeholder="Size" v-model="size" size="large" />
+          <el-form-item prop="size" :error="sizeError">
+            <el-input placeholder="Size" v-model="formData.size" size="large" />
             <i class="bx bxs-car-garage"></i>
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item>
-            <el-input placeholder="Price" v-model="price" size="large" type="number" />
+          <el-form-item prop="price" :error="priceError">
+            <el-input placeholder="Price" v-model="formData.price" size="large" type="number" />
             <i class="bx bxs-dollar-circle"></i>
           </el-form-item>
         </el-col>
@@ -95,94 +89,45 @@
 
       <el-row :gutter="20" class="justify-content-center">
         <el-col :span="20">
-          <el-form-item>
-            <el-input
-              placeholder="Description"
-              v-model="description"
-              size="large"
-              type="textarea"
-            />
+          <el-form-item prop="description" :error="descriptionError">
+            <el-input placeholder="Description" v-model="formData.description" size="large" type="textarea" />
             <i class="bx bxs-edit"></i>
           </el-form-item>
         </el-col>
       </el-row>
 
-      <el-row :gutter="20" class="justify-content-center">
+<el-row :gutter="20" class="justify-content-center">
         <el-col :span="7">
           <div>
-            <el-button size="large" class="mt-3 w-full" type="warning">Cancel</el-button>
+            <el-button size="large" class="mt-3 w-full" @click="dialogTableVisible = false">Cancel</el-button>
           </div>
         </el-col>
         <el-col :span="7">
           <div>
-            <el-button
-              size="large"
-              class="mt-3 w-full"
-              :disabled="isSubmitting"
-              type="primary"
-              native-type="submit"
-              >Add Vehicle</el-button
-            >
+            <el-button size="large" class="mt-3 w-full" :loading="isSubmitting" type="primary" @click="onSubmit">Add Vehicle</el-button>
           </div>
         </el-col>
       </el-row>
     </el-form>
   </el-dialog>
 </template>
-  
-  <script >
+
+<script>
 import sidebar from '@/Components/CarOwner/SideBar.vue'
 import { listCarStore } from '@/stores/hevicle-list'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import axiosInstance from '@/plugins/axios'
-import { useField, useForm } from 'vee-validate'
+import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 
-const router = useRouter()
-
-const formSchema = yup.object({
-  make: yup.string().required().label('Make'),
-  traveler_capacity: yup.number().required().label('Traveler Capacity'),
-  year: yup.number().required().label('Year'),
-  color: yup.string().required().label('Color'),
-  size: yup.string().required().label('Size'),
-  price: yup.number().required().label('Price'),
-  description: yup.string().required().label('Description')
+const formSchema = yup.object().shape({
+  make: yup.string().required('Please enter the make of the vehicle'),
+  traveler_capacity: yup.number().required('Please enter the traveler capacity').positive('Traveler capacity must be a positive number'),
+  year: yup.number().required('Please enter the year').positive('Year must be a positive number'),
+  color: yup.string().required('Please enter the color'),
+  size: yup.string().required('Please enter the size'),
+  price: yup.number().required('Please enter the price').positive('Price must be a positive number'),
+  description: yup.string().required('Please enter a description')
 })
-
-const { handleSubmit, isSubmitting } = useForm({
-  initialValues: {
-    make: '',
-    traveler_capacity: '',
-    year: '',
-    color: '',
-    size: '',
-    price: '',
-    description: ''
-  },
-  validationSchema: formSchema
-})
-
-const onSubmit = handleSubmit(async (values) => {
-  try {
-    const { data } = await axiosInstance.post('/addVehicle', values)
-
-    console.log('Vehicle added:', data)
-    dialogTableVisible.value = false
-  } catch (error) {
-    console.error('Error adding vehicle:', error)
-  }
-})
-
-const { value: make, errorMessage: makeError } = useField('make')
-const { value: traveler_capacity, errorMessage: travelerCapacityError } =
-  useField('traveler_capacity')
-const { value: year, errorMessage: yearError } = useField('year')
-const { value: color, errorMessage: colorError } = useField('color')
-const { value: size, errorMessage: sizeError } = useField('size')
-const { value: price, errorMessage: priceError } = useField('price')
-const { value: description, errorMessage: descriptionError } = useField('description')
 
 export default {
   name: 'CarList',
@@ -192,7 +137,16 @@ export default {
   data() {
     return {
       store: listCarStore(),
-      dialogTableVisible: false
+      dialogTableVisible: false,
+      formData: {
+        make: '',
+        traveler_capacity: '',
+        year: '',
+        color: '',
+        size: '',
+        price: '',
+        description: ''
+      }
     }
   },
   computed: {
@@ -200,27 +154,25 @@ export default {
       return this.store.cars
     }
   },
-  mounted() {
-    this.fetchCars()
-  },
   methods: {
-    fetchCars() {
-      this.store.fetchCars()
+    async onSubmit() {
+      try {
+        await this.$refs.vehicleForm.validate()
+        const { data } = await axiosInstance.post('/addVehicle', this.formData)
+        console.log('Vehicle added:', data)
+        this.dialogTableVisible = false // Close the dialog
+        this.fetchCars() 
+      } catch (error) {
+        console.error('Error adding vehicle:', error)
+      }
     },
-    showUserDetails() {
-      this.dialogTableVisible = true
+    fetchCars() {
+      this.store.fetchCars() 
     }
-  }
+  },
+  validationSchema: formSchema
 }
 </script>
-  
-  <style scoped>
-.custom-button {
-  background-color: #ffc107;
-  border-color: #ffc107;
-  color: #333;
-  font-weight: bold;
-  padding: 20px 20px;
-  transition: all 0.3s ease;
-}
+
+<style scoped>
 </style>
