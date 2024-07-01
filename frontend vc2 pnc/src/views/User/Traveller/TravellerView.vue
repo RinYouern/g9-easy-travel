@@ -42,7 +42,7 @@ export default {
   height: 500px;
 }
 #slide {
-  height: 400px;
+  height: 450px;
 }
 </style>
   
