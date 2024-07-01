@@ -10,14 +10,14 @@
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="style.css" />
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white shadow round sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
       <div class="container">
         <a class="navbar-brand" style="margin-left: 7%" href="#"
           ><img src="/src/assets/image/logo.png"
         /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
-          <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
+          <a href="/register"><button class="btn btn-primary">Register</button></a>
         </div>
       </div>
     </nav>
@@ -29,7 +29,10 @@
         </div>
       </div>
     </main>
-    <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
+    <div class="title-des">
+      <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
+      <p class="text-dark text-center mb-4"> Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated tours. <br>Let our expert guides lead you on an unforgettable adventure through this remarkable Southeast Asian destination.</p>
+    </div>
     <div class="container image-list">
       <div class="image-item">
         <img
@@ -102,7 +105,10 @@
         <div class="caption">Ang Teuk Trapeang Thmor in Banteaymeanchey</div>
       </div>
     </div>
-    <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
+    <div class="title-des">
+      <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
+      <p class="text-dark text-center mb-4"> Our hotel offers a unique travel experience with luxurious amenities, exquisite dining, and personalized service in a prime location.<br> Whether for business or leisure, discover comfort and elegance that goes beyond expectations.</p>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -282,8 +288,7 @@
 export default {}
 </script>
 
-<style scoped>
-
+<style>
 .modal {
   display: block;
   position: fixed;
@@ -326,7 +331,6 @@ export default {}
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-overlay {
@@ -391,22 +395,6 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
-.hotel-card{
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.hotel-card:hover{
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-.hotel-image{
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.hotel-card:hover .hotel-image{
-  transform: scale(1.05);
-}
-
 /*google maps*/
 
 iframe {
