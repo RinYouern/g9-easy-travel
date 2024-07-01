@@ -30,37 +30,37 @@
       <div class="container">
         <h1 class="text-dark">Rooms Management</h1>
         <div class="d-flex justify-content-between mt-3 mb-3">
-            <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example" >
-                <option selected>All floors</option>
-                <option value="1">First floor</option>
-                <option value="2">Second floor</option>
-                <option value="3">Third floor</option>
-            </select>
-            <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">Add Room</button>
+          <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example">
+            <option selected>All floors</option>
+            <option value="1">First floor</option>
+            <option value="2">Second floor</option>
+            <option value="3">Third floor</option>
+          </select>
+          <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">Add Room</button>
         </div>
         <table class="table shadow rounded">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">People</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Active</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">2C</th>
-                    <td>3</td>
-                    <td>30$</td>
-                    <td class="text-danger">Not available</td>
-                    <td>
-                        <button class="btn btn-success p-2 mx-2">Edit</button>
-                        <button class="btn btn-danger p-2">Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">People</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col">Active</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">2C</th>
+              <td>3</td>
+              <td>30$</td>
+              <td class="text-danger">Not available</td>
+              <td>
+                <button class="btn btn-success p-2 mx-2">Edit</button>
+                <button class="btn btn-danger p-2">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <FormAddRoomView v-if="showModal" @close="showModal = false" />
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import FormAddRoomView from './form/FormAddRoomView.vue';
+import FormAddRoomView from './form/FormAddRoomView.vue'
 
 export default {
   components: {
@@ -136,11 +136,11 @@ body {
   margin-left: 25%;
   padding: 20px;
 }
-.table thead tr th{
-  background-color:  #a8c4ec;
+.table thead tr th {
+  background-color: #a8c4ec;
 }
-.btn_add{
-    background-color: #178de7;
-    color: #fff;
+.btn_add {
+  background-color: #178de7;
+  color: #fff;
 }
 </style>
