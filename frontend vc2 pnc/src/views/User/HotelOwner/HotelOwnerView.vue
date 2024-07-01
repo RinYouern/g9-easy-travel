@@ -9,13 +9,13 @@
             </div>
             <ul>
                 <a href="#">
-                  <li class="active d-flex"><span class="material-symbols-outlined mx-3">dashboard</span>Dashboard</li>
+                  <li class="active d-flex "><span class="material-symbols-outlined mx-3">dashboard</span>Dashboard</li>
                 </a>
                 <a href="/room_managemant">
-                  <li class="d-flex"><span class="material-symbols-outlined mx-3">apartment</span>Rooms Management</li>
+                  <li class="d-flex text-dark"><span class="material-symbols-outlined mx-3">apartment</span>Rooms Management</li>
                 </a>
                 <a href="/customers_payment">
-                  <li class="d-flex">
+                  <li class="d-flex text-dark">
                     <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
                   </li>
                 </a>
@@ -23,7 +23,7 @@
         </div>
         <div class="main-content">
             <div class="header">
-                <h1 class="text-dark">Hotel Dashboard</h1>
+                <h1 class="text-dark fw-bold">Hotel Dashboard</h1>
                 <div class="profile d-flex gap-3">
                     <span class="material-symbols-outlined text-primary pt-2">notifications</span>
                     <img src="\src\assets\image\frog.jpg" alt="Profile Icon">
@@ -31,7 +31,7 @@
             </div>
             <div class="welcome d-flex justify-content-around shadow rounded">
               <div class="d-flex flex-column">
-                <h2 class="text-dark">Welcome Guy!</h2>
+                <h2 class="text-dark fw-bold">Welcome Guy!</h2>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry...</p>
               </div>
               <div>

@@ -11,12 +11,12 @@
         </div>
         <ul>
           <a href="/hotelowner">
-            <li class="d-flex">
+            <li class="d-flex text-dark">
               <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
             </li>
           </a>
           <a href="/room_managemant">
-            <li class="d-flex">
+            <li class="d-flex text-dark">
               <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
             </li>
           </a>
@@ -28,7 +28,7 @@
         </ul>
       </div>
       <div class="container">
-        <h1 class="text-dark">Customers Payment</h1>
+        <h1 class="text-dark fw-bold">Customers Payment</h1>
         <div class="d-flex justify-content-between mt-3 mb-3 ">
             <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example" >
                 <option selected>All floors</option>
