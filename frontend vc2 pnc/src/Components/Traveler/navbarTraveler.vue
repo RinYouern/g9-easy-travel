@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-sm bg-white navbar-light">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="#">
-          <img src="/src/assets/image/logo.png" alt="Logo" class="logo">
+          <img src="/src/assets/image/logo2.png" alt="Logo" class="logo">
         </a>
         <div class="nav-links">
           <a href="/"><h1 class="nav-item">Home</h1></a>
@@ -24,10 +24,11 @@
   <style scoped>
   .navbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 90px;
   }
   
   .logo {
-    width: 100px;
+    width: 90px;
     transition: transform 0.3s;
   }
   
