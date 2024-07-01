@@ -201,7 +201,15 @@ body {
     margin: 0;
     color: #555;
 }
-
+.welcome:hover .hotel_icon {
+  transform: translateY(-5px);
+}
+.hotel_icon{
+  margin-top: -80px;
+  width: 250px;
+  height: 200px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 .stats {
     display: flex;
     gap: 20px;
@@ -215,8 +223,12 @@ body {
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
-
+.stat:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 .stat img {
     width: 50px;
     margin-bottom: 10px;
@@ -234,11 +246,7 @@ body {
   font-size: 70px;
   color: #178DE7; 
 }
-.hotel_icon{
-  margin-top: -80px;
-  width: 250px;
-  height: 200px;
-}
+
 .list_customer{
     border-radius: 20px;
     margin-bottom: 20px;
