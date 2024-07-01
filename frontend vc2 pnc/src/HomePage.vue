@@ -29,7 +29,10 @@
         </div>
       </div>
     </main>
-    <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
+    <div class="title-des">
+      <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
+      <p class="text-dark text-center mb-4"> Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated tours. <br>Let our expert guides lead you on an unforgettable adventure through this remarkable Southeast Asian destination.</p>
+    </div>
     <div class="container image-list">
       <div class="image-item">
         <img
@@ -102,7 +105,10 @@
         <div class="caption">Ang Teuk Trapeang Thmor in Banteaymeanchey</div>
       </div>
     </div>
-    <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
+    <div class="title-des">
+      <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
+      <p class="text-dark text-center mb-4"> Our hotel offers a unique travel experience with luxurious amenities, exquisite dining, and personalized service in a prime location.<br> Whether for business or leisure, discover comfort and elegance that goes beyond expectations.</p>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
