@@ -10,14 +10,14 @@
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="style.css" />
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
         <a class="navbar-brand" style="margin-left: 7%" href="#"
           ><img src="/src/assets/image/logo.png"
         /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
-          <a href="/register"><button class="btn btn-primary">Register</button></a>
+          <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
         </div>
       </div>
     </nav>
@@ -34,76 +34,35 @@
       <p class="text-dark text-center mb-4"> Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated tours. <br>Let our expert guides lead you on an unforgettable adventure through this remarkable Southeast Asian destination.</p>
     </div>
     <div class="container image-list">
-      <div class="image-item">
+      <div class="image-item item1">
         <img
           src="https://www.khmertimeskh.com/wp-content/uploads/2022/03/Angkor-Wat-Equinox-expected-to-draw-crowds.jpg"
           alt="Image 1"
         />
         <div class="caption">Angkor Wat in Siem reap</div>
       </div>
-      <div class="image-item">
+      <div class="image-item item2">
         <img
           src="https://d13jio720g7qcs.cloudfront.net/images/destinations/origin/5d89daa658750.jpg"
           alt="Image 2"
         />
         <div class="caption">Koh Kae in Preas Vihear</div>
       </div>
-      <div class="image-item">
+      <div class="image-item item3">
         <img
           src="https://image.freshnewsasia.com/2018/10/fn-2018-07-10-11-06-16-0.jpg"
           alt="Image 3"
         />
         <div class="caption">Preas Vihear Temple</div>
       </div>
-      <div class="image-item">
+      <div class="image-item item4">
         <img
           src="https://ucarecdn.com/4cc71750-d4cc-4ba4-a1dd-63c81e6bdd24/-/crop/737x415/1,0/-/preview/"
           alt="Image 4"
         />
         <div class="caption">Bayon temple in Siem reap</div>
       </div>
-      <div class="image-item">
-        <img
-          src="https://gadttravel.com/uploads/cambodia/phnom-penh/phnom-penh-royal-palace.jpg"
-          alt="Image 4"
-        />
-        <div class="caption">Royal place in Phnom Penh</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/mondulkiri_cambodia2712_f92cfcf15d.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Mondulkiri</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/sok_san_beach_cambodia2712_922e94086d.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Koh Rong</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/kirirrom_cambodia2712_f38d1898b1.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Kirirom National Park</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/best_place_to_visit_in_cambodia2712_4177967e59.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Ratanakiri</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://www.guidetrip.info/asset/img/gallery_resort/5ad5772fb5244.jpg"
-          alt="Image 4"
-        />
-        <div class="caption">Ang Teuk Trapeang Thmor in Banteaymeanchey</div>
-      </div>
+      
     </div>
     <div class="title-des">
       <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
@@ -331,6 +290,7 @@ export default {}
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-overlay {
@@ -358,20 +318,31 @@ export default {}
   font-size: 1.5rem;
 }
 
+.item1 { grid-area: item1; }
+.item2 { grid-area: item2; }
+.item3 { grid-area: item3; }
+.item4 { grid-area: item4; }
+
 .image-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
+  grid-template-areas:
+    'item1 item2 item2 item2 item4'
+    'item1 item3 item3 item3 item4';
+  gap: 10px;
+  padding: 10px;
+  height: 70vh;
+  width: 100%;
 }
 
-.image-item {
+.image-list .image-item {
+  text-align: center;
   position: relative;
   overflow: hidden;
 }
 
 .image-item img {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
@@ -395,6 +366,22 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
+.hotel-card{
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.hotel-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.hotel-image{
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hotel-card:hover .hotel-image{
+  transform: scale(1.05);
+}
+
 /*google maps*/
 
 iframe {
@@ -590,5 +577,23 @@ iframe {
 
 .footer-icons a:hover {
   background-color: #333;
+}
+
+.item1 { grid-area: item1; }
+.item2 { grid-area: item2; }
+.item3 { grid-area: item3; }
+.item4 { grid-area: item4; }
+
+.image-list {
+  display: grid;
+  grid-template-areas:
+    'item1 item2 item2 item4'
+    'item1 item3 item3 item4';
+  gap: 10px;
+  padding: 10px;
+}
+
+.image-list .image-item {
+  text-align: center;
 }
 </style>

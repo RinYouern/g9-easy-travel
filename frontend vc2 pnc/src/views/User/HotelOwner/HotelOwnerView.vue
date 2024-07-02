@@ -12,10 +12,10 @@
                   <li class="active d-flex"><span class="material-symbols-outlined mx-3">dashboard</span>Dashboard</li>
                 </a>
                 <a href="/room_managemant">
-                  <li class="d-flex"><span class="material-symbols-outlined mx-3">apartment</span>Rooms Management</li>
+                  <li class="d-flex  text-dark"><span class="material-symbols-outlined mx-3">apartment</span>Rooms Management</li>
                 </a>
                 <a href="/customers_payment">
-                  <li class="d-flex">
+                  <li class="d-flex  text-dark">
                     <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
                   </li>
                 </a>
