@@ -102,8 +102,8 @@ const router = createRouter({
       component: () => import('@/views/Admin/DetailView.vue')
     },
     {
-      path: '/helol-detail',
-      name: 'helol-detail',
+      path: '/hotel-detail',
+      name: 'hotel-detail',
       component: () => import('@/views/User/Traveller/HotelDetail/HotelDetail.vue')
     },
     {
