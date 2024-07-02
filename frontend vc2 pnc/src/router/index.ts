@@ -96,6 +96,11 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/Admin/DetailView.vue')
     },
+    {
+      path: '/helol-detail',
+      name: 'helol-detail',
+      component: () => import('@/views/User/Traveller/HotelDetail/HotelDetail.vue')
+    },
 
 
   ]
