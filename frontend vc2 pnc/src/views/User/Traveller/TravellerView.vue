@@ -37,12 +37,12 @@ export default {
 }
 </script>
   
-  <style>
+  <style scoped>
 #header {
   height: 500px;
 }
 #slide {
-  height: 400px;
+  height: 450px;
 }
 </style>
   

@@ -10,14 +10,14 @@
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="style.css" />
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
         <a class="navbar-brand" style="margin-left: 7%" href="#"
           ><img src="/src/assets/image/logo.png"
         /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
-          <a href="/register"><button class="btn btn-primary">Register</button></a>
+          <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
         </div>
       </div>
     </nav>
@@ -62,48 +62,6 @@
         />
         <div class="caption">Bayon temple in Siem reap</div>
       </div>
-      <!-- <div class="image-item">
-        <img
-          src="https://gadttravel.com/uploads/cambodia/phnom-penh/phnom-penh-royal-palace.jpg"
-          alt="Image 4"
-        />
-        <div class="caption">Royal place in Phnom Penh</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/mondulkiri_cambodia2712_f92cfcf15d.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Mondulkiri</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/sok_san_beach_cambodia2712_922e94086d.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Koh Rong</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/kirirrom_cambodia2712_f38d1898b1.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Kirirom National Park</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://cms.siemreaper.com/uploads/best_place_to_visit_in_cambodia2712_4177967e59.jpeg"
-          alt="Image 4"
-        />
-        <div class="caption">Ratanakiri</div>
-      </div>
-      <div class="image-item">
-        <img
-          src="https://www.guidetrip.info/asset/img/gallery_resort/5ad5772fb5244.jpg"
-          alt="Image 4"
-        />
-        <div class="caption">Ang Teuk Trapeang Thmor in Banteaymeanchey</div>
-      </div> -->
     </div>
     <div class="title-des">
       <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
@@ -288,7 +246,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .modal {
   display: block;
   position: fixed;
@@ -331,6 +289,7 @@ export default {}
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .text-overlay {
@@ -406,6 +365,22 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
+.hotel-card{
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.hotel-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+.hotel-image{
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hotel-card:hover .hotel-image{
+  transform: scale(1.05);
+}
+
 /*google maps*/
 
 iframe {

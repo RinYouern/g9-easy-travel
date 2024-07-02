@@ -17,7 +17,7 @@
           </a>
           <a href="#">
             <li class="active d-flex">
-              <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
+              <span class="material-symbols-outlined mx-3 ">apartment</span>Rooms Management
             </li>
           </a>
           <a href="/customers_payment">
