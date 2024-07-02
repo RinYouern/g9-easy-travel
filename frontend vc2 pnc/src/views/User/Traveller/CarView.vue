@@ -3,48 +3,39 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
   />
-  <div>
-    <Navbar></Navbar>
-    <div class="bg-light">
-      <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
-        <div class="p-5" id="bg-warning">
-          <div class="text-center mb-4">
-            <h1 class="text-white">Where to Go?</h1>
-            <p class="text-white">Find vehicles available in Cambodia</p>
-          </div>
-          <div class="d-flex justify-content-center">
-            <input
-              type="text"
-              v-model="searchText"
-              class="form-control"
-              style="width: 300px"
-              placeholder="Enter your location or vehicle type"
-            />
-            <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
-          </div>
+  <navbar></navbar>
+  <div class="bg-light">
+    <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
+      <div class="p-5 d-flex flex-column align-items-center justify-content-center" id="bg-warning">
+        <div class="text-center mb-4">
+          <h1 class="text-white">Where to Go?</h1>
+          <p class="text-white">Find vehicles available in Cambodia</p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <input
+            type="text"
+            v-model="vehicle"
+            class="form-control"
+            style="width: 300px"
+            placeholder="Enter your location or vehicle type"
+          />
+          <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
         </div>
       </div>
     </div>
-    <div class="row m-3">
-      <div v-for="vehicle in vehicles" :key="vehicle.id" class="col-md-3 mb-4">
-        <div class="card" style="width: 100%">
-          <img
-            src="https://i.pinimg.com/474x/f4/26/cb/f426cb3e90d7b918060cd2fe0449fb3b.jpg"
-            class="card-img-top"
-            alt="..."
-          />
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 col-6" v-for="hotel in hotels" :key="hotel.id">
+        <div class="card">
+          <img src="https://i.pinimg.com/564x/14/43/85/14438549a73c9244318f8a263cf1dea5.jpg" class="card-img-top" :alt="hotel.name">
           <div class="card-body">
-            <h5 class="card-title">{{ vehicle.make }}</h5>
-            <p class="card-text">{{ vehicle.description }}</p>
-            <div class="d-flex">
-              <p class="ml-2"><i class="bi bi-people"></i> {{ vehicle.traveler_capacity }}</p>
-              <p class="ml-2"><i class="bi bi-coin"></i> {{ vehicle.price }} USD</p>
-            </div>
+            <star-rating :rating="hotel.rating"></star-rating>
+            <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
 
-            <div class="d-flex justify-content-evenly">
-              <button class="btn btn-primary">See Detail</button>
-              <a href="/booking-car"><button class="btn btn-primary">Book Now</button></a>
-            </div>
+            <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
+            
+            <a href="/car-detail" class="btn btn-primary">Book Now</a>
           </div>
         </div>
       </div>
@@ -54,44 +45,70 @@
 
 <script>
 import Navbar from '@/Components/Traveler/navbarTraveler.vue'
-import axios from 'axios'
+import StarRating from '@/Components/Traveler/StarRating.vue'
+import axios from 'axios';
 
 export default {
   name: 'place-traveler',
   components: {
-    Navbar
+    Navbar,
+    StarRating
   },
   data() {
     return {
-      searchText: '',
-      vehicles: []
-    }
-  },
-  computed: {
-    filteredVehicles() {
-      return this.vehicles.filter((vehicle) =>
-        vehicle.name.toLowerCase().includes(this.searchText.toLowerCase())
-      )
+      hotels: [],
+      vehicle: ''
     }
   },
   methods: {
-    searchVehicles() {},
-    async fetchVehicles() {
+    async fetchCompanies(){
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/vehicles-all')
-        this.vehicles = response.data
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/carowner');
+        this.hotels = response.data.data;
       } catch (error) {
-        console.error('Error fetching vehicles:', error)
+        console.error('Error fetching data', error);
       }
+    },
+    searchVehicles() {
+      this.fetchCompanies();
     }
   },
-  mounted() {
-    this.fetchVehicles()
+  mounted(){
+    this.fetchCompanies();
   }
 }
 </script>
 
 <style scoped>
+.container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.col-md-2.col-6 {
+  flex: 0 0 20%;
+  max-width: 20%;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+}
+
+.card-img-top {
+  height: 120px;
+  object-fit: cover;
+}
+
 #content {
   height: 350px;
   background-image: url('https://images.pexels.com/photos/311621/pexels-photo-311621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
@@ -102,8 +119,8 @@ export default {
 #bg-warning {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   background: rgba(0, 0, 0, 0.67);
   height: 250px;
   width: 800px;
