@@ -11,12 +11,12 @@
         </div>
         <ul>
           <a href="/hotelowner">
-            <li class="d-flex">
+            <li class="d-flex text-dark">
               <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
             </li>
           </a>
           <a href="/room_managemant">
-            <li class="d-flex">
+            <li class="d-flex text-dark">
               <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
             </li>
           </a>
