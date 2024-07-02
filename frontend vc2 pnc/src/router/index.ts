@@ -111,6 +111,11 @@ const router = createRouter({
       name: 'car-detail',
       component: () => import('@/views/User/Traveller/CompanyCarDetail/CompanyDetail.vue')
     },
+    {
+      path: '/place-detail',
+      name: 'place-detail',
+      component: () => import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
+    },
 
 
   ]
