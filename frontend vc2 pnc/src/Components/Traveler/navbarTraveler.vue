@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-sm bg-white navbar-light">
+    <nav class="navbar navbar-expand-sm bg-white navbar-light fixed-top">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="#">
           <img src="/src/assets/image/logo2.png" alt="Logo" class="logo">
