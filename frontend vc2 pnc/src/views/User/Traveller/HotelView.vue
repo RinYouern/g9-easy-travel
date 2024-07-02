@@ -29,7 +29,7 @@
             <h5 class="card-title">{{ hotel.name }}</h5>
             <p class="card-text">{{ hotel.location }}</p>
             <star-rating :rating="hotel.rating"></star-rating>
-            <a href="#" class="btn btn-primary">Book Now</a>
+            <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
           </div>
         </div>
       </div>
