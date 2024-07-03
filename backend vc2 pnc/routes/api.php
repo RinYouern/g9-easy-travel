@@ -45,6 +45,8 @@ Route::post('/bookingCar', [BookingController::class, 'bookingCar'])->middleware
 Route::get('/recordBooking', [BookingController::class, 'recordOne'])->middleware('auth:sanctum');
 Route::get('/recordAll', [BookingController::class, 'recordAll']);
 Route::put('/bookings/{booking}/accept', [BookingController::class, 'acceptBooking']);
+Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
+
 
 //room
 Route::post('/room/create', [RoomController::class, 'store'])->middleware('auth:sanctum');
