@@ -1,4 +1,8 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+  />
   <navbar></navbar>
   <div class="bg-light">
     <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
@@ -15,7 +19,7 @@
             style="width: 300px"
             placeholder="Enter your location or vehicle type"
           />
-          <button class="btn btn-primary ms-3">Search</button>
+          <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
         </div>
       </div>
     </div>
@@ -24,11 +28,13 @@
     <div class="row">
       <div class="col-md-2 col-6" v-for="hotel in hotels" :key="hotel.id">
         <div class="card">
-          <img :src="hotel.image" class="card-img-top" :alt="hotel.name">
+          <img src="https://i.pinimg.com/474x/6a/51/59/6a5159c420d54f0daa5d28806073d7f3.jpg" class="card-img-top" :alt="hotel.name">
           <div class="card-body">
-            <h5 class="card-title">{{ hotel.name }}</h5>
-            <p class="card-text">{{ hotel.location }}</p>
             <star-rating :rating="hotel.rating"></star-rating>
+            <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
+
+            <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
+            
             <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
           </div>
         </div>
@@ -36,10 +42,12 @@
     </div>
   </div>
 </template>
-  
-  <script>
+
+<script>
 import Navbar from '@/Components/Traveler/navbarTraveler.vue'
 import StarRating from '@/Components/Traveler/StarRating.vue'
+import axios from 'axios';
+
 export default {
   name: 'place-traveler',
   components: {
@@ -48,44 +56,25 @@ export default {
   },
   data() {
     return {
-      hotels: [
-        {
-          id: 1,
-          image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/84/39/f3/jaya-house-riverpark.jpg?w=1200&h=-1&s=1',
-          name: 'Angkor Palace Resort',
-          location: 'Siem Reab',
-          rating: 4.5
-        },
-        {
-          id: 2,
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmpzKxGHvAkgGNeHhEeBd-2bbXdpMKgV_GIg&s',
-          name: 'Phnom Oudong Hotel',
-          location: 'Kompong Spue',
-          rating: 3.8
-        },
-        {
-          id: 3,
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcrdOm-t8xReLudf1TGYSSiXeL9zEYZWHJ3A&s',
-          name: 'Angkor Palace Resort',
-          location: 'Siem Reab',
-          rating: 4.2
-        },
-        {
-          id: 4,
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7mA9dXVZJj6DEaD-ZAhFZ3CO-ourdaUv3g&s',
-          name: 'Phnom Oudong Hotel',
-          location: 'Kompong Spue',
-          rating: 3.9
-        },
-        {
-          id: 5,
-          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIiYxEITfeLNgFovkccexXjWvGQTs5qwPMwQ&s',
-          name: 'Phnom Oudong Hotel',
-          location: 'Kompong Spue',
-          rating: 4.1
-        }
-      ]
+      hotels: [],
+      vehicle: ''
     }
+  },
+  methods: {
+    async fetchCompanies(){
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/hotelOwner');
+        this.hotels = response.data.data;
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    },
+    searchVehicles() {
+      this.fetchCompanies();
+    }
+  },
+  mounted(){
+    this.fetchCompanies();
   }
 }
 </script>
@@ -119,11 +108,10 @@ export default {
   height: 120px;
   object-fit: cover;
 }
-  
 
 #content {
   height: 350px;
-  background-image: url('https://images.pexels.com/photos/311621/pexels-photo-311621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-image: url('@/assets/image/hotel/hotel.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -140,4 +128,3 @@ export default {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 </style>
-  
