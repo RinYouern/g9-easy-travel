@@ -26,16 +26,14 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-2 col-6" v-for="hotel in hotels" :key="hotel.id">
+      <div class="col-md-2 col-6" v-for="hotel in filteredHotels" :key="hotel.id">
         <div class="card">
-          <img src="https://i.pinimg.com/564x/14/43/85/14438549a73c9244318f8a263cf1dea5.jpg" class="card-img-top" :alt="hotel.name">
+          <img src="https://i.pinimg.com/474x/6a/51/59/6a5159c420d54f0daa5d28806073d7f3.jpg" class="card-img-top" :alt="hotel.name">
           <div class="card-body">
             <star-rating :rating="hotel.rating"></star-rating>
             <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
-
             <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
-            
-            <a href="/car-detail" class="btn btn-primary">Book Now</a>
+            <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
           </div>
         </div>
       </div>
@@ -57,20 +55,25 @@ export default {
   data() {
     return {
       hotels: [],
-      vehicle: ''
+      vehicle: '',
+      filteredHotels: []
     }
   },
   methods: {
-    async fetchCompanies(){
+    async fetchCompanies() {
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/users/role/carowner');
         this.hotels = response.data.data;
+        this.filteredHotels = this.hotels; 
       } catch (error) {
         console.error('Error fetching data', error);
       }
     },
     searchVehicles() {
-      this.fetchCompanies();
+      this.filteredHotels = this.hotels.filter(hotel =>
+        hotel.name.toLowerCase().includes(this.vehicle.toLowerCase()) ||
+        hotel.location.toLowerCase().includes(this.vehicle.toLowerCase())
+      );
     }
   },
   mounted(){
@@ -111,7 +114,7 @@ export default {
 
 #content {
   height: 350px;
-  background-image: url('https://images.pexels.com/photos/311621/pexels-photo-311621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-image: url('@/assets/image/hotel/hotel.jpg');
   background-size: cover;
   background-position: center;
 }
