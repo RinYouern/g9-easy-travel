@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,3 +55,8 @@ Route::get('/room/list', [RoomController::class, 'index'])->middleware('auth:san
 Route::delete('/room/delete/{id}',[RoomController::class, 'destroy'])->middleware('auth:sanctum');;
 Route::put('/room/update/{id}',[RoomController::class, 'update'])->middleware('auth:sanctum');
 Route::get('/room/show/{id}', [RoomController::class, 'show'])->middleware('auth:sanctum');
+
+
+//Place 
+Route::get('/place/list', [PlaceController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/place/create', [PlaceController::class, 'store'])->middleware('auth:sanctum');
