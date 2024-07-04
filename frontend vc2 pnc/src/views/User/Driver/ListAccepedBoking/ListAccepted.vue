@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="mb-4 pt-4 text-center">List all Accepted</h1>
-    <button class="btn btn-primary mb-4" @click="goToDriverPage">Back</button>
+    <a href="/"><button class="btn btn-primary mb-4">Back</button></a>
     <table class="table table-striped table-hover">
       <thead>
         <tr>

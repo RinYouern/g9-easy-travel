@@ -5,15 +5,16 @@
     <div class="row text-center mt-5">
       <a href="" class="col-md-4 mb-4 btn">
         <div class="bg-dark">
-          <div class="p-4  text-white rounded">
+          <div class="p-4 text-white rounded">
             <div class="h4">Bookings</div>
             <div class="display-4 text-success">{{ totalBooking }}</div>
           </div>
         </div>
       </a>
-      <a href="" class="col-md-4 mb-4 btn">
+
+      <a href="/list-accepted" class="col-md-4 mb-4 btn">
         <div class="bg-dark">
-          <div class="p-4  text-white rounded">
+          <div class="p-4 text-white rounded">
             <div class="h4">Accepted</div>
             <div class="display-4 text-success">{{ approveReject }}</div>
           </div>
@@ -21,7 +22,7 @@
       </a>
       <a href="" class="col-md-4 mb-4 btn">
         <div class="bg-dark">
-          <div class="p-4  text-white rounded">
+          <div class="p-4 text-white rounded">
             <div class="h4">List</div>
             <div class="display-4 text-success">{{ pendingDone }}</div>
           </div>
