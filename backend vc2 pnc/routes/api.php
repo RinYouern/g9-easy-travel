@@ -50,8 +50,8 @@ Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
 
 
 //room
-Route::post('/room/create', [RoomController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/room/list', [RoomController::class, 'index'])->middleware('auth:sanctum');;
-Route::delete('/room/delete/{id}',[RoomController::class, 'destroy'])->middleware('auth:sanctum');;
-Route::put('/room/update/{id}',[RoomController::class, 'update'])->middleware('auth:sanctum');
-Route::get('/room/show/{id}', [RoomController::class, 'show'])->middleware('auth:sanctum');
+Route::post('/rooms', [RoomController::class, 'store']);
+Route::get('/rooms/{id}', [RoomController::class, 'show']);
+Route::get('/users/{userId}/rooms', [RoomController::class, 'index']);
+Route::put('/rooms/{id}', [RoomController::class, 'update']);
+Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
