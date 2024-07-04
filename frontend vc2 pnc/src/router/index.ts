@@ -102,7 +102,7 @@ const router = createRouter({
       component: () => import('@/views/Admin/DetailView.vue')
     },
     {
-      path: '/hotel-detail',
+      path: '/hotel-detail/:id',
       name: 'hotel-detail',
       component: () => import('@/views/User/Traveller/HotelDetail/HotelDetail.vue')
     },
