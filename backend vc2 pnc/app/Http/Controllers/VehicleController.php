@@ -3,6 +3,7 @@
 // app/Http/Controllers/VehicleController.php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,5 +41,11 @@ class VehicleController extends Controller
     {
         $vehicle = Vehicle::all();
         return response()->json($vehicle);
+    }
+
+    public function getVehicles(Request $request, $userId)
+    {
+        $vehicles = Vehicle::where('owner_id', $userId)->get(); 
+        return response()->json($vehicles);
     }
 }

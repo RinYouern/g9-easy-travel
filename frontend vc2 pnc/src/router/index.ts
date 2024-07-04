@@ -107,14 +107,14 @@ const router = createRouter({
       component: () => import('@/views/User/Traveller/HotelDetail/HotelDetail.vue')
     },
     {
-      path: '/car-detail',
+      path: '/car-detail/:id',
       name: 'car-detail',
       component: () => import('@/views/User/Traveller/CompanyCarDetail/CompanyDetail.vue')
     },
     {
-      path: '/place-detail',
-      name: 'place-detail',
-      component: () => import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
+      path: '/list-accepted',
+      name: 'list-accepted',
+      component: () => import('@/views/User/Driver/ListAccepedBoking/ListAccepted.vue')
     },
 
 
