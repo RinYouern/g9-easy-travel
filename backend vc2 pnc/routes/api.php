@@ -31,8 +31,9 @@ Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sa
 Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
 Route::get('/users/all', [AuthController::class, 'getAll']);
 Route::put('/users/{id}', [AuthController::class, 'edit']);
-Route::delete('/users/{id}', [AuthController::class, 'delete']);
+Route::delete('/user/{id}', [AuthController::class, 'delete']);
 Route::get('/user/{id}', [AuthController::class, 'detail']);
+Route::get('/users/{id}', [AuthController::class, 'showDetail']);
 
 // routes/api.php
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');
