@@ -16,7 +16,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="/placemangement">
             <i class="bi bi-cart"></i>
             <span>Places</span>
           </a>
