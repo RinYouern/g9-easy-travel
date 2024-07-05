@@ -1,5 +1,5 @@
 <template>
-  <div class="p-5 bg-danger" id="header-hotel">
+  <div class="p-5 bg-danger shadow round mb-4" id="header-hotel">
     <h1 class="text-white">Welcome to our Hotel</h1>
     <section class="search-bar">
       <input type="date" v-model="checkIn" />
