@@ -116,7 +116,11 @@ const router = createRouter({
       name: 'list-accepted',
       component: () => import('@/views/User/Driver/ListAccepedBoking/ListAccepted.vue')
     },
-
+    {
+      path: '/placemanagement',
+      name: 'placemanagement',
+      component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
+    },
 
   ]
 })
