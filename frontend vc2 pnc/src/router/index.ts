@@ -117,9 +117,9 @@ const router = createRouter({
       component: () => import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
     },
     {
-      path: '/placemangement',
-      name: 'placemangement',
-      component: () => import('@/Components/Layouts/admin/PlaceUserLayout.vue')
+      path: '/placemanagement',
+      name: 'placemanagement',
+      component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
     },
 
   ]
