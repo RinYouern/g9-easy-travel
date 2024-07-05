@@ -10,11 +10,11 @@
     <div class="car-card-column">
       <div v-for="car in cars" :key="car.id" class="car-card mt-3" style="margin:auto">
         <div class="car-image">
-          <img :src="car.image" alt="" />
+          <img src="https://i.pinimg.com/474x/cd/67/f3/cd67f37f410cb8e0b8fea2ed63d3a574.jpg" alt="" />
         </div>
         <div class="car-info">
           <div class="car-name">
-            <h3>{{ car.name }}</h3>
+            <h3> <strong class="text-uppercase">{{ user.name }}</strong></h3>
           </div>
           <div class="rating">
             <i class="fa fa-star"></i>
@@ -23,10 +23,10 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
           </div>
-          <p><i class="fa fa-map-marker" width="40px"></i> {{ car.location }}</p>
+          <p><i class="fa fa-map-marker" width="40px"></i> {{user.location }}</p>
           <p>{{ car.description }}</p>
           <div class="car-rating">
-            <h1>{{ car.price }}</h1>
+            <h3><strong>{{ car.price }}</strong> $</h3>
           </div>
           <button class="btn btn-primary">Check availability</button>
         </div>
@@ -38,6 +38,8 @@
 
 <script>
 import Header from '@/Components/Traveler/CarDetail/HeaderCar.vue'
+import axios from 'axios';
+
 export default {
   name: 'Travel',
   components: {
@@ -45,32 +47,32 @@ export default {
   },
   data() {
     return {
-      cars: [
-        {
-          id: 1,
-          name: 'Mondulkiri Bus',
-          image: 'https://cdn.pixabay.com/photo/2017/06/21/23/44/bus-2429091_1280.jpg',
-          location: 'Mondulkiri',
-          description: 'Mondulkiri is a province of Cambodia. Bordering the provinces of Kratié to the west, Stung Treng to the northwest, Ratanakiri to the north, and the country of Vietnam to the east and south. It is the most sparsely populated province in the country despite being the largest in land area',
-          price: '$1500'
-        },
-        {
-          id: 1,
-          name: 'Mondulkiri Bus',
-          image: 'https://cdn.pixabay.com/photo/2017/06/21/23/44/bus-2429091_1280.jpg',
-          location: 'Mondulkiri',
-          description: 'Mondulkiri is a province of Cambodia. Bordering the provinces of Kratié to the west, Stung Treng to the northwest, Ratanakiri to the north, and the country of Vietnam to the east and south. It is the most sparsely populated province in the country despite being the largest in land area',
-          price: '$1500'
-        },
-        {
-          id: 1,
-          name: 'Mondulkiri Bus',
-          image: 'https://cdn.pixabay.com/photo/2017/06/21/23/44/bus-2429091_1280.jpg',
-          location: 'Mondulkiri',
-          description: 'Mondulkiri is a province of Cambodia. Bordering the provinces of Kratié to the west, Stung Treng to the northwest, Ratanakiri to the north, and the country of Vietnam to the east and south. It is the most sparsely populated province in the country despite being the largest in land area',
-          price: '$1500'
-        },
-      ]
+      cars: [],
+      user:{}
+    }
+  },
+  created() {
+    this.fetchVehicle();
+    this.fetchUser();
+  },
+  methods: {
+    fetchVehicle() {
+      axios.get(`http://127.0.0.1:8000/api/vehicles/${this.$route.params.id}`)
+        .then(response => {
+          this.cars = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    fetchUser(){
+      axios.get(`http://127.0.0.1:8000/api/user/${this.$route.params.id}`)
+       .then(response => {
+         this.user = response.data.data
+        })
+       .catch(error => {
+          console.error(error);
+        });
     }
   }
 }

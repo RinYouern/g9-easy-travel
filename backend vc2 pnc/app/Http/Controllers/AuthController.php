@@ -186,4 +186,9 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+    public function showDetail(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json($user);
+    }
 }

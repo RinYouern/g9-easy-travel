@@ -28,12 +28,12 @@
     <div class="row">
       <div class="col-md-2 col-6" v-for="hotel in filteredHotels" :key="hotel.id">
         <div class="card">
-          <img src="https://i.pinimg.com/474x/6a/51/59/6a5159c420d54f0daa5d28806073d7f3.jpg" class="card-img-top" :alt="hotel.name">
+          <img src="https://i.pinimg.com/474x/6c/2a/d5/6c2ad5ed6a685afa26bc2946d2982498.jpg" class="card-img-top" :alt="hotel.name">
           <div class="card-body">
             <star-rating :rating="hotel.rating"></star-rating>
             <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
             <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
-            <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
+            <a :href="'/car-detail/' + hotel.id" class="btn btn-primary" @click="showId(hotel.id)">See Detail</a>
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import Navbar from '@/Components/Traveler/navbarTraveler.vue'
-import StarRating from '@/Components/Traveler/StarRating.vue'
+import Navbar from '@/Components/Traveler/navbarTraveler.vue';
+import StarRating from '@/Components/Traveler/StarRating.vue';
 import axios from 'axios';
 
 export default {
@@ -57,7 +57,7 @@ export default {
       hotels: [],
       vehicle: '',
       filteredHotels: []
-    }
+    };
   },
   methods: {
     async fetchCompanies() {
@@ -74,9 +74,12 @@ export default {
         hotel.name.toLowerCase().includes(this.vehicle.toLowerCase()) ||
         hotel.location.toLowerCase().includes(this.vehicle.toLowerCase())
       );
+    },
+    showId(id) {
+      console.log('Selected hotel ID:', id);
     }
   },
-  mounted(){
+  mounted() {
     this.fetchCompanies();
   }
 }

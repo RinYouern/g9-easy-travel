@@ -33,7 +33,7 @@
             <star-rating :rating="hotel.rating"></star-rating>
             <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
             <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
-            <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
+            <a :href="'/hotel-detail/' + hotel.id" class="btn btn-primary" @click="showId(hotel.id)">See Detail</a>
           </div>
         </div>
       </div>
@@ -74,6 +74,9 @@ export default {
         hotel.name.toLowerCase().includes(this.vehicle.toLowerCase()) ||
         hotel.location.toLowerCase().includes(this.vehicle.toLowerCase())
       );
+    },
+    showId(id) {
+      console.log('Selected hotel ID:', id);
     }
   },
   mounted(){

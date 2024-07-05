@@ -8,7 +8,9 @@
             <h5 class="card-title">{{ hotel.name }}</h5>
             <p class="card-text">{{ hotel.location }}</p>
             <star-rating :rating="hotel.rating"></star-rating>
-            <a href="/hotel-detail" class="btn btn-primary">Book Now</a>
+            <hr>
+            
+            <a href="/hotel-detail" class="btn btn-primary">View Detail</a>
           </div>
         </div>
       </div>
@@ -52,14 +54,14 @@ export default {
           id: 4,
           image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv7mA9dXVZJj6DEaD-ZAhFZ3CO-ourdaUv3g&s',
           name: 'Phnom Oudong Hotel',
-          location: 'Kompong Spue',
+          location: 'Phnom Penh',
           rating: 3.9
         },
         {
           id: 5,
           image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIiYxEITfeLNgFovkccexXjWvGQTs5qwPMwQ&s',
           name: 'Phnom Oudong Hotel',
-          location: 'Kompong Spue',
+          location: 'Poipet',
           rating: 4.1
         }
       ]
@@ -69,11 +71,22 @@ export default {
 </script>
 
 <style scoped>
+
+
 .container {
-  margin-top: 2rem;
+  
   display: flex;
   justify-content: center;
 }
+.card-title{
+  color: black;
+  font: bold 25px "Times New Roman";
+}
+.card-text{
+  color: gray;
+  font-size: 15px;
+}
+
 
 .row {
   display: flex;
@@ -91,10 +104,54 @@ export default {
 
 .card {
   width: 100%;
+  background-color: #f8f8f8;
+  border: none;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  
+  box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
-  height: 120px;
+  height: 200px;
   object-fit: cover;
+  
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  width: 100%;
+ 
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+  background-color:blue;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+}
+.btn-primary:hover{
+  background:red;
 }
 </style>

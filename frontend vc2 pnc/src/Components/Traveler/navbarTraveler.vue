@@ -5,10 +5,10 @@
           <img src="/src/assets/image/logo2.png" alt="Logo" class="logo">
         </a>
         <div class="nav-links">
-          <a href="/"><h1 class="nav-item">Home</h1></a>
-          <a href="/place-traveler"><h1 class="nav-item">Place</h1></a>
-          <a href="/car-traveler"><h1 class="nav-item">Car</h1></a>
-          <a href="/hotel-traveler"><h1 class="nav-item">Hotel</h1></a>
+          <a href="/"><h1 class="nav-item btn">Home</h1></a>
+          <a href="/place-traveler"><h1 class="nav-item btn">Place</h1></a>
+          <a href="/car-traveler"><h1 class="nav-item btn">Car</h1></a>
+          <a href="/hotel-traveler"><h1 class="nav-item btn">Hotel</h1></a>
         </div>
         <a class="navbar-brand" href="#">
           <img src="https://i.pinimg.com/474x/5f/40/6a/5f406ab25e8942cbe0da6485afd26b71.jpg" alt="Logo" class="profile-img">
