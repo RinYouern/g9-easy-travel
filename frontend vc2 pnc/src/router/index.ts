@@ -117,6 +117,12 @@ const router = createRouter({
       component: () => import('@/views/User/Driver/ListAccepedBoking/ListAccepted.vue')
     },
 
+    {
+      path: '/form_booking',
+      name: 'form_booking',
+      component:()=>import('@/views/Admin/form_booking/formBooking.vue')
+    },
+
 
   ]
 })
