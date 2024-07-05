@@ -1,103 +1,102 @@
 <template>
-  <div class="container">
-    <h1 class="mb-4 pt-4 text-center">List all Accepted</h1>
+  <div class="p-3 bg-light rounded">
     <a href="/"><button class="btn btn-primary mb-4">Back</button></a>
-    <table class="table table-striped table-hover">
-      <thead>
+    <h2 class="mb-4">List Booking</h2>
+    <table class="table table-hover">
+      <thead class="table-dark">
         <tr>
           <th>Name</th>
-          <th>License Number</th>
-          <th>Booking day start</th>
-          <th>Booking day end</th>
-          <th>Status</th>
+          <th>Phone</th>
+          <th>Date-start</th>
+          <th>Date-end</th>
+          <th>Destination</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="driver in acceptedDrivers" :key="driver.id">
-          <td>{{ driver.name }}</td>
-          <td>{{ driver.licenseNumber }}</td>
-          <td>{{ driver.bookingDayStart }}</td>
-          <td>{{ driver.bookingDayEnd }}</td>
-          <td :class="{ 'text-success': driver.status === 'Accepted' }">{{ driver.status }}</td>
+        <tr v-for="booking in filteredBookings" :key="booking.id" class="align-middle">
+          <template v-if="store.users.company == booking.owner_id && booking.status == 'accepted'">
+            <td>{{ booking.name }}</td>
+            <td>{{ booking.phone }}</td>
+            <td>{{ formatDate(booking.start_date) }}</td>
+            <td>{{ formatDate(booking.end_date) }}</td>
+            <td>{{ booking.where }}</td>
+            <td class="text-success fw-bold">accepted</td>
+          </template>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
-<script>
+  
+  <script>
+import { userStore } from '@/stores/user-list'
+import axios from 'axios'
+
 export default {
+  name: 'ListBooking',
   data() {
     return {
-      drivers: [
-        {
-          id: 1,
-          name: 'John Doe',
-          licenseNumber: '123456789',
-          status: 'Accepted',
-          bookingDayStart: '8:00 AM',
-          bookingDayEnd: '5:00 PM'
-        },
-        {
-          id: 2,
-          name: 'Jane Smith',
-          licenseNumber: '987654321',
-          status: 'Accepted',
-          bookingDayStart: '9:00 AM',
-          bookingDayEnd: '6:00 PM'
-        },
-        {
-          id: 3,
-          name: 'Bob Johnson',
-          licenseNumber: '456789123',
-          status: 'Rejected',
-          bookingDayStart: '7:30 AM',
-          bookingDayEnd: '4:30 PM'
-        },
-        {
-          id: 4,
-          name: 'Alice Williams',
-          licenseNumber: '789123456',
-          status: 'Accepted',
-          bookingDayStart: '8:30 AM',
-          bookingDayEnd: '5:30 PM'
+      store: userStore(),
+      bookings: [],
+      selectedBooking: {}
+    }
+  },
+  mounted() {
+    this.fetchBookings()
+    this.fetchUser()
+  },
+  methods: {
+    async fetchBookings() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/recordAll')
+        this.bookings = response.data.data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
+    async fetchRespondBooking(bookingId) {
+      try {
+        const data = {
+          status: 'accepted',
+          driver_id: this.store.users.id
         }
-      ]
+
+        const response = await axios.put(
+          `http://127.0.0.1:8000/api/bookings/${bookingId}/accept`,
+          data
+        )
+
+        this.status = response.data.status
+        this.driver_id = response.data.driver_id
+        await this.fetchBookings()
+        console.log(bookingId)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    showDetailModal(booking) {
+      this.selectedBooking = booking
+      const modal = new bootstrap.Modal(document.getElementById('bookingDetailModal'))
+      modal.show()
+    },
+    formatDate(dateString) {
+      return dateString ? dateString.split('T')[0] : ''
+    },
+    fetchUser() {
+      this.store.fetchUser()
     }
   },
   computed: {
-    acceptedDrivers() {
-      return this.drivers.filter((driver) => driver.status === 'Accepted')
+    filteredBookings() {
+      return this.bookings
     }
   }
 }
 </script>
-<style>
-@import 'bootstrap/dist/css/bootstrap.min.css';
-.table {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.table thead th {
-  background-color: black;
-  color: white;
-  font-weight: 600;
-  border-bottom: none;
-}
-
-.table tbody tr:hover {
-  background-color: #f8f9fa;
-}
-
-.table td,
-.table th {
-  padding: 1rem;
-  vertical-align: middle;
-  font-size: 0.9rem;
-}
-
-.text-success {
-  color: green !important;
-}
+  
+  <style>
+/* Add any custom styles here if needed */
 </style>
+  
