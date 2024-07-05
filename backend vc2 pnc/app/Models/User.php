@@ -42,7 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class, 'driver_id');
     }
-
+    public function romms()
+    {
+        return $this->hasMany(Room::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

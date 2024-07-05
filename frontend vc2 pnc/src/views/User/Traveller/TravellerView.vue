@@ -5,17 +5,18 @@
       <slide></slide>
     </div>
     <div class="bg-white m-3 p-5" id="slide">
-      <h3>Popular Attractions</h3>
+      <h3 class="text-black">Popurlar Attractions</h3>
       <place></place>
     </div>
     <div class="bg-white m-3 p-5" id="slide">
-      <h3>Recommended Car Rentals</h3>
+      <h3 class="text-black">Recommended Car Rentals</h3>
       <car></car>
     </div>
     <div class="bg-white m-3 p-5" id="slide">
-      <h3>Popular Attractions</h3>
+      <h3 class="text-black">Cambodia Hotels & Accommodations</h3>
       <hotel></hotel>
     </div>
+    <hr>
   </div>
 </template>
   
@@ -41,8 +42,9 @@ export default {
 #header {
   height: 500px;
 }
+
 #slide {
-  height: 450px;
+  height: 550px;
 }
 </style>
   

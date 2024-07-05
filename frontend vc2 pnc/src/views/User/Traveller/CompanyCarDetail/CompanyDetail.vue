@@ -10,7 +10,7 @@
     <div class="car-card-column">
       <div v-for="car in cars" :key="car.id" class="car-card mt-3" style="margin:auto">
         <div class="car-image">
-          <img src="https://i.pinimg.com/474x/67/6e/10/676e109a036716b69097bb38fbbf2054.jpg" alt="" />
+          <img src="https://i.pinimg.com/474x/cd/67/f3/cd67f37f410cb8e0b8fea2ed63d3a574.jpg" alt="" />
         </div>
         <div class="car-info">
           <div class="car-name">

@@ -1,72 +1,57 @@
 <template>
-  <h1 class="fw-bold">HOTELS LIST</h1>
-  <div class="container d-flex">
-    <div class="group_card">
-      <div class="hotel-card-row">
+  <h1 class="fw-bold">List Room</h1>
+  <div class="container mt-3">
+    <div class="group-card shadow">
+      <div class="hotel-card-row" v-for="room in rooms" :key="room.id">
         <div class="hotel-card">
           <div class="hotel-image">
-            <img src="@/assets/image/myhotel/HM Grand Central Hotel.jpg" alt="" />
-            <div class="favorite-button" @click="toggleFavorite1">
-              <i :class="['fa', 'favorite-icon', isFavorite1 ? 'fa-heart' : 'far fa-heart']"></i>
-            </div>
+            <img src="@/assets/image/hotel/hotelheader.jpg" alt="" />
           </div>
           <div class="hotel-info">
-            <div class="hotel-name">
-              <h3>HM Grand Central Hotel</h3>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-plus-circle"></i>
+            <div class="d-flex justify-content-between align-items-center">
+              <h3>Room Id: {{ room.room_id }}</h3>
+              <p style="font-size: 30px" class="text-warning">{{ room.price }} $</p>
+            </div>
+            <p>
+              {{ room.description }}
+              Rooms at Hotel Kostegi provide a flat screen TV and a desk.
+            </p>
+            <div class="d-flex justify-content-evenly">
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Free internet</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Air conditioning</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Flatscreen TV</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Private bathrooms</p>
               </div>
             </div>
-            <p>Kampot, 0.5 km from centre</p>
-            <p>
-              Kampot Sunny Hotel features a fitness centre, garden, a shared lounge and restaurant
-              in Kampot. With free WiFi, this 3-star hotel offers room service and a 24-hour front
-              desk.
-            </p>
-            <div class="hotel-rating">
-              <span>Very good</span>
-              <span>8.3</span>
-              <span>361 reviews</span>
-            </div>
-            <button class="btn btn-primary">Show prices</button>
-          </div>
-        </div>
-      </div>
-      <div class="hotel-card-row">
-        <div class="hotel-card">
-          <div class="hotel-image">
-            <img src="@/assets/image/myhotel/Glow Park Gramd Royal pala.jpg" alt="" />
-            <div class="favorite-button" @click="toggleFavorite2">
-              <i :class="['fas', 'favorite-icon', isFavorite2 ? 'fa-heart' : 'far fa-heart']"></i>
-            </div>
-          </div>
-          <div class="hotel-info">
-            <div class="hotel-name">
-              <h3>Glow Park Gramd Royal pala</h3>
-              <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-alt"></i>
+            <div class="d-flex justify-content-evenly">
+              <div class="d-flex mr-2">
+                <i class="bi bi-people"></i>
+                <p class="ml-2">{{ room.people }}</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Bed</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Family rooms</p>
+              </div>
+              <div class="d-flex mr-2">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="ml-2">Breakfast in the room</p>
               </div>
             </div>
-            <p>Kampot, 4.7 km from centre</p>
-            <p>
-              Featuring pool views, Daya Villa in Kampot features accommodation, an outdoor swimming
-              pool, a garden, a terrace, a bar and barbecue facilities.
-            </p>
-            <div class="hotel-rating">
-              <span>Fabulous</span>
-              <span>8.7</span>
-              <span>3 reviews</span>
-              <span>Location 10</span>
-            </div>
-            <button class="btn btn-primary">Show prices</button>
           </div>
         </div>
       </div>
@@ -157,29 +142,52 @@
 </template>
 
 <script>
+import axios from 'axios'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+// import '@fortawesome/fontawesome-free/css/all.css'
+
 export default {
   data() {
     return {
-      isFavorite1: false,
-      isFavorite2: false
+      // isFavorite1: false,
+      // isFavorite2: false,
+      rooms: []
     }
   },
+  // methods: {
+  //   toggleFavorite1() {
+  //     this.isFavorite1 = !this.isFavorite1
+  //   },
+  //   toggleFavorite2() {
+  //     this.isFavorite2 = !this.isFavorite2
+  //     rooms: []
+  //   }
+  // },
+  created() {
+    this.fetchHotel()
+  },
   methods: {
-    toggleFavorite1() {
-      this.isFavorite1 = !this.isFavorite1
-    },
-    toggleFavorite2() {
-      this.isFavorite2 = !this.isFavorite2
+    fetchHotel() {
+      axios
+        .get(`http://127.0.0.1:8000/api/users/${this.$route.params.id}/rooms`)
+        .then((response) => {
+          this.rooms = response.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }
 </script>
+
 <style>
 * {
   color: black;
 }
 .container {
   gap: 20px;
+  display: flex;
 }
 .feedback-bar {
   width: 30%;
@@ -191,22 +199,18 @@ export default {
   border-radius: 100%;
 }
 .list {
-  height: 45vh;
+  height: 30vh;
   overflow: auto;
 }
-
-.group_card {
-  width: 70%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.group-card {
+  width: 80%;
+  height: 80vh;
   overflow: auto;
 }
-
 .hotel-card-row {
   width: 100%;
   display: flex;
+  margin-bottom: 20px;
 }
 
 .hotel-card {
@@ -235,63 +239,10 @@ export default {
   padding: 20px;
 }
 
-.hotel-name {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.rating i {
-  color: #ffb400;
-  font-size: 16px;
-}
-
-.hotel-rating {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.hotel-rating span {
-  margin-right: 10px;
-}
-
 .btn {
   margin-top: 10px;
 }
-
-.favorite-button {
-  position: absolute;
-  top: 30px;
-  right: 10px;
-  background-color: #fff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.favorite-button:hover {
-  background-color: #e74c3c;
-}
-
-.favorite-icon {
-  font-size: 18px;
-  color: #ccc;
-  transition: color 0.3s;
-}
-
-.favorite-button:hover .favorite-icon {
-  color: #fff;
-}
-
-.favorite-button .favorite-icon.fa-heart {
-  color: #e74c3c;
+i {
+  color: green;
 }
 </style>
