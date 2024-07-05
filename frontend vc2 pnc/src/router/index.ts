@@ -116,7 +116,11 @@ const router = createRouter({
       name: 'place-detail',
       component: () => import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
     },
-
+    {
+      path: '/placemanagement',
+      name: 'placemanagement',
+      component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
+    },
 
   ]
 })
