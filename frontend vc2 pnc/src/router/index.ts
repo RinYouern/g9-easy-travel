@@ -116,13 +116,11 @@ const router = createRouter({
       name: 'list-accepted',
       component: () => import('@/views/User/Driver/ListAccepedBoking/ListAccepted.vue')
     },
-<<<<<<< HEAD
     {
       path: '/placemanagement',
       name: 'placemanagement',
       component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
     },
-=======
 
     {
       path: '/form_booking',
@@ -135,7 +133,6 @@ const router = createRouter({
       component:()=>import('@/views/Admin/success_form/successForm.vue')
     },
 
->>>>>>> form_booking
 
   ]
 })
