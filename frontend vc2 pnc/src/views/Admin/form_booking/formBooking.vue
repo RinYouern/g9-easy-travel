@@ -1,70 +1,72 @@
 <template>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="container">
     <form action="">
-        <div class="row">
-      <div class="column">
-        <h3 class="title">Travel Booking</h3>
-        <div class="input-box">
-          <span>Full Name :</span>
-          <input type="text" placeholder="Name" />
-        </div>
-        <div class="input-box">
-          <span>Email :</span>
-          <input type="email" placeholder="Email" />
-        </div>
-        <div class="input-box">
-          <span>Phone Number :</span>
-          <input type="number" placeholder=" phone number" />
-        </div>
-        <div class="input-box">
-          <span>Check in :</span>
-          <div class="date-input">
-              <input type="date" placeholder="" />
-              
-            </div>
-        </div>
-        <div class="input-box">
-          <span>Destination :</span>
-          <input type="text" placeholder="destination" />
-        </div>
-      </div>
-      <div class="column">
-        <h3 class="title">Payment</h3>
-        <div class="input-box">
-          <span>Cards Accepted :</span>
-          <img src="/src/assets/image/car/imgcards.png" alt="" width="80%" height="auto">
-        </div>
-        <div class="input-box">
-          <span>Name On Card :</span>
-          <input type="text" placeholder="Name" />
-        </div>
-        <div class="input-box">
-          <span>Credit Card Number :</span>
-          <input type="number" placeholder="number" />
-        </div>
-        <div class="input-box">
-          <span>Check out :</span>
-          <div class="date-input">
-              <input type="date" placeholder="" />
-              
-            </div>
-        </div>
-        <div class="flex">
+      <div class="row">
+        <div class="column">
+          <h3 class="title">Booking Payment</h3>
           <div class="input-box">
-            <span>Zip Code</span>
-            <input type="number" placeholder="number" />
+            <span>Name : Laty</span>
+            <!-- <input type="text" placeholder="Name" /> -->
           </div>
           <div class="input-box">
-            <span>CVV</span>
-            <input type="number" placeholder="number" />
+            <span>Email : tyty@ggm.com</span>
+            <!-- <input type="email" placeholder="Email" /> -->
+          </div>
+          <div class="input-box">
+            <span>Price : $500</span>
+            <!-- <input type="price" placeholder="price" /> -->
+          </div>
+          <div class="input-box">
+            <span>Phone Number : 0884321539</span>
+            <!-- <input type="number" placeholder="Phone number" /> -->
+          </div>
+          <div class="input-box">
+            <span>Destination : Banteay Mean Chey</span>
+            <!-- <input type="text" placeholder="Destination" /> -->
+          </div>
+          <div class="input-box">
+            <span>Check in : 22 July 2024</span>
+            <div class="date-input">
+              <!-- <input type="date" placeholder="" /> -->
+            </div>
+          </div>
+          <div class="input-box">
+            <span>Check out : 1 Aug 2024</span>
+            <div class="date-input">
+              <!-- <input type="date" placeholder="" /> -->
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <h3 class="title">Payment</h3>
+          <div class="input-box">
+            <span>Cards Accepted :</span>
+            <img src="/src/assets/image/form/imgcards.png" alt="" width="80%" height="auto">
+          </div>
+          <div class="input-box">
+            <span>Name On Card :</span>
+            <input type="text" placeholder="Name" />
+          </div>
+          <div class="input-box">
+            <span>Credit Card Number :</span>
+            <input type="number" placeholder="Number" />
+          </div>
+          <div class="flex">
+            <div class="input-box">
+              <span>Zip Code</span>
+              <input type="number" placeholder="Number" />
+            </div>
+            <div class="input-box">
+              <span>CVV</span>
+              <input type="number" placeholder="Number" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <button class="btn" type="submit">Submit</button>
+      <a href="/success_form" class="btn">submit
+      </a>
     </form>
-    
   </div>
 </template>
 
