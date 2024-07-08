@@ -2,15 +2,19 @@
   <div class="container">
     <h1 class="mt-4 text-dark">Manage Places</h1>
 
+
+    <!-- AddNewPlace component -->
     <AddNewPlace />
 
+    <!-- PlacesList component with props -->
     <PlacesList :places="places" @edit="editPlace" @delete="deletePlace" />
   </div>
 </template>
 
 <script>
-import AddNewPlace from '@/Components/Admin/AddPlace/AddNewPlace.vue'
-import PlacesList from '@/Components/Admin/AddPlace/PlacesList.vue'
+import axios from 'axios';
+import AddNewPlace from '@/Components/Admin/AddPlace/AddNewPlace.vue';
+import PlacesList from '@/Components/Admin/AddPlace/PlacesList.vue';
 
 export default {
   components: {
@@ -19,25 +23,22 @@ export default {
   },
   data() {
     return {
-      places: [
-        {
-          id: 1,
-          name: 'Place 1',
-          description: 'Description 1',
-          location: 'Location 1',
-          image: 'https://via.placeholder.com/200'
-        },
-        {
-          id: 2,
-          name: 'Place 2',
-          description: 'Description 2',
-          location: 'Location 2',
-          image: 'https://via.placeholder.com/200'
-        }
-      ]
-    }
+      places: []
+    };
+  },
+  mounted() {
+    this.getAllPlaces();
   },
   methods: {
+    getAllPlaces() {
+      axios.get('http://127.0.0.1:8000/api/getAllPlce') // Adjusted endpoint URL
+        .then(response => {
+          this.places = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching places:', error);
+        });
+    },
     editPlace(place) {
       // Implement edit logic here
     },
@@ -45,5 +46,5 @@ export default {
       // Implement delete logic here
     }
   }
-}
+};
 </script>

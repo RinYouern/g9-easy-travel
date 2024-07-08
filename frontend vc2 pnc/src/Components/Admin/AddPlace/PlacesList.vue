@@ -13,8 +13,8 @@
           <el-form-item prop="location">
             <el-input placeholder="Location" v-model="editedPlace.location" size="large" />
           </el-form-item>
-          <el-form-item prop="image">
-            <el-input placeholder="Image URL" v-model="editedPlace.image" size="large" type="url" />
+          <el-form-item prop="images">
+            <el-input placeholder="Image URL" v-model="editedPlace.images[0]" size="large" type="url" />
           </el-form-item>
           <el-form-item>
             <div class="form-buttons">
@@ -29,7 +29,7 @@
       <div v-if="places.length" class="row mt-4">
         <div v-for="place in places" :key="place.id" class="col-md-4 mb-4">
           <div class="card h-100">
-            <img :src="place.image" class="card-img-top small-image" alt="Place Image">
+            <img :src="place.images.length > 0 ? place.images[0] : 'https://via.placeholder.com/200'" class="card-img-top small-image" alt="Place Image">
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
               <p class="card-text">{{ place.description }}</p>
@@ -47,6 +47,7 @@
       </div>
     </div>
   </template>
+  
   
   <script>
   import { ref } from 'vue'
