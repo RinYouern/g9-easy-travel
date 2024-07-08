@@ -53,6 +53,8 @@ Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
 
 //Place 
 Route::post('/places', [PlaceController::class, 'store']);
+Route::get('/getAllPlce', [PlaceController::class, 'getAllPlce']);
+
 //room
 Route::post('/rooms', [RoomController::class, 'store']);
 Route::get('/rooms/{id}', [RoomController::class, 'show']);

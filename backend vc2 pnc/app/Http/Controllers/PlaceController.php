@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Place;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\BinaryOp\Plus;
 
 class PlaceController extends Controller
 {
@@ -30,5 +31,8 @@ class PlaceController extends Controller
         // You may want to associate images with the place here
 
         return response()->json(['message' => 'Place created successfully', 'place' => $place], 201);
+    }
+    public function getAllPlce(){
+        return Place::all();
     }
 }
