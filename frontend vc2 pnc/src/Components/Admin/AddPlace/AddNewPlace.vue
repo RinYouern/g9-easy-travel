@@ -17,7 +17,7 @@
           <el-form-item prop="location">
             <el-input placeholder="Location" v-model="newPlace.location" size="large" />
           </el-form-item>
-          <el-form-item prop="images">
+          <el-form-item >
             <el-upload
               class="upload-demo"
               action="http://your-laravel-api-url/api/upload-images"
@@ -26,7 +26,9 @@
               :on-remove="handleRemove"
               :before-upload="beforeUpload"
               list-type="picture-card"
-              :auto-upload="false">
+              :auto-upload="false"
+              v-model="newPlace.images"
+              >
               <i class="el-icon-plus"></i>
             </el-upload>
           </el-form-item>
@@ -76,10 +78,10 @@
       handleUploadSuccess(response, file, fileList) {
         // Handle successful image upload
         console.log('Upload Success:', response);
-        this.newPlace.images = fileList.map(file => file.url);
+        this.newPlace.images = file;
       },
       handleRemove(file, fileList) {
-        console.log('Remove:', file, fileList);
+        console.log('Remove:', file);
         this.newPlace.images = fileList.map(file => file.url);
       },
       beforeUpload(file) {
