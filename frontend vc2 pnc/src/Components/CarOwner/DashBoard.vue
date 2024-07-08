@@ -14,6 +14,9 @@
             </div>
           </div>
         </section>
+        <section>
+          <TopCompanyCar/>
+        </section>
       </main>
     </div>
   </div>
@@ -21,9 +24,11 @@
 
 <script>
 import sidebar from '@/Components/CarOwner/SideBar.vue'
+import TopCompanyCar from '@/Components/CarOwner/TopCompanyCar.vue'
 export default {
   components:{
-    sidebar
+    sidebar,
+    TopCompanyCar
   },
   data() {
     return {
