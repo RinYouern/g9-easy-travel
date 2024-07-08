@@ -132,6 +132,11 @@ const router = createRouter({
       name: 'success_form',
       component:()=>import('@/views/Admin/success_form/successForm.vue')
     },
+    {
+      path: '/place-detail',
+      name: 'place-detail',
+      component:()=>import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
+    },
 
 
   ]
