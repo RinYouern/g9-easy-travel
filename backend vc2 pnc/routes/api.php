@@ -52,8 +52,7 @@ Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
 
 
 //Place 
-Route::get('/place/list', [PlaceController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/place/create', [PlaceController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/places', [PlaceController::class, 'store']);
 //room
 Route::post('/rooms', [RoomController::class, 'store']);
 Route::get('/rooms/{id}', [RoomController::class, 'show']);
