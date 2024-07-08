@@ -7,11 +7,11 @@
     <body>
       <div class="sidebar">
         <div class="logo">
-          <img src="/src/assets/image/logo.png" />
+          <img src="/src/assets/image/logo2.png" />
         </div>
         <ul>
           <a href="/hotelowner">
-            <li class="d-flex text-dark">
+            <li class="d-flex">
               <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
             </li>
           </a>
@@ -21,7 +21,7 @@
             </li>
           </a>
           <a href="/customers_payment">
-            <li class="d-flex text-dark">
+            <li class="d-flex">
               <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
             </li>
           </a>
@@ -100,15 +100,16 @@ body {
   left: 0;
   height: 100%;
   width: 25%;
-  background: #a8c4ec;
+  background: #2b3136;
   color: #fff;
   padding: 20px 0;
 }
 
-.sidebar .logo {
-  width: 50px;
-  padding-left: 30%;
-  margin-bottom: 20px;
+.sidebar .logo img{
+    width: 100px;
+    height: 100px;
+    margin-left: 35%;
+    
 }
 
 .sidebar ul {
@@ -137,7 +138,8 @@ body {
   padding: 20px;
 }
 .table thead tr th {
-  background-color: #a8c4ec;
+  background-color: #2b3136;
+  color: white;
 }
 .btn_add {
   background-color: #178de7;

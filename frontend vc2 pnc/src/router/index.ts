@@ -122,6 +122,23 @@ const router = createRouter({
       component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
     },
 
+    {
+      path: '/form_booking',
+      name: 'form_booking',
+      component:()=>import('@/views/Admin/form_booking/formBooking.vue')
+    },
+    {
+      path: '/success_form',
+      name: 'success_form',
+      component:()=>import('@/views/Admin/success_form/successForm.vue')
+    },
+    {
+      path: '/place-detail',
+      name: 'place-detail',
+      component:()=>import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
+    },
+
+
   ]
 })
 
