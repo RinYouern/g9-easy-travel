@@ -38,6 +38,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
+    public function bookingHotel()
+    {
+        return $this->hasMany(BookingHotel::class);
+    }
     public function acceptedBookings()
     {
         return $this->hasMany(Booking::class, 'driver_id');

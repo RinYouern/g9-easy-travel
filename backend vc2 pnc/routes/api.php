@@ -8,6 +8,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingHotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,6 @@ Route::get('/rooms/{id}', [RoomController::class, 'show']);
 Route::get('/users/{userId}/rooms', [RoomController::class, 'index']);
 Route::put('/rooms/{id}', [RoomController::class, 'update']);
 Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
+
+//booking room 
+Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
