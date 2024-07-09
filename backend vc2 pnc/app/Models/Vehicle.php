@@ -11,6 +11,7 @@ class Vehicle extends Model
 
     protected $fillable = [
         'make',
+        'image',
         'model',
         'year',
         'color',
