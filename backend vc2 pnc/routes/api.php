@@ -40,6 +40,10 @@ Route::get('/users/{id}', [AuthController::class, 'showDetail']);
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');
 Route::get('/vehicles', [VehicleController::class, 'getVehiclesByCompany'])->middleware('auth:sanctum');
 Route::get('/vehicles-all', [VehicleController::class, 'getVehicleBooking']);
+Route::get('/vehicles', [VehicleController::class, 'getAllVehicles'])->middleware('auth:sanctum');
+Route::get('/vehicles/{id}', [VehicleController::class, 'show'])->middleware('auth:sanctum');
+Route::put('/vehicles/{id}', [VehicleController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy'])->middleware('auth:sanctum');
 
 // booking car
 Route::post('/add-driver', [AuthController::class, 'addDriver'])->middleware('auth:sanctum');
