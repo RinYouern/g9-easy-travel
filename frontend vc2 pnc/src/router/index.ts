@@ -137,6 +137,11 @@ const router = createRouter({
       name: 'place-detail',
       component:()=>import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
     },
+    {
+      path: '/booking/:id',
+      name: 'booking',
+      component:()=>import('@/views/User/Traveller/BookingHotel/BookingHotel.vue')
+    },
 
 
   ]

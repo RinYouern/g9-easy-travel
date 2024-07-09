@@ -9,7 +9,7 @@
           </div>
           <div class="hotel-info">
             <div class="d-flex justify-content-between align-items-center">
-              <h3>Room Id: {{ room.room_id }}</h3>
+              <h3>Room Id: {{ room.room_id }} </h3>
               <p style="font-size: 30px" class="text-warning">{{ room.price }} $</p>
             </div>
             <p>
@@ -52,7 +52,9 @@
                 <p class="ml-2">Breakfast in the room</p>
               </div>
             </div>
+            <a  :href="'/booking/' + room.id" class="btn btn-primary" @click="showId(room.id)">Booking Now </a>
           </div>
+         
         </div>
       </div>
     </div>
@@ -149,20 +151,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 export default {
   data() {
     return {
-      // isFavorite1: false,
-      // isFavorite2: false,
+
       rooms: []
     }
   },
-  // methods: {
-  //   toggleFavorite1() {
-  //     this.isFavorite1 = !this.isFavorite1
-  //   },
-  //   toggleFavorite2() {
-  //     this.isFavorite2 = !this.isFavorite2
-  //     rooms: []
-  //   }
-  // },
+
   created() {
     this.fetchHotel()
   },
