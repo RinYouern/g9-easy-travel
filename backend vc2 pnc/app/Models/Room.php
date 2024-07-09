@@ -25,4 +25,8 @@ class Room extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+    public function bookingHotel()
+    {
+        return $this->hasMany(BookingHotel::class);
+    }
 }
