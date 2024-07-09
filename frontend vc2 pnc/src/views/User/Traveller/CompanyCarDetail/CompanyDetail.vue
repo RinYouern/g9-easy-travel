@@ -6,39 +6,124 @@
   <header>
     <Header />
   </header>
+  <h1 class="text-dark fw-bold mt-4">List Car</h1>
   <div class="container">
-    <div class="car-card-column">
-      <div v-for="car in cars" :key="car.id" class="car-card mt-3" style="margin:auto">
+    <div class="car-card-column shadow">
+      <div v-for="car in cars" :key="car.id" class="car-card">
         <div class="car-image">
-          <img src="https://i.pinimg.com/474x/cd/67/f3/cd67f37f410cb8e0b8fea2ed63d3a574.jpg" alt="" />
+          <img
+            src="https://i.pinimg.com/474x/cd/67/f3/cd67f37f410cb8e0b8fea2ed63d3a574.jpg"
+            alt=""
+          />
         </div>
         <div class="car-info">
           <div class="car-name">
-            <h3> <strong class="text-uppercase">{{ user.name }}</strong></h3>
+            <h3>
+              <strong class="text-uppercase text-dark">{{ car.make }}</strong>
+            </h3>
           </div>
-          <div class="rating">
+          <div class="card-rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
           </div>
-          <p><i class="fa fa-map-marker" width="40px"></i> {{user.location }}</p>
-          <p>{{ car.description }}</p>
+          <p class="text-dark"><i class="fa fa-map-marker" width="40px"></i> {{ user.location }}</p>
+          <p class="text-dark">{{ car.description }}</p>
           <div class="car-rating">
-            <h3><strong>{{ car.price }}</strong> $</h3>
+            <h3 class="text-dark">
+              <strong>{{ car.price }}</strong> $
+            </h3>
           </div>
-          <button class="btn btn-primary">Check availability</button>
+          <button class="btn btn-primary text-white">Check availability</button>
         </div>
       </div>
     </div>
     <hr />
+
+    <div class="feedback-bar">
+      <div class="bg-white border rounded grid grid-cols-6 gap-2 rounded-xl p-2 text-sm shadow">
+        <h1 class="text-center text-slate-200 text-xl font-bold col-span-6 text-dark">
+          Send Feedback
+        </h1>
+        <textarea
+          placeholder="Your feedback..."
+          class="bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-slate-600"
+        ></textarea>
+        <div class="d-flex">
+          <div class="rating mr-39">
+            <input value="5" name="rating1" id="star1-5" type="radio" />
+            <label for="star1-5"></label>
+            <input value="4" name="rating1" id="star1-4" type="radio" />
+            <label for="star1-4"></label>
+            <input value="3" name="rating1" id="star1-3" type="radio" />
+            <label for="star1-3"></label>
+            <input value="2" name="rating1" id="star1-2" type="radio" />
+            <label for="star1-2"></label>
+            <input value="1" name="rating1" id="star1-1" type="radio" />
+            <label for="star1-1"></label>
+          </div>
+          <button
+            class="bg-slate-100 stroke-slate-600 border border-slate-200 col-span-2 flex justify-center rounded-lg p-2 duration-300 hover:border-slate-600 hover:text-white focus:stroke-blue-200 focus:bg-blue-400"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              height="30px"
+              width="30px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                d="M7.39999 6.32003L15.89 3.49003C19.7 2.22003 21.77 4.30003 20.51 8.11003L17.68 16.6C15.78 22.31 12.66 22.31 10.76 16.6L9.91999 14.08L7.39999 13.24C1.68999 11.34 1.68999 8.23003 7.39999 6.32003Z"
+              ></path>
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                d="M10.11 13.6501L13.69 10.0601"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        data-bs-spy="scroll"
+        data-bs-target=".list"
+        class="feedback-list mt-4 bg-white p-3 border rounded shadow"
+      >
+        <h3 class="text-dark fw-bold">List Feedback</h3>
+        <div class="list">
+          <div class="border-top pt-2">
+            <div class="feedback-profile d-flex">
+              <img src="\src\assets\image\frog.jpg" alt="" class="profile" />
+              <div class="ml-3">
+                <h6 class="fw-bold m-0 p-0">Traveler</h6>
+                <p class="m-0 p-0">Your service so good!</p>
+              </div>
+            </div>
+          </div>
+          <div class="border-top pt-2">
+            <div class="feedback-profile d-flex">
+              <img src="\src\assets\image\frog.jpg" alt="" class="profile" />
+              <div class="ml-3">
+                <h6 class="fw-bold m-0 p-0">Traveler</h6>
+                <p class="m-0 p-0">Your service so good!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Header from '@/Components/Traveler/CarDetail/HeaderCar.vue'
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'Travel',
@@ -48,48 +133,92 @@ export default {
   data() {
     return {
       cars: [],
-      user:{}
+      user: {}
     }
   },
   created() {
-    this.fetchVehicle();
-    this.fetchUser();
+    this.fetchVehicle()
+    this.fetchUser()
   },
   methods: {
     fetchVehicle() {
-      axios.get(`http://127.0.0.1:8000/api/vehicles/${this.$route.params.id}`)
-        .then(response => {
-          this.cars = response.data;
+      axios
+        .get(`http://127.0.0.1:8000/api/vehicles/${this.$route.params.id}`)
+        .then((response) => {
+          this.cars = response.data
         })
-        .catch(error => {
-          console.error(error);
-        });
+        .catch((error) => {
+          console.error(error)
+        })
     },
-    fetchUser(){
-      axios.get(`http://127.0.0.1:8000/api/user/${this.$route.params.id}`)
-       .then(response => {
-         this.user = response.data.data
+    fetchUser() {
+      axios
+        .get(`http://127.0.0.1:8000/api/user/${this.$route.params.id}`)
+        .then((response) => {
+          this.user = response.data.data
         })
-       .catch(error => {
-          console.error(error);
-        });
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }
 </script>
 
 <style scoped>
+* {
+  color: black;
+}
 .container {
   display: flex;
-  flex-direction: column;
+  gap: 15px;
+}
+.feedback-bar {
+  width: 30%;
+}
+.feedback-profile .profile {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 100%;
+}
+.list {
+  height: 30vh;
+  overflow: auto;
+}
+.rating {
+  display: flex;
   align-items: center;
-  gap: 20px;
+  flex-direction: row-reverse;
 }
 
-.car-card-row {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+  transition: color 0.3s;
+}
+
+.car-card-column {
+  width: 80%;
+  height: 80vh;
+  overflow: auto;
 }
 
 .car-card {
@@ -97,9 +226,8 @@ export default {
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  overflow: hidden;
-  width: 80%;
-  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .car-image {
@@ -125,7 +253,7 @@ export default {
   align-items: center;
 }
 
-.rating i {
+.card-rating i {
   color: #ffb400;
   font-size: 16px;
 }
@@ -143,5 +271,4 @@ export default {
 .btn {
   margin-top: 10px;
 }
-
 </style>

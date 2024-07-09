@@ -1,6 +1,6 @@
 <template>
   <div class="p-5 bg-white" id="header-car">
-    <h1 class="text-white">Car hire for any kind of trip</h1>
+    <h1 class="text-white fw-bold">Car hire for any kind of trip</h1>
     
     <section class="search-bar">
       <input type="date" v-model="checkIn" />
@@ -33,9 +33,9 @@ h1 {
 
 }
 
-.text-white{
+/* .text-white{
   background: #00000084;
-}
+} */
 
 body {
   background-image: url('your-image-url.jpg');
