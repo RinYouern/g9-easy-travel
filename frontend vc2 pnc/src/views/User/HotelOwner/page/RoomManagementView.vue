@@ -25,6 +25,11 @@
               <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
             </li>
           </a>
+          <a href="/top-hotel">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+              </li>
+            </a>
         </ul>
       </div>
       <div class="container">
