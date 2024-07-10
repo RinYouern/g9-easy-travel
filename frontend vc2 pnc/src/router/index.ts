@@ -52,6 +52,11 @@ const router = createRouter({
       component: () => import('../views/User/HotelOwner/page/CustomerPaymentView.vue')
     },
     {
+      path: '/top-hotel',
+      name: 'top-hotel',
+      component: () => import('../views/User/HotelOwner/page/TopHotelView.vue')
+    },
+    {
       path: '/listuser',
       name: 'listuser',
       component: () => import('@/Components/Layouts/admin/ListUserLayout.vue')
