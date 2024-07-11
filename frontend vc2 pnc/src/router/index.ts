@@ -142,6 +142,11 @@ const router = createRouter({
       name: 'booking',
       component:()=>import('@/views/User/Traveller/BookingHotel/BookingHotel.vue')
     },
+    {
+      path: '/invoice/:id',
+      name: 'invoice',
+      component:()=>import('@/views/Invoice/InvoiceHotel.vue')
+    },
 
 
   ]
