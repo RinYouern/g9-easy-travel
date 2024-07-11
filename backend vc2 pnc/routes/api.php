@@ -10,6 +10,7 @@ use App\Http\Controllers\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingHotelController;
+use App\Models\BookingHotel;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,5 @@ Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
 Route::post('/feedback', [FeedbackHotelController::class, 'store']);
 Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
 Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
+Route::get('users/{user_id}/bookings',[BookingHotelController::class, 'bookingsByUser']);
+Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
