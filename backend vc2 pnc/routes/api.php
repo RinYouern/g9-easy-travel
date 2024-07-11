@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedbackHotelController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BookingController;
@@ -61,3 +62,8 @@ Route::get('/rooms/{id}', [RoomController::class, 'show']);
 Route::get('/users/{userId}/rooms', [RoomController::class, 'index']);
 Route::put('/rooms/{id}', [RoomController::class, 'update']);
 Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
+
+//feedback hotel
+Route::post('/feedback', [FeedbackHotelController::class, 'store']);
+Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
+Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
