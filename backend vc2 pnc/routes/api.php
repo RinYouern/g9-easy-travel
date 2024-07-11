@@ -9,6 +9,7 @@ use App\Http\Controllers\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingHotelController;
+use App\Models\BookingHotel;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,5 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
+Route::get('users/{user_id}/bookings',[BookingHotelController::class, 'bookingsByUser']);
+Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
