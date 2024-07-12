@@ -1,20 +1,13 @@
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
   <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="style.css" />
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
-        <a class="navbar-brand" style="margin-left: 7%" href="#"
-          ><img src="/src/assets/image/logo.png"
-        /></a>
+        <a class="navbar-brand" style="margin-left: 7%" href="#"><img style="width: 90px"
+            src="/src/assets/image/logo2.png" /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
           <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
@@ -31,58 +24,53 @@
     </main>
     <div class="title-des">
       <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
-      <p class="text-dark text-center mb-4"> Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated tours. <br>Let our expert guides lead you on an unforgettable adventure through this remarkable Southeast Asian destination.</p>
+      <p class="text-dark text-center mb-4">
+        Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated
+        tours. <br />Let our expert guides lead you on an unforgettable adventure through this
+        remarkable Southeast Asian destination.
+      </p>
     </div>
     <div class="container image-list">
       <div class="image-item item1">
         <img
           src="https://www.khmertimeskh.com/wp-content/uploads/2022/03/Angkor-Wat-Equinox-expected-to-draw-crowds.jpg"
-          alt="Image 1"
-        />
+          alt="Image 1" />
         <div class="caption">Angkor Wat in Siem reap</div>
       </div>
       <div class="image-item item2">
-        <img
-          src="https://d13jio720g7qcs.cloudfront.net/images/destinations/origin/5d89daa658750.jpg"
-          alt="Image 2"
-        />
+        <img src="https://d13jio720g7qcs.cloudfront.net/images/destinations/origin/5d89daa658750.jpg" alt="Image 2" />
         <div class="caption">Koh Kae in Preas Vihear</div>
       </div>
       <div class="image-item item3">
-        <img
-          src="https://image.freshnewsasia.com/2018/10/fn-2018-07-10-11-06-16-0.jpg"
-          alt="Image 3"
-        />
+        <img src="https://image.freshnewsasia.com/2018/10/fn-2018-07-10-11-06-16-0.jpg" alt="Image 3" />
         <div class="caption">Preas Vihear Temple</div>
       </div>
       <div class="image-item item4">
-        <img
-          src="https://ucarecdn.com/4cc71750-d4cc-4ba4-a1dd-63c81e6bdd24/-/crop/737x415/1,0/-/preview/"
-          alt="Image 4"
-        />
+        <img src="https://ucarecdn.com/4cc71750-d4cc-4ba4-a1dd-63c81e6bdd24/-/crop/737x415/1,0/-/preview/"
+          alt="Image 4" />
         <div class="caption">Bayon temple in Siem reap</div>
       </div>
     </div>
     <div class="title-des">
       <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
-      <p class="text-dark text-center mb-4"> Our hotel offers a unique travel experience with luxurious amenities, exquisite dining, and personalized service in a prime location.<br> Whether for business or leisure, discover comfort and elegance that goes beyond expectations.</p>
+      <p class="text-dark text-center mb-4">
+        Our hotel offers a unique travel experience with luxurious amenities, exquisite dining, and
+        personalized service in a prime location.<br />
+        Whether for business or leisure, discover comfort and elegance that goes beyond
+        expectations.
+      </p>
     </div>
     <div class="container">
       <div class="row">
         <div class="col-md-4">
           <div class="hotel-card card border">
-            <img
-              src="https://z.cdrst.com/foto/hotel-sf/54bab/granderesp/moonlight-resort-general-7c5a392.jpg"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
-            />
+            <img src="https://z.cdrst.com/foto/hotel-sf/54bab/granderesp/moonlight-resort-general-7c5a392.jpg"
+              alt="Hotel 1" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Moonlight Resort</h3>
               <p class="hotel-location card-text">KR 12,000</p>
               <p class="hotel-rating card-text">4.6 <i class="fa fa-star"></i>(51)</p>
-              <p class="hotel-description card-text">
-                Koh Rong Samleom
-              </p>
+              <p class="hotel-description card-text">Koh Rong Samleom</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -92,16 +80,12 @@
           <div class="hotel-card card border">
             <img
               src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/23/1312/Park-Hyatt-Siem-Reap-P143-Park-View-King.jpg/Park-Hyatt-Siem-Reap-P143-Park-View-King.16x9.jpg?imwidth=1920"
-              alt="Hotel 2"
-              class="hotel-image card-img-top"
-            />
+              alt="Hotel 2" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Park Hyatt Siem Reap</h3>
               <p class="hotel-location card-text">KHR 84,399</p>
               <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(70)</p>
-              <p class="hotel-description card-text">
-                Siem Reap, Cambodia
-              </p>
+              <p class="hotel-description card-text">Siem Reap, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -111,16 +95,12 @@
           <div class="hotel-card card border">
             <img
               src="https://cache.marriott.com/content/dam/marriott-renditions/PNHCY/pnhcy-guestroom-2884-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
-              alt="Hotel 2"
-              class="hotel-image card-img-top"
-            />
+              alt="Hotel 2" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Courtyard Phnom Penh</h3>
               <p class="hotel-location card-text">KHR 592,012</p>
               <p class="hotel-rating card-text">4.4 <i class="fa fa-star"></i>(614)</p>
-              <p class="hotel-description card-text">
-                Phnom Penh, Cambodia
-              </p>
+              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -129,16 +109,12 @@
           <div class="hotel-card card border">
             <img
               src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/420254973.jpg?k=ef0ddf81a60bdcb7e09a8d7d82ccb8a4af8a45f95abee35bf48c32d2c0c6b1a0&o=&hp=1"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
-            />
+              alt="Hotel 1" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Sun & Moon, Riverside Hotel</h3>
               <p class="hotel-location card-text">KHR 357,320</p>
               <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(272)</p>
-              <p class="hotel-description card-text">
-                Phnom Penh, Cambodia
-              </p>
+              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -147,16 +123,12 @@
           <div class="hotel-card card border">
             <img
               src="https://images.trvl-media.com/lodging/88000000/87390000/87387400/87387315/65c55b71.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
-            />
+              alt="Hotel 1" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Sunshine Hotel</h3>
               <p class="hotel-location card-text">KHR 12,000</p>
               <p class="hotel-rating card-text">7.5 <i class="fa fa-star"></i></p>
-              <p class="hotel-description card-text">
-                Phnom Penh, Cambodia
-              </p>
+              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -165,16 +137,12 @@
           <div class="hotel-card card border">
             <img
               src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/86/65/6c/family-suite-room-with.jpg?w=700&h=-1&s=1"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
-            />
+              alt="Hotel 1" class="hotel-image card-img-top" />
             <div class="card-body">
               <h3 class="hotel-name card-title">Montagne Residence</h3>
               <p class="hotel-location card-text">139,120</p>
               <p class="hotel-rating card-text">4.8 <i class="fa fa-star"></i>(22)</p>
-              <p class="hotel-description card-text">
-                Krong Kampot, Cambodia
-              </p>
+              <p class="hotel-description card-text">Krong Kampot, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
           </div>
@@ -182,17 +150,10 @@
       </div>
     </div>
 
-    
-
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3909.013908327777!2d104.88050867470945!3d11.550859788648934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951add5e2cd81%3A0x171e0b69c7c6f7ba!2sPasserelles%20num%C3%A9riques%20Cambodia%20(PNC)!5e0!3m2!1sen!2skh!4v1693396053804!5m2!1sen!2skh"
-      width="1000"
-      height="600"
-      style="border: 0"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
+      width="1000" height="600" style="border: 0" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <footer class="footer-distributed">
       <div class="footer-left">
@@ -317,10 +278,21 @@ export default {}
   font-size: 1.5rem;
 }
 
-.item1 { grid-area: item1; }
-.item2 { grid-area: item2; }
-.item3 { grid-area: item3; }
-.item4 { grid-area: item4; }
+.item1 {
+  grid-area: item1;
+}
+
+.item2 {
+  grid-area: item2;
+}
+
+.item3 {
+  grid-area: item3;
+}
+
+.item4 {
+  grid-area: item4;
+}
 
 .image-list {
   display: grid;
@@ -365,19 +337,23 @@ export default {}
 .image-item:hover .caption {
   opacity: 1;
 }
-.hotel-card{
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
+
+.hotel-card {
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.hotel-card:hover{
+
+.hotel-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-.hotel-image{
+
+.hotel-image {
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.hotel-card:hover .hotel-image{
+
+.hotel-card:hover .hotel-image {
   transform: scale(1.05);
 }
 
@@ -387,18 +363,22 @@ iframe {
   width: 100%;
   margin-top: 20px;
 }
+
 .mapouter {
   width: 100%;
 }
+
 .gmap_canvas {
   background: none;
   width: 100%;
   height: 400px;
 }
+
 .gmap_iframe {
   width: 600px;
   height: 400px;
 }
+
 .google-map h1 {
   text-align: center;
   padding: 20px;
@@ -431,9 +411,7 @@ iframe {
 
 .footer-distributed h3 {
   color: #ffffff;
-  font:
-    normal 36px 'Cookie',
-    cursive;
+  font: normal 36px 'Cookie', cursive;
   margin: 0;
 }
 
@@ -578,10 +556,21 @@ iframe {
   background-color: #333;
 }
 
-.item1 { grid-area: item1; }
-.item2 { grid-area: item2; }
-.item3 { grid-area: item3; }
-.item4 { grid-area: item4; }
+.item1 {
+  grid-area: item1;
+}
+
+.item2 {
+  grid-area: item2;
+}
+
+.item3 {
+  grid-area: item3;
+}
+
+.item4 {
+  grid-area: item4;
+}
 
 .image-list {
   display: grid;
