@@ -17,7 +17,7 @@
           </a>
           <a href="#">
             <li class="active d-flex">
-              <span class="material-symbols-outlined mx-3 ">apartment</span>Rooms Management
+              <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
             </li>
           </a>
           <a href="/customers_payment">
@@ -26,10 +26,10 @@
             </li>
           </a>
           <a href="/top-hotel">
-              <li class="d-flex">
-                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-              </li>
-            </a>
+            <li class="d-flex">
+              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+            </li>
+          </a>
         </ul>
       </div>
       <div class="container">
@@ -44,7 +44,8 @@
           <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">Add Room</button>
         </div>
         <table class="table shadow rounded">
-          <thead>
+
+          <thead class="text-center">
             <tr>
               <th scope="col">ID</th>
               <th scope="col">People</th>
@@ -53,12 +54,14 @@
               <th scope="col">Active</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">2C</th>
-              <td>3</td>
-              <td>30$</td>
-              <td class="text-danger">Not available</td>
+          <tbody  class="text-center" >
+            <tr v-for="room in rooms" :key="room.id">
+              <th scope="row">{{ room.room_id }}</th>
+              <td>{{ room.people }}</td>
+              <td>{{ room.price }}$</td>
+              <td :class="{ 'text-danger': room.status === 0 }">
+                {{ room.status === 1 ? 'Available' : 'Not available' }}
+              </td>
               <td>
                 <button class="btn btn-success p-2 mx-2">Edit</button>
                 <button class="btn btn-danger p-2">Delete</button>
@@ -75,6 +78,8 @@
 
 <script>
 import FormAddRoomView from './form/FormAddRoomView.vue'
+import axios from 'axios'
+
 
 export default {
   components: {
@@ -82,9 +87,27 @@ export default {
   },
   data() {
     return {
-      showModal: false
+      showModal: false,
+      rooms: []
+    }
+  },
+  
+  created() {
+    this.getUserRooms()
+  },
+
+  methods: {
+    async getUserRooms() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/users/4/rooms')
+        this.rooms = response.data
+      } catch (error) {
+        console.error('Error fetching user rooms:', error)
+        throw error
+      }
     }
   }
+  
 }
 </script>
 
@@ -110,11 +133,10 @@ body {
   padding: 20px 0;
 }
 
-.sidebar .logo img{
-    width: 100px;
-    height: 100px;
-    margin-left: 35%;
-    
+.sidebar .logo img {
+  width: 100px;
+  height: 100px;
+  margin-left: 35%;
 }
 
 .sidebar ul {

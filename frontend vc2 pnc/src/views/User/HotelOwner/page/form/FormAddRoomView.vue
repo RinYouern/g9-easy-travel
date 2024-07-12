@@ -8,15 +8,15 @@
       <form @submit.prevent="addRoom">
         <div class="form-group">
           <label for="room-id" class="text-dark">Room ID:</label>
-          <input type="text" id="room-id" v-model="roomId" required />
+          <input type="text" id="room-id" v-model="room.room_id" required />
         </div>
         <div class="form-group">
           <label for="people" class="text-dark">People:</label>
-          <input type="number" id="people" v-model="people" required />
+          <input type="number" id="people" v-model="room.people" required />
         </div>
         <div class="form-group">
           <label for="price" class="text-dark">Price:</label>
-          <input type="number" id="price" v-model="price" required />
+          <input type="number" id="price" v-model="room.price" required />
         </div>
         <button type="submit" class="btn btn_add">Add Room</button>
       </form>
@@ -25,20 +25,34 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { userStore } from '@/stores/user-list'
 export default {
   data() {
     return {
-      roomId: '',
-      people: 0,
-      price: 0
+      room: {
+        room_id: '',
+        people: 0,
+        price: 0,
+        status: true,
+        owner_id: 4,
+      },
     };
   },
   methods: {
-    addRoom() {
-      console.log(`Room ID: ${this.roomId}, People: ${this.people}, Price: ${this.price}`);
-      this.$emit('close');
+    async addRoom() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/rooms', this.room);
+        console.log('Room added:', response.data);
+        this.$emit('close'); // Close the modal on success
+      } catch (error) {
+        console.error('Error adding room:', error);
+      }
+    },
+    fetchUser() {
+      this.store.fetchUser()
     }
-  }
+  },
 };
 </script>
 

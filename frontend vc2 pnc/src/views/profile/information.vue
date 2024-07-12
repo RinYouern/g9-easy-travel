@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <link
@@ -6,13 +7,13 @@
     />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <div class="container rounded bg-white mt-10 w-50 ">
+    <div class="container rounded  mt-4">
       <div class="row">
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-            <img class="rounded-circle mt-5" :src="profilePic" width="90" height="90" />
+            <img class="rounded-circle mt-5" :src="profilePic" width="150" height="150" />
             <label for="profile-pic-input" class="camera-icon">
               <i class="fa fa-camera" style="font-size: 24px; color: white"></i>
             </label>
@@ -22,50 +23,71 @@
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div class="d-flex flex-row align-items-center back" @click="goBack">
-                <a href="/"><i class="fa fa-arrow-left"></i></a>
+                <a href="/"><i class="fa fa-arrow-left" style="font-size: 20px; color: black"></i></a>
               </div>
               <a href="./updateInfo">
-        <button class="btn btn-primary edit-profile-btn" v-if="!editMode" @click="toggleEditMode">
-          Edit Profile
-        </button>
-      </a>
+                <button class="btn btn-primary edit-profile-btn" v-if="!editMode" @click="toggleEditMode">
+                  Edit Profile
+                </button>
+              </a>
             </div>
             <div class="row mt-2">
               <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Name"
-                  v-model="name"
-                />
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="name" v-model="name" readonly  />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-user"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Email"
-                  v-model="email"
-                />
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="email" v-model="email" readonly  />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Role" v-model="role" />
+                <div class="form-group">
+                  <label for="role">Phone</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="phone" v-model="phone" readonly  />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-phone"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="col-md-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Address"
-                  v-model="address"
-                />
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="address" v-model="address" readonly  />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-map-marker"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="mt-5 text-right">
-              <button class="btn btn-primary profile-button" type="button" @click="saveProfile">
-                Save Profile
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -81,15 +103,17 @@
   </div>
 </template>
 
+
 <script>
 export default {
   data() {
     return {
-      // name: 'Rin',
-      // email: 'rin@bbb.com',
-      // role: 'Developer',
-      // address:"Phnom Penh",
-      profilePic: 'https://i.pinimg.com/736x/28/e8/a4/28e8a4c9e9b1d7ace730b6142e5690cb.jpg'
+      name: 'Rin',
+      email: 'rin@bbb.com',
+      phone: '0884321539',
+      address: 'Phnom Penh',
+      profilePic: 'https://i.pinimg.com/236x/f2/a0/a1/f2a0a15e8d830944ac6797ddd3fa8e11.jpg',
+      editMode: false
     }
   },
   methods: {
@@ -107,23 +131,22 @@ export default {
     },
     toggleEditMode() {
       if (this.editMode) {
-        this.Name = this.originalData.Name
+        this.name = this.originalData.name
         this.email = this.originalData.email
-        this.phoneNumber = this.originalData.phoneNumber
+        this.role = this.originalData.role
         this.address = this.originalData.address
-        this.country = this.originalData.country
-        
       } else {
         this.originalData = {
-          Name: this.Name,
+          name: this.name,
           email: this.email,
-          phoneNumber: this.phoneNumber,
-          address: this.address,
-          country: this.country,
-          
+          role: this.role,
+          address: this.address
         }
       }
-      this.editMode = !this.editMode
+     this.editMode = !this.editMode
+    },
+    saveProfile() {
+      // Save profile logic
     }
   }
 }
@@ -131,8 +154,13 @@ export default {
 
 <style>
 body {
-  /* background: black; */
   padding: 70px;
+  
+}
+.container{
+  background: rgb(250, 249, 249);
+  height: 60vh;
+ 
 }
 
 .form-control:focus {
@@ -146,10 +174,6 @@ body {
   border: none;
 }
 
-/* .profile-button:hover {
-  background: skyblue;
-} */
-
 .back:hover {
   color: blue;
   cursor: pointer;
@@ -161,6 +185,7 @@ body {
 }
 
 .camera-icon i {
+  background: blue;
   position: absolute;
   top: -20px;
   left: 0;
@@ -169,6 +194,7 @@ body {
   padding: 4px;
   border-radius: 50%;
 }
+
 
 .camera-icon:hover i {
   background-color: rgba(0, 0, 0, 0.8);
