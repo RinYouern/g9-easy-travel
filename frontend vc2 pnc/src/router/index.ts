@@ -16,16 +16,24 @@ const router = createRouter({
         role: 'admin'
       }
     },
+
+    //Login form
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/Admin/Auth/LoginView.vue')
     },
+
+    //Home page
+
     {
       path: '/',
       name: 'home',
       component: () => import('../views/Web/HomeView.vue')
     },
+
+    //Register form
+
     {
       path: '/register',
       name: 'register',
@@ -76,16 +84,22 @@ const router = createRouter({
       name: 'hotel-traveler',
       component: () => import('@/views/User/Traveller/HotelView.vue')
     },
+
+    //Information form
     {
       path: '/information',
       name: 'information',
       component: () => import('@/views/profile/information.vue')
     },
+
+    //Form update Information
     {
       path: '/updateInfo',
       name: 'updateInfo',
       component: () => import('@/views/update_info/updateInfo.vue')
     },
+
+    //Form Booking car
     {
       path: '/booking-car',
       name: 'booking-car',
@@ -106,11 +120,15 @@ const router = createRouter({
       name: 'detail',
       component: () => import('@/views/Admin/DetailView.vue')
     },
+
+    //Hotel
     {
       path: '/hotel-detail/:id',
       name: 'hotel-detail',
       component: () => import('@/views/User/Traveller/HotelDetail/HotelDetail.vue')
     },
+
+    //Car detail
     {
       path: '/car-detail/:id',
       name: 'car-detail',
@@ -121,22 +139,29 @@ const router = createRouter({
       name: 'list-accepted',
       component: () => import('@/views/User/Driver/ListAccepedBoking/ListAccepted.vue')
     },
+
+    //Place managerment
     {
       path: '/placemanagement',
       name: 'placemanagement',
       component: () => import('@/Components/Layouts/admin/PlaceLayout.vue')
     },
 
+    //Form Payment
     {
       path: '/form_booking',
       name: 'form_booking',
       component:()=>import('@/views/Admin/form_booking/formBooking.vue')
     },
+
+    //Form success
     {
       path: '/success_form',
       name: 'success_form',
       component:()=>import('@/views/Admin/success_form/successForm.vue')
     },
+
+    //Place detail
     {
       path: '/place-detail',
       name: 'place-detail',

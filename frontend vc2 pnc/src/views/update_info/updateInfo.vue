@@ -1,33 +1,36 @@
 <template>
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
   />
+
   <div class="container">
-    <div class="icon">
-    <a href="./information"><i class="fa fa-times-circle" ></i></a>
-    </div>
-    <h2>Update Your Information</h2>
-    <form action="">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your name" />
-
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" placeholder="Your email" />
-
-      <label for="country">Destination</label>
-      <select id="country" name="country">
-        <option value="btb">Choose your destination</option>
-        <option value="bmc">Banteay Mean Chey</option>
-        <option value="omc">Oddar Mean Chey</option>
-        <option value="sr">Siem Reap</option>
-        <option value="btb">Battambong</option>
-        <option value="rtn">Ratanakiri</option>
-        <option value="mdk">Mondulkiri</option>
-        <option value="kp">Kampot</option>
-        <option value="kep">Kep</option>
-      </select>
-      <input type="submit" value="Update" />
+    <h2>Welcome to update Information</h2>
+    <a href="/information"><button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button></a>
+    <form>
+      
+      <div class="form-group">
+        
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+      </div>
+      <div class="text-right mt-5">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/information" class="ml-3">
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </a>
+      </div>
+      
     </form>
   </div>
 </template>
@@ -42,9 +45,12 @@ body {
   padding: 50px;
 }
 
-.icon{
-    display: flex;
-    justify-content:flex-end;
+.icon {
+  display: flex;
+  justify-content: flex-end;
+}
+.close{
+  margin-top: -30px;
 }
 
 input[type='text'],
@@ -79,4 +85,6 @@ div.container {
   padding: 20px;
   width: 50%;
 }
+
+
 </style>
