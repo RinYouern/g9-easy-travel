@@ -12,9 +12,8 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
-        <a class="navbar-brand" style="margin-left: 7%" href="#"
-          ><img src="/src/assets/image/logo.png"
-        /></a>
+        <a class="navbar-brand" style="margin-left: 7%" href="#"><img style="width: 90px"
+            src="/src/assets/image/logo2.png" /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
           <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
@@ -247,6 +246,9 @@ export default {}
 </script>
 
 <style scoped>
+i{
+  color: orange
+}
 .modal {
   display: block;
   position: fixed;
