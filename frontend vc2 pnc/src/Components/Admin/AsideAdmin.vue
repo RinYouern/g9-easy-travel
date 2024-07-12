@@ -1,36 +1,44 @@
 <template>
-  <div class="admin-aside bg-dark">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+  <div class="admin-aside">
     <div class="aside-header"></div>
     <div class="aside-menu">
       <ul>
         <li>
           <a href="/">
-            <i class="bi bi-speedometer2"></i>
+            <i class="fas fa-th-large"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
           <a href="/listuser">
-            <i class="bi bi-people"></i>
+            <i class="fas fa-user"></i>
             <span>Users</span>
           </a>
         </li>
         <li>
           <a href="/placemanagement">
-            <i class="bi bi-cart"></i>
+            <i class="fas fa-map-marker-alt"></i>
             <span>Places</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="bi bi-receipt"></i>
-            <span>Orders</span>
+            <i class="fas fa-question"></i>
+            <span>Help</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="bi bi-gear"></i>
-            <span>Settings</span>
+            <i class="fas fa-cog"></i>
+            <span>Setting</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa fa-sign-out"></i>
+            <span>Logout</span>
           </a>
         </li>
       </ul>
@@ -50,10 +58,11 @@ export default {
 </script>
 <style scoped>
 .admin-aside {
-  background-color: #f5f5f5;
+  background-color: rgb(14, 14, 77);
   border-right: 1px solid #e6e6e6;
   padding: 20px;
   height: 100vh;
+  width: 220px;
 }
 
 .aside-header {
@@ -74,17 +83,27 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.aside-menu li a:hover {
-  background-color: #e6e6e6;
-  color: #333;
+.aside-menu li  a:hover {
+  background-color: #fff;
+  color: black;
 }
 
 .aside-menu li a i {
   margin-right: 10px;
+}
+i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
 }
 
 span {
   font-size: 18px;
   color: white;
 }
+span:hover{
+    color: black;
+}
 </style>
+
+admin
