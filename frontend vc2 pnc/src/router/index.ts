@@ -39,6 +39,21 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/Admin/Auth/RegisterView.vue')
     },
+
+    //Forgotten password
+
+    {
+      path: '/Forgotpassword',
+      name: 'Forgotpassword',
+      component: () => import('../views/Admin/Auth/ForgotPasswordView.vue')
+    },
+    //Reset password
+    {
+      path: '/ResetPassword/:token',
+      name: 'ResetPassword',
+      component: () => import('../views/Admin/Auth/ResetPassword.vue')
+    },
+    //Home Page
     {
       path: '/homepage',
       name: 'homepage',
@@ -163,7 +178,7 @@ const router = createRouter({
 
     //Place detail
     {
-      path: '/place-detail',
+      path: '/place-detail/:id',
       name: 'place-detail',
       component:()=>import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
     },
@@ -176,6 +191,11 @@ const router = createRouter({
       path: '/invoice/:id',
       name: 'invoice',
       component:()=>import('@/views/Invoice/InvoiceHotel.vue')
+    },
+    {
+      path: '/ticket',
+      name: 'ticket',
+      component:()=>import('@/views/User/Traveller/BookingHotel/TicketBooking.vue')
     },
 
 

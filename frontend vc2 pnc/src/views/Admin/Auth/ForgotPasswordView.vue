@@ -3,33 +3,14 @@
 
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <el-card class="w-full max-w-md shadow-lg">
-      <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
-      <el-form @submit.prevent="onSubmit">
-        <el-form-item :error="roleError">
-          <el-select v-model="user_role" placeholder="Select a role" size="large">
-            <el-option label="Traveler" value="traveler"></el-option>
-            <el-option label="Car Company" value="carOwner"></el-option>
-            <el-option label="Hotel" value="hotelOwner"></el-option>
-            <el-option label="Driver" value="driver"></el-option>
-          </el-select>
-        </el-form-item>
-
-        <el-form-item :error="nameError">
-          <el-input placeholder="Name" v-model="name" size="large" />
-          <i class="bx bxs-user"></i>
-        </el-form-item>
-
+      <h2 class="text-2xl font-bold mb-6 text-center">Forgot Password?</h2>
+      <p>Just enter your email address below and you will got new password by email!</p>
+      <el-form @submit="onSubmit">
         <el-form-item :error="emailError">
           <el-input placeholder="Email Address" v-model="email" size="large" />
           <i class="bx bxs-envelope"></i>
         </el-form-item>
-
-        <el-form-item :error="passwordError" class="mt-8">
-          <el-input placeholder="Password" v-model="password" size="large" type="password" />
-          <i class="bx bxs-lock-alt"></i>
-        </el-form-item>
-        
-
+        <hr>
         <div>
           <el-button
             size="large"
@@ -37,8 +18,12 @@
             :disabled="isSubmitting"
             type="primary"
             native-type="submit"
-            >Register</el-button
+            >EMAIL PASSWORD RESET LINK</el-button
           >
+          <hr>
+          <div class="register-link">
+            <p>Already have an account? <a href="/login">Login</a></p>
+          </div>
         </div>
       </el-form>
     </el-card>
@@ -46,34 +31,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const formSchema = yup.object({
-  name: yup.string().required().label('Name'),
-  email: yup.string().required().email().label('Email address'),
-  password: yup.string().required().label('Password'),
-  // user_role: yup.string().oneOf(['traveler', 'carOwner', 'hotelOwner','driver']).required().label('Role')
+  
+  email: yup.string().required().email().label('Email address')
 })
 
 const { handleSubmit, isSubmitting } = useForm({
   initialValues: {
-    name: '',
-    email: '',
-    password: '',
-    user_role: ''
+    email: ''
   },
   validationSchema: formSchema
 })
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    const { data } = await axiosInstance.post('/register', values)
+    const { data } = await axiosInstance.post('/forgotpassword', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
@@ -81,16 +60,12 @@ const onSubmit = handleSubmit(async (values) => {
   }
 })
 
-const { value: name, errorMessage: nameError } = useField('name')
 const { value: email, errorMessage: emailError } = useField('email')
-const { value: password, errorMessage: passwordError } = useField('password')
-const { value: user_role, errorMessage: roleError } = useField('user_role')
 </script>
 
 <style scoped>
 .min-h-screen {
-  /* background-image: url(https://i.pinimg.com/564x/c4/60/25/c46025c855d83c100a3a6a9481774e0a.jpg);
-  background-size: cover; */
+  
   min-height: 100vh;
   background:skyblue;
 }
@@ -100,7 +75,6 @@ const { value: user_role, errorMessage: roleError } = useField('user_role')
 .w-full {
   border-radius: 10px;
   padding: 20px;
-  
 }
 i {
   position: absolute;
@@ -109,23 +83,21 @@ i {
   transform: translate(-50%);
   font-size: 20px;
 }
-.el-button{
-  font-size: 20px;
-  font-weight: bold;
-  
-}
 .remember-forgot label input {
   /* accent-color: #fff; */
   margin-right: 3px;
-  
-  
 }
+
 .remember-forgot a {
   color: blue;
   text-decoration: none;
   margin-left: 90px;
 }
-
+.el-button{
+  font-size: 20px;
+  font-weight: bold;
+  
+}
 .remember-forgot a:hover {
   text-decoration: underline;
   color: purple;
