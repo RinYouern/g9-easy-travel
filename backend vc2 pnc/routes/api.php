@@ -73,7 +73,6 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
-<<<<<<< HEAD
 //feedback hotel
 Route::post('/feedback', [FeedbackHotelController::class, 'store']);
 Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
@@ -82,7 +81,6 @@ Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
 Route::get('/user-bookings', [BookingHotelController::class, 'showUserBookings'])->middleware('auth:sanctum');
 
 Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
-=======
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -104,4 +102,3 @@ Route::middleware('auth:sanctum')->group(function () {
     // Increase rating for a specific feedback by ID
     Route::post('feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
 });
->>>>>>> api-feedback
