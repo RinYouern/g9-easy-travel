@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('company')->nullable();
             $table->string('location')->nullable();
             $table->string('booking_id')->nullable();
+            $table->float('rating')->nullable();
             $table->timestamps();
         });
     }

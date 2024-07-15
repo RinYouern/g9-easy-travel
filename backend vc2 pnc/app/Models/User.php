@@ -50,6 +50,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Room::class);
     }
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class, 'user_id');
+    }
+
+    public function feedbackRelatedTo()
+    {
+        return $this->hasMany(Feedback::class, 'related_user_id');
+    }
+    
 
     /**
      * The attributes that should be hidden for serialization.

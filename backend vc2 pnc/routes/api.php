@@ -9,6 +9,7 @@ use App\Http\Controllers\PlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingHotelController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,24 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Get all feedback
+    Route::get('feedback', [FeedbackController::class, 'index']);
+
+    // Get a specific feedback by ID
+    Route::get('feedback/{id}', [FeedbackController::class, 'show']);
+
+    // Create a new feedback
+    Route::post('feedback', [FeedbackController::class, 'store']);
+
+    // Update a specific feedback by ID
+    Route::put('feedback/{id}', [FeedbackController::class, 'update']);
+
+    // Delete a specific feedback by ID
+    Route::delete('feedback/{id}', [FeedbackController::class, 'destroy']);
+
+    // Increase rating for a specific feedback by ID
+    Route::post('feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
+});
