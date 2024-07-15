@@ -4,6 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
     <body>
       <div class="dashboard">
         <div class="sidebar">
@@ -38,10 +39,20 @@
             <h1 class="text-dark fw-bold">Hotel Dashboard</h1>
             <div class="profile d-flex gap-3">
               <span class="material-symbols-outlined text-primary pt-2">notifications</span>
-              <img src="\src\assets\image\frog.jpg" alt="Profile Icon" />
+              <div class="profile-dropdown">
+                <div class="profile-btn border:none" @click="toggleDropdown">
+                  <img :src="profilePicture" alt="Profile Picture" class="profile-picture" />
+                  <span>{{ username }}</span>
+                </div>
+                <div class="dropdown-content" v-if="isOpen">
+                  <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
+                  <a href="#"><i class="bx bxs-cog"></i> Settings</a>
+                  <a href="/login" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="welcome d-flex justify-content-around shadow rounded">
+          <div class="welcome d-flex justify-content-around shadow rounded mt-5">
             <div class="d-flex flex-column">
               <h2 class="text-white fw-bold">Welcome Guy!</h2>
               <p class="text-white">
@@ -91,22 +102,6 @@
                   <td>6-24-2024</td>
                   <td>6-26-2024</td>
                 </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Puthireach</td>
-                  <td>2C</td>
-                  <td>+855 96 840 4018</td>
-                  <td>6-24-2024</td>
-                  <td>6-26-2024</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Mengkorng</td>
-                  <td>2C</td>
-                  <td>+855 96 840 4018</td>
-                  <td>6-24-2024</td>
-                  <td>6-26-2024</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -118,7 +113,26 @@
 
 <script>
 export default {
-}
+  data() {
+    return {
+      isOpen: false,
+      profilePicture: "/src/assets/image/adminpic/nana.jpg",
+      username: "T-na",
+    };
+  },
+  methods: {
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
+  },
+  logout() {
+      if (confirm("Are you sure you want to logout?")) {
+        // Perform logout actions here
+        console.log("User logged out");
+      }
+     
+    },
+};
 </script>
 
 <style scoped>
@@ -177,7 +191,7 @@ body {
 }
 
 .main-content {
-  margin-left: 25%;
+  margin-left: 1%;
   flex-grow: 1;
   padding: 20px;
 }
@@ -197,6 +211,54 @@ body {
   width: 40px;
   border-radius: 50%;
 }
+
+/* Profile drop down  */
+.profile-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.profile-dropdown .dropdown-content a {
+  color: black;
+  padding: 8px 0;
+  display: block;
+}
+
+.profile-dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #ded9d9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: black;
+    color: white;
+  }
+  
 
 .welcome {
   background: #2b3136;

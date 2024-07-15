@@ -14,9 +14,10 @@
           <el-input placeholder="Password" v-model="password" size="large" type="password" />
           <i class="bx bxs-lock-alt"></i>
         </el-form-item>
+        
         <div class="remember-forgot">
           <label><input type="checkbox" v-model="rememberMe" />Remember Me</label>
-          <a href="#">Forgot Password</a>
+          <a href="/forgotpassword">Forgot Password</a>
         </div>
         <div>
           <el-button
@@ -95,6 +96,7 @@ i {
   /* accent-color: #fff; */
   margin-right: 3px;
 }
+
 .remember-forgot a {
   color: blue;
   text-decoration: none;
