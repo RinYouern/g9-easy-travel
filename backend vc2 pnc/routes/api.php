@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingHotelController;
 use App\Models\BookingHotel;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,7 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
+<<<<<<< HEAD
 //feedback hotel
 Route::post('/feedback', [FeedbackHotelController::class, 'store']);
 Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
@@ -80,3 +82,26 @@ Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
 Route::get('/user-bookings', [BookingHotelController::class, 'showUserBookings'])->middleware('auth:sanctum');
 
 Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
+=======
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Get all feedback
+    Route::get('feedback', [FeedbackController::class, 'index']);
+
+    // Get a specific feedback by ID
+    Route::get('feedback/{id}', [FeedbackController::class, 'show']);
+
+    // Create a new feedback
+    Route::post('feedback', [FeedbackController::class, 'store']);
+
+    // Update a specific feedback by ID
+    Route::put('feedback/{id}', [FeedbackController::class, 'update']);
+
+    // Delete a specific feedback by ID
+    Route::delete('feedback/{id}', [FeedbackController::class, 'destroy']);
+
+    // Increase rating for a specific feedback by ID
+    Route::post('feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
+});
+>>>>>>> api-feedback
