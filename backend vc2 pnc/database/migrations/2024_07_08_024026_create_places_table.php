@@ -17,8 +17,9 @@ class CreatePlacesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('location');
-            $table->json('images')->nullable(); // Assuming images will be stored as JSON array
+            $table->text('province');
+            $table->text('location');
+            $table->json('images')->nullable(); 
             $table->timestamps();
         });
     }

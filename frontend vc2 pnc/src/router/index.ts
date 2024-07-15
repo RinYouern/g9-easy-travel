@@ -178,7 +178,7 @@ const router = createRouter({
 
     //Place detail
     {
-      path: '/place-detail',
+      path: '/place-detail/:id',
       name: 'place-detail',
       component:()=>import('@/views/User/Traveller/PlaceDetail/ShowDetailPlace.vue')
     },
@@ -191,6 +191,11 @@ const router = createRouter({
       path: '/invoice/:id',
       name: 'invoice',
       component:()=>import('@/views/Invoice/InvoiceHotel.vue')
+    },
+    {
+      path: '/ticket',
+      name: 'ticket',
+      component:()=>import('@/views/User/Traveller/BookingHotel/TicketBooking.vue')
     },
 
 

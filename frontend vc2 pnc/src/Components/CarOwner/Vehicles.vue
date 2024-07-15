@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6 mb-4" v-for="car in store.cars" :key="car.id">
+    <div class="col-md-6 mb-4" v-for="car in store.cars.data" :key="car.id">
       <div class="card mb-1">
         <div class="row g-0">
           <div class="col-md-6 d-flex justify-content-center">

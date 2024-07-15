@@ -1,35 +1,36 @@
 <template>
-  <navbar></navbar>
-  <div class="bg-light">
-    <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
-      <div class="p-5 d-flex flex-column align-items-center justify-content-center" id="bg-warning">
-        <div class="text-center mb-4">
-          <h1 class="text-white">Where to Go?</h1>
-          <p class="text-white">Find vehicles available in Cambodia</p>
-        </div>
-        <div class="d-flex justify-content-center">
-          <input
-            type="text"
-            v-model="searchQuery"
-            class="form-control"
-            style="width: 300px"
-            placeholder="Enter your location or vehicle type"
-          />
-          <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
+  <div>
+    <navbar></navbar>
+    <div class="bg-light">
+      <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
+        <div class="p-5 d-flex flex-column align-items-center justify-content-center" id="bg-warning">
+          <div class="text-center mb-4">
+            <h1 class="text-white">Where to Go?</h1>
+            <p class="text-white">Find vehicles available in Cambodia</p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <input
+              type="text"
+              v-model="searchQuery"
+              class="form-control"
+              style="width: 300px"
+              placeholder="Enter your location or vehicle type"
+            />
+            <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-6" v-for="place in filteredPlaces" :key="place.id">
-        <div class="card">
-          <img :src="place.images.length > 0 ? place.images[0] : 'default-image.jpg'" class="card-img-top" :alt="place.name" />
-          <div class="card-body">
-            <star-rating :rating="place.rating"></star-rating>
-            <h5 class="card-title">{{ place.name }}</h5>
-            <p class="card-text">{{ place.location }}</p>
-            <a href="/place-detail" class="btn btn-primary">Go Now</a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-6" v-for="place in filteredPlaces" :key="place.id">
+          <div class="card">
+            <img :src="place.images.length > 0 ? place.images[0] : 'default-image.jpg'" class="card-img-top" :alt="place.name" />
+            <div class="card-body">
+              <star-rating :rating="place.rating"></star-rating>
+              <h5 class="card-title">{{ place.name }}</h5>
+              <a :href="'/place-detail/' + place.id" class="btn btn-primary" @click="showId(place.id)">Go Now</a>
+            </div>
           </div>
         </div>
       </div>
@@ -125,5 +126,21 @@ export default {
   width: 800px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .col-md-2.col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .card-img-top {
+    height: 100px; 
+  }
+
+  #bg-warning {
+    width: 100%;
+    padding: 1rem;
+  }
 }
 </style>

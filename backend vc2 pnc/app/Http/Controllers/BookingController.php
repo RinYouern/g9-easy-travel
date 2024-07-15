@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Booking;
 use App\Http\Resources\BookingResource;
+use Illuminate\Support\Carbon;
 
 class BookingController extends Controller
 {
@@ -48,39 +49,80 @@ class BookingController extends Controller
     }
 
     public function recordOne()
-    {
-        $bookings = Booking::where('user_id', Auth::id())->get();
-        return response()->json($bookings, 200);
+{
+    $user = auth()->user();
+    if (!$user) {
+        return response()->json(['error' => 'Unauthenticated'], 401);
     }
+
+    $bookings = Booking::with('user', 'vehicle')
+        ->where('user_id', $user->id)
+        ->get();
+
+    $bookingsData = [];
+
+    foreach ($bookings as $booking) {
+        if (!$booking->vehicle) {
+            return response()->json(['error' => 'Vehicle not found for booking ID ' . $booking->id], 404);
+        }
+
+        $vehicleOwner = User::find($booking->vehicle->owner_id);
+        if (!$vehicleOwner) {
+            return response()->json(['error' => 'Vehicle owner not found for vehicle ID ' . $booking->vehicle->id], 404);
+        }
+
+        $checkInDate = Carbon::parse($booking->start_date)->format('Y-m-d');
+        $checkOutDate = Carbon::parse($booking->end_date)->format('Y-m-d');
+
+        $data = [
+            'BookerName' => $booking->name,
+            'BookerPhone' => $booking->phone,
+            'go' => $checkInDate,
+            'back' => $checkOutDate,
+            'Where' => $booking->where,
+            'VehicleID' => $booking->vehicle->id,
+            'Location' => $vehicleOwner->location ?? 'N/A',
+            'Profile' => $vehicleOwner->profile ?? 'N/A',
+            'CompanyName' => $vehicleOwner->name ?? 'N/A',
+            'Email' => $vehicleOwner->email ?? 'N/A',
+            'Price' => $booking->total_cost
+        ];
+
+        $bookingsData[] = $data;
+    }
+
+    return response()->json($bookingsData);
+}
+
+
 
     public function recordAll()
     {
-        $bookings = Booking::all(); 
+        $bookings = Booking::all();
         return BookingResource::collection($bookings)->response();
     }
 
     public function acceptBooking(Request $request, Booking $booking)
-{
-    $validatedData = $request->validate([
-        'status' => 'required|in:accepted,declined',
-        'driver_id' => 'required|exists:users,id',
-    ]);
+    {
+        $validatedData = $request->validate([
+            'status' => 'required|in:accepted,declined',
+            'driver_id' => 'required|exists:users,id',
+        ]);
 
-    if ($booking->status === 'pending' && $booking->driver_id === null) {
-        if ($validatedData['status'] === 'accepted') {
-            $booking->driver_id = $validatedData['driver_id'];
-            $booking->status = 'accepted';
+        if ($booking->status === 'pending' && $booking->driver_id === null) {
+            if ($validatedData['status'] === 'accepted') {
+                $booking->driver_id = $validatedData['driver_id'];
+                $booking->status = 'accepted';
+            } else {
+                $booking->driver_id = null;
+                $booking->status = 'declined';
+            }
+
+            $booking->save();
+
+            return response()->json($booking, 200);
         } else {
-            $booking->driver_id = null;
-            $booking->status = 'declined';
+            return response()->json(['error' => 'Booking could not be updated'], 400);
         }
-
-        $booking->save();
-
-        return response()->json($booking, 200);
-    } else {
-        return response()->json(['error' => 'Booking could not be updated'], 400);
     }
-}
-
 }

@@ -9,6 +9,7 @@
           <a href="/place-traveler"><h1 class="nav-item btn">Place</h1></a>
           <a href="/car-traveler"><h1 class="nav-item btn">Car</h1></a>
           <a href="/hotel-traveler"><h1 class="nav-item btn">Hotel</h1></a>
+          <a href="/ticket"><h1 class="nav-item btn">Tacket</h1></a>
         </div>
         <a class="navbar-brand" href="#">
           <img src="https://i.pinimg.com/474x/5f/40/6a/5f406ab25e8942cbe0da6485afd26b71.jpg" alt="Logo" class="profile-img">
