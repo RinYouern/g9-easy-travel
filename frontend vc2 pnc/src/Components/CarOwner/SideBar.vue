@@ -30,7 +30,7 @@
           { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
           // { text: 'Car Category', icon: 'car', path: '/car-category' },
           { text: 'List Cars', icon: 'list', path: '/list-car' },
-          { text: 'List of Driver', icon: 'users', path: '/list-drivers' },
+          { text: 'List of Driver', icon: 'users', path: '/driverslist' },
           { text: 'Booking Car', icon: 'book', path: '/booking-car' },
           { text: 'Travelers', icon: 'user-friends', path: '/travelers' },
           { text: 'Payment', icon: 'dollar-sign', path: '/payment' },
