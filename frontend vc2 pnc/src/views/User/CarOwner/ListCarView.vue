@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    <HeaderMenu />
     <DashBoard />
   </div>
 </template>
   
   <script>
 import DashBoard from '@/Components/CarOwner/ListCars.vue'
-import HeaderMenu from '@/Components/HeaderMenu.vue'
 export default {
   name: 'App',
   components: {
     DashBoard,
-    HeaderMenu
   }
 }
 </script>
