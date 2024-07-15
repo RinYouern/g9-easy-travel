@@ -61,6 +61,7 @@ Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
 //Place 
 Route::post('/places', [PlaceController::class, 'store']);
 Route::get('/getAllPlce', [PlaceController::class, 'getAllPlce']);
+Route::get('places/{id}', [PlaceController::class, 'getPlaceById']);
 
 //room
 Route::post('/rooms', [RoomController::class, 'store']);
@@ -75,5 +76,7 @@ Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
 Route::post('/feedback', [FeedbackHotelController::class, 'store']);
 Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
 Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
-Route::get('users/{user_id}/bookings',[BookingHotelController::class, 'bookingsByUser']);
+// routes/api.php
+Route::get('/user-bookings', [BookingHotelController::class, 'showUserBookings'])->middleware('auth:sanctum');
+
 Route::get('bookings/{id}', [BookingHotelController::class, 'show']);

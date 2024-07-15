@@ -6,6 +6,7 @@ use App\Models\BookingHotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BookingHotelController extends Controller
 {
@@ -38,7 +39,7 @@ class BookingHotelController extends Controller
         $booking = new BookingHotel;
         $booking->name = $request->name;
         $booking->phone = $request->phone;
-        $booking->email = $request->email; 
+        $booking->email = $request->email;
         $booking->fromDate = $request->fromDate;
         $booking->toDate = $request->toDate;
         $booking->paid = $request->paid;
@@ -136,10 +137,51 @@ class BookingHotelController extends Controller
      * @param int $user_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function bookingsByUser($user_id)
+    public function showUserBookings(Request $request)
     {
-        $bookings = BookingHotel::where('user_id', $user_id)->get();
+        // Get the authenticated user
+        $user = auth()->user();
 
-        return response()->json($bookings);
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+
+        // Get the bookings for the authenticated user
+        $bookings = BookingHotel::with('user', 'room')
+            ->where('user_id', $user->id)
+            ->get();
+
+        $bookingsData = [];
+        foreach ($bookings as $booking) {
+            try {
+                // Get the hotel owner using the room's owner_id
+                $hotel = User::findOrFail($booking->room->owner_id);
+            } catch (\Exception $e) {
+                return response()->json(['error' => 'Hotel not found'], 404);
+            }
+
+            $checkInDate = $booking->fromDate;
+            $checkOutDate = $booking->toDate;
+            $nights = Carbon::parse($checkOutDate)->diffInDays(Carbon::parse($checkInDate));
+
+            $data = [
+                'BookerName' => $booking->name,
+                'BookerPhone' => $booking->phone,
+                'BookerEmail' => $booking->email,
+                'CheckinDate' => Carbon::parse($checkInDate)->format('Y-m-d'),
+                'CheckoutDate' => Carbon::parse($checkOutDate)->format('Y-m-d'),
+                'RoomID' => $booking->room->room_id,
+                'Location' => $hotel->location,
+                'Profile' => $hotel->profile,
+                'HotelName' => $hotel->name,
+                'Email' => $hotel->email,
+                'Nights' => $nights,
+                'Price' => $booking->price
+            ];
+
+            $bookingsData[] = $data;
+        }
+
+        return response()->json($bookingsData);
     }
 }
