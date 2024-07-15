@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\API\PostController;
@@ -81,25 +82,27 @@ Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
 // routes/api.php
 Route::get('/user-bookings', [BookingHotelController::class, 'showUserBookings'])->middleware('auth:sanctum');
 
-Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
+Route::get('/bookings/{id}', [BookingHotelController::class, 'show']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
     // Get all feedback
-    Route::get('feedback', [FeedbackController::class, 'index']);
+    Route::get('/feedback', [FeedbackController::class, 'index']);
 
     // Get a specific feedback by ID
-    Route::get('feedback/{id}', [FeedbackController::class, 'show']);
+    Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
 
     // Create a new feedback
-    Route::post('feedback', [FeedbackController::class, 'store']);
+    Route::post('/feedback', [FeedbackController::class, 'store']);
 
     // Update a specific feedback by ID
-    Route::put('feedback/{id}', [FeedbackController::class, 'update']);
+    Route::put('/feedback/{id}', [FeedbackController::class, 'update']);
 
     // Delete a specific feedback by ID
-    Route::delete('feedback/{id}', [FeedbackController::class, 'destroy']);
+    Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
 
     // Increase rating for a specific feedback by ID
-    Route::post('feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
+    Route::post('/feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
 });
+// get feedback
+Route::get('/feedback/{id}', [FeedbackController::class,'getFeedbackById']);

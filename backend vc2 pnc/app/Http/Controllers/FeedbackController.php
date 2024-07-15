@@ -31,6 +31,35 @@ class FeedbackController extends Controller
         ], 200);
     }
 
+    public function getFeedbackById($id)
+{
+    // Retrieve user by ID
+    $user = User::find($id);
+
+    // Check if user exists
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+
+    // Feedback received by the user
+    $feedbackReceived = Feedback::with('owner')
+        ->where('related_user_id', $user->id)
+        ->latest()
+        ->get();
+
+    // Feedback given by the user
+    $feedbackGiven = Feedback::with('relatedUser')
+        ->where('user_id', $user->id)
+        ->latest()
+        ->get();
+
+    return response()->json([
+        'feedback_received' => $feedbackReceived,
+        'feedback_given' => $feedbackGiven,
+    ], 200);
+}
+
+
     public function store(Request $request)
     {
         $validated = $request->validate([
