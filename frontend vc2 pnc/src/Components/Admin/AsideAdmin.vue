@@ -1,5 +1,10 @@
 <template>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+    crossorigin="anonymous"
+  />
 
   <div class="admin-aside">
     <div class="aside-header"></div>
@@ -58,7 +63,7 @@ export default {
 </script>
 <style scoped>
 .admin-aside {
-  background-color: rgb(14, 14, 77);
+  background-color: black;
   border-right: 1px solid #e6e6e6;
   padding: 20px;
   height: 100vh;
@@ -83,26 +88,26 @@ export default {
   transition: background-color 0.3s ease;
 }
 
-.aside-menu li  a:hover {
+.aside-menu li a:hover {
   background-color: #fff;
   color: black;
 }
 
-.aside-menu li a i {
+/* .aside-menu li a i {
   margin-right: 10px;
-}
+} */
 i {
-    min-width: 60px;
-    font-size: 24px;
-    text-align: center;
+  min-width: 60px;
+  font-size: 24px;
+  text-align: center;
 }
 
 span {
   font-size: 18px;
   color: white;
 }
-span:hover{
-    color: black;
+span:hover {
+  color: black;
 }
 </style>
 
