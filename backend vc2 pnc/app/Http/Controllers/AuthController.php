@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Str;
 
 class AuthController extends Controller
 {
+//Login
     public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -39,7 +41,7 @@ class AuthController extends Controller
             'token_type'    => 'Bearer'
         ]);
     }
-
+//register
     public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -69,8 +71,17 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
-
-
+//forgot password
+    public function forgot_password(Request $request){
+        $user=User::where('email', '=', $request->email)->first();
+        if(!empty($user)){
+            $user->remember_token=Str::random(40);
+            $user->save();
+        }
+        else{
+            return redirect()->back()->with('error','Email not found');
+        }
+    }
     public function index(Request $request)
     {
         $user = $request->user();
