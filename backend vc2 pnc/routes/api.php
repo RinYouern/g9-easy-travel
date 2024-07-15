@@ -34,6 +34,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 //user
 Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
+Route::get('/drivers/{role}', [AuthController::class,'getDriver'])->middleware('auth:sanctum');
 Route::get('/users/all', [AuthController::class, 'getAll']);
 Route::put('/users/{id}', [AuthController::class, 'edit']);
 Route::delete('/user/{id}', [AuthController::class, 'delete']);
@@ -73,7 +74,6 @@ Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
-<<<<<<< HEAD
 //feedback hotel
 Route::post('/feedback', [FeedbackHotelController::class, 'store']);
 Route::get('/hotel/{userId}/feedback', [FeedbackHotelController::class, 'index']);
@@ -82,7 +82,6 @@ Route::put('/feedback/{id}', [FeedbackHotelController::class, 'update']);
 Route::get('/user-bookings', [BookingHotelController::class, 'showUserBookings'])->middleware('auth:sanctum');
 
 Route::get('bookings/{id}', [BookingHotelController::class, 'show']);
-=======
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -104,4 +103,3 @@ Route::middleware('auth:sanctum')->group(function () {
     // Increase rating for a specific feedback by ID
     Route::post('feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
 });
->>>>>>> api-feedback
