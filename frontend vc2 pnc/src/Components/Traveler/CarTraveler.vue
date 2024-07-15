@@ -1,20 +1,4 @@
-<template>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-6" v-for="item in items" :key="item.id">
-        <div class="card">
-          <img :src="item.image" class="card-img-top" :alt="item.name">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text">{{ item.location }}</p>
-            <StarRating :rating="item.rating" />
-            <a :href="item.link" class="btn btn-primary">{{ item.buttonText }}</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+/ticket
 
 <script>
 import StarRating from '@/Components/Traveler/StarRating.vue'

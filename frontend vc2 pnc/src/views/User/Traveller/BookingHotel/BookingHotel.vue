@@ -24,7 +24,7 @@
               <li>Complimentary Wi-Fi</li>
               <li>Minibar</li>
               <li>Coffee/tea making facilities</li>
-              <li>Number poeples: {{ room.people }}</li>
+              <li>Number of people: {{ room.people }}</li>
             </ul>
           </div>
         </div>
@@ -52,24 +52,49 @@
           <label for="toDate">Departure Date</label>
           <input type="date" id="toDate" v-model="toDate" required />
         </div>
-        <button type="submit" class="btn">Book Now</button>
+        <div class="modal" v-if="showPaymentModal">
+          <div class="modal-content">
+            <h2>Payment Details</h2>
+            <div class="form-group">
+              <label for="cardNumber">Card Number:</label>
+              <input type="text" id="cardNumber" v-model="cardNumber" required />
+            </div>
+            <div class="form-group">
+              <label for="expirationDate">Expiration Date:</label>
+              <input type="text" id="expirationDate" v-model="expirationDate" required />
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" v-model="cvv" required />
+            </div>
+            <div class="d-flex">
+              <button type="button" class="btn mr-1" @click="closePaymentModal">Cancel</button>
+              <button type="submit" class="btn ml-1">Pay</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn" @click="openPaymentModal">Pay Now</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { userStore } from '@/stores/user-list';
+import axios from 'axios'
+import { userStore } from '@/stores/user-list'
 
 export default {
   data() {
     return {
+      showPaymentModal: false,
       name: '',
       phone: '',
       email: '',
       fromDate: '',
       toDate: '',
+      cardNumber: '',
+      expirationDate: '',
+      cvv: '',
       images: [
         'https://i.pinimg.com/474x/64/40/4f/64404fb92bfa2931fe33f388ce0daf54.jpg',
         'https://i.pinimg.com/474x/11/d9/f1/11d9f140c3301dbcc7bc32626a277dbe.jpg',
@@ -77,19 +102,25 @@ export default {
       ],
       room: {},
       store: userStore()
-    };
+    }
   },
   methods: {
+    openPaymentModal() {
+      this.showPaymentModal = true
+    },
+    closePaymentModal() {
+      this.showPaymentModal = false
+    },
     async submitForm() {
       try {
         // Calculate price based on difference in days
-        const startDate = new Date(this.fromDate);
-        const endDate = new Date(this.toDate);
-        const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        const startDate = new Date(this.fromDate)
+        const endDate = new Date(this.toDate)
+        const diffTime = Math.abs(endDate - startDate)
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 
         // Assuming room.price is available from fetchRoom() method
-        const price = diffDays * this.room.price;
+        const price = diffDays * this.room.price
 
         const formData = {
           name: this.name,
@@ -101,44 +132,44 @@ export default {
           user_id: this.store.users.id,
           room_id: this.room.id,
           price: price
-        };
+        }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/bookingRoom', formData);
-        this.resetForm();
+        await axios.post('http://127.0.0.1:8000/api/bookingRoom', formData)
+        this.resetForm()
       } catch (error) {
-        console.error('Error submitting form:', error);
+        console.error('Error submitting form:', error)
       }
     },
     resetForm() {
-      this.name = '';
-      this.phone = '';
-      this.email = '';
-      this.fromDate = '';
-      this.toDate = '';
+      this.name = ''
+      this.phone = ''
+      this.email = ''
+      this.fromDate = ''
+      this.toDate = ''
+      this.cardNumber = ''
+      this.expirationDate = ''
+      this.cvv = ''
     },
     fetchRoom() {
       axios
         .get(`http://127.0.0.1:8000/api/rooms/${this.$route.params.id}`)
         .then((response) => {
-          this.room = response.data;
+          this.room = response.data
         })
         .catch((error) => {
-          console.error(error);
-        });
+          console.error(error)
+        })
     },
     fetchUser() {
-      this.store.fetchUser();
+      this.store.fetchUser()
     }
   },
   mounted() {
-    this.fetchRoom();
-    this.fetchUser();
+    this.fetchRoom()
+    this.fetchUser()
   }
-};
+}
 </script>
-
-
-
 <style scoped>
 .container {
   display: flex;
@@ -154,6 +185,7 @@ export default {
   width: 800px;
   height: 90vh;
 }
+
 .card {
   background-color: white;
   border-radius: 8px;
@@ -201,6 +233,31 @@ select {
   background-color: #0056b3;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+}
+
 .el-carousel__item h3 {
   color: #475669;
   opacity: 0.75;
@@ -215,5 +272,22 @@ select {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #hotel-room-details {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    height: 100vh;
+  }
 }
 </style>

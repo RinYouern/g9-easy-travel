@@ -1,61 +1,86 @@
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-  />
-  <div class="welcome-text">
-    <div style="text-align: left; margin-top: -50px;">
-      <a href="/place-traveler"><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem"></i></a>
-    </div>
-    <div>
-      <h1 class="title">Welcome to Angkor Wat</h1>
-      <p class="description">
-        Explore the grandeur of this ancient temple complex, a testament to the rich cultural
-        heritage of Cambodia.
-      </p>
-    </div>
-  </div>
-  <div id="all" class="d-flex" style="width: 80%; margin: auto">
-    <div style="width: 60%">
-      <div class="bg-danger" style="height: 400px">
-        <img src="@/assets/image/place/cambodia.jpg" alt="" />
+  <div>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+
+    <!-- Welcome section -->
+    <div class="welcome-text">
+      <div style="text-align: left; margin-top: -50px">
+        <a href="/place-traveler"
+          ><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem"></i
+        ></a>
+      </div>
+      <div>
+        <h1 class="title">Welcome to {{ places.place.name }}</h1>
+        <p class="description">
+          Explore the grandeur of this ancient temple complex, a testament to the rich cultural
+          heritage of Cambodia.
+        </p>
       </div>
     </div>
-    <div id="two" class="d-flex flex-column" style="width: 40%">
-      <div class="bg-warning" style="height: 200px">
-        <img src="https://i.pinimg.com/474x/2f/65/6e/2f656edd8b16b54181cd811925a33313.jpg" alt="" />
+
+    <!-- Image display section -->
+    <div id="all" class="d-flex" style="width: 80%; margin: auto">
+      <div style="width: 60%">
+        <div class="bg-danger" style="height: 400px">
+          <img :src="places.place.images[0]" alt="" />
+        </div>
       </div>
-      <div class="bg-primary" style="height: 200px">
-        <img src="@/assets/image/place/angkor1.jpg" alt="" />
+      <div id="two" class="d-flex flex-column" style="width: 40%">
+        <div class="bg-warning" style="height: 200px">
+          <img :src="places.place.images[1]" alt="" />
+        </div>
+        <div class="bg-primary" style="height: 200px">
+          <img :src="places.place.images[2]" alt="" />
+        </div>
       </div>
     </div>
-  </div>
-  <div class="about-section">
-    <div class="about-text">
-      <h2 class="section-title">About Angkor Wat</h2>
-      <p class="description">
-        Angkor Wat stands as a testament to the rich cultural heritage of Cambodia, a colossal
-        temple complex that is the crown jewel of the Khmer Empire's architectural achievements.
-        Constructed in the early 12th century, this awe-inspiring masterpiece is the largest
-        religious monument in the world, spanning over 400 acres and featuring intricate carvings,
-        towering spires, and a serene moat that reflects the temple's grandeur.
-      </p>
-      <p class="section-title m-2">Location</p>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13054.089494052227!2d103.86812711560894!3d13.412077656306403!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3110168aea9a272d%3A0x3eaba81157b0418d!2sAngkor%20Wat!5e0!3m2!1sen!2skh!4v1719910359049!5m2!1sen!2skh"
-        width="1000"
-        height="450"
-        style="border:0 margin-top: 10px;;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+
+    <!-- About section -->
+    <div class="about-section">
+      <div class="about-text">
+        <h2 class="section-title">About {{ places.place.name }}</h2>
+        <p class="description">{{ places.place.description }}</p>
+        <p class="section-title m-2">Location</p>
+        <iframe
+          :src="places.place.location"
+          width="950"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      places: {}
+    }
+  },
+  created() {
+    this.fetchPlaces()
+  },
+  methods: {
+    async fetchPlaces() {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/places/${this.$route.params.id}`)
+        this.places = response.data
+      } catch (error) {
+        console.error('Error fetching data', error)
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -134,5 +159,12 @@ export default {}
   margin: 1rem auto 0;
   color: #555;
   text-align: justify;
+}
+
+@media (max-width: 768px) {
+  iframe {
+    width: 330px;
+    height: 300px;
+  }
 }
 </style>
