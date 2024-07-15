@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackHotelController;
 use App\Http\Controllers\RoomController;
@@ -31,6 +32,12 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
 Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+//Forgot password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name(name:"forgot.password");
+Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPasswordPost'])->name(name:"forgot.password.post");
+Route::post('/reset-password/{token}', [ForgotPasswordController::class, 'resetPassword'])->name(name:"reset.password");
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPasswordPost'])->name(name:"reset.password.post");
 //user
 Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
 Route::get('/users/all', [AuthController::class, 'getAll']);
