@@ -16,7 +16,7 @@
             src="/src/assets/image/logo2.png" /></a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
-          <a href="/register"><button class="btn btn-outline-primary">Register</button></a>
+          <a href="/register"><button class="btn btn-primary">Register</button></a>
         </div>
       </div>
     </nav>
@@ -87,7 +87,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Moonlight Resort</h3>
               <p class="hotel-location card-text">KR 12,000</p>
-              <p class="hotel-rating card-text">4.6 <i class="fa fa-star"></i>(51)</p>
+              <p class="hotel-rating card-text">4.6 <i class="fa fa-star" style="color:orange"></i>(51)</p>
               <p class="hotel-description card-text">Koh Rong Samleom</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -104,7 +104,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Park Hyatt Siem Reap</h3>
               <p class="hotel-location card-text">KHR 84,399</p>
-              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(70)</p>
+              <p class="hotel-rating card-text">4.5 <i class="fa fa-star" style="color:orange"></i>(70)</p>
               <p class="hotel-description card-text">Siem Reap, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -121,7 +121,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Courtyard Phnom Penh</h3>
               <p class="hotel-location card-text">KHR 592,012</p>
-              <p class="hotel-rating card-text">4.4 <i class="fa fa-star"></i>(614)</p>
+              <p class="hotel-rating card-text">4.4 <i class="fa fa-star" style="color:orange"></i>(614)</p>
               <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -137,7 +137,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Sun & Moon, Riverside Hotel</h3>
               <p class="hotel-location card-text">KHR 357,320</p>
-              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(272)</p>
+              <p class="hotel-rating card-text">4.5 <i class="fa fa-star" style="color:orange"></i>(272)</p>
               <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -153,7 +153,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Sunshine Hotel</h3>
               <p class="hotel-location card-text">KHR 12,000</p>
-              <p class="hotel-rating card-text">7.5 <i class="fa fa-star"></i></p>
+              <p class="hotel-rating card-text">7.5 <i class="fa fa-star" style="color:orange"></i>(50)</p>
               <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -169,7 +169,7 @@
             <div class="card-body">
               <h3 class="hotel-name card-title">Montagne Residence</h3>
               <p class="hotel-location card-text">139,120</p>
-              <p class="hotel-rating card-text">4.8 <i class="fa fa-star"></i>(22)</p>
+              <p class="hotel-rating card-text">4.8 <i class="fa fa-star" style="color:orange"></i>(22)</p>
               <p class="hotel-description card-text">Krong Kampot, Cambodia</p>
               <button class="btn btn-primary btn-detail">See availability</button>
             </div>
@@ -221,8 +221,8 @@
       <div class="footer-right">
         <p class="footer-company-about">
           <span>Contact Information</span>
-          <strong>Easy Travel</strong> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Iste, tempora natus fuga eos alias nobis.
+          <strong>Easy Travel</strong> is a website that provides information about travel information for the company that is responsible
+          for traveling in Cambodia.
         </p>
         <div class="footer-icons">
           <a href="#"><i class="fa fa-facebook"></i></a>
@@ -241,9 +241,6 @@ export default {}
 </script>
 
 <style scoped>
-i{
-  color: orange
-}
 .modal {
   display: block;
   position: fixed;
