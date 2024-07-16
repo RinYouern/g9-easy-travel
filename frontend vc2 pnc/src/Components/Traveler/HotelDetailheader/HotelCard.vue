@@ -1,4 +1,8 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
   <h1 class="fw-bold">List Room</h1>
   <div class="container mt-3">
     <div class="group-card shadow">
@@ -9,7 +13,7 @@
           </div>
           <div class="hotel-info">
             <div class="d-flex justify-content-between align-items-center">
-              <h3>Room Id: {{ room.room_id }} </h3>
+              <h3>Room Id: {{ room.room_id }}</h3>
               <p style="font-size: 30px" class="text-warning">{{ room.price }} $</p>
             </div>
             <p>
@@ -52,36 +56,44 @@
                 <p class="ml-2">Breakfast in the room</p>
               </div>
             </div>
-            <a  :href="'/booking/' + room.id" class="btn btn-primary" @click="showId(room.id)">Booking Now </a>
+            <a :href="'/booking/' + room.id" class="btn btn-primary" @click="showId(room.id)"
+              >Booking Now
+            </a>
           </div>
-         
         </div>
       </div>
     </div>
 
-    <div class="feedback-bar">
-      <div class="bg-white border rounded grid grid-cols-6 gap-2 rounded-xl p-2 text-sm shadow">
+    <div class="feedback-bar mb-2">
+      <div
+        id="feedback-form"
+        class="bg-white border rounded grid grid-cols-6 gap-2 rounded-xl p-2 text-sm shadow"
+      >
         <h1 class="text-center text-slate-200 text-xl font-bold col-span-6 text-dark">
           Send Feedback
         </h1>
         <textarea
+          id="feedback-content"
+          v-model="content"
           placeholder="Your feedback..."
           class="bg-slate-100 text-slate-600 h-28 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 col-span-6 resize-none outline-none rounded-lg p-2 duration-300 focus:border-slate-600"
         ></textarea>
         <div class="d-flex">
           <div class="rating mr-39">
-            <input value="5" name="rating1" id="star1-5" type="radio" />
-            <label for="star1-5"></label>
-            <input value="4" name="rating1" id="star1-4" type="radio" />
-            <label for="star1-4"></label>
-            <input value="3" name="rating1" id="star1-3" type="radio" />
-            <label for="star1-3"></label>
-            <input value="2" name="rating1" id="star1-2" type="radio" />
-            <label for="star1-2"></label>
-            <input value="1" name="rating1" id="star1-1" type="radio" />
-            <label for="star1-1"></label>
+            <input v-model="selectedRating" value="5" type="radio" name="rating" id="star-5" />
+            <label for="star-5"></label>
+            <input v-model="selectedRating" value="4" type="radio" name="rating" id="star-4" />
+            <label for="star-4"></label>
+            <input v-model="selectedRating" value="3" type="radio" name="rating" id="star-3" />
+            <label for="star-3"></label>
+            <input v-model="selectedRating" value="2" type="radio" name="rating" id="star-2" />
+            <label for="star-2"></label>
+            <input v-model="selectedRating" value="1" type="radio" name="rating" id="star-1" />
+            <label for="star-1"></label>
           </div>
           <button
+            id="submit-feedback"
+            @click="submitFeedback"
             class="bg-slate-100 stroke-slate-600 border border-slate-200 col-span-2 flex justify-center rounded-lg p-2 duration-300 hover:border-slate-600 hover:text-white focus:stroke-blue-200 focus:bg-blue-400"
           >
             <svg
@@ -114,21 +126,34 @@
       >
         <h3 class="text-dark fw-bold">List Feedback</h3>
         <div class="list">
-          <div class="border-top pt-2">
+          <div
+            class="border-top pt-2"
+            v-for="feedback in feedBacks.feedback_received"
+            :key="feedback.id"
+          >
             <div class="feedback-profile d-flex">
-              <img src="\src\assets\image\frog.jpg" alt="" class="profile" />
+              <img :src="feedback.owner.profile" alt="" class="profile" />
               <div class="ml-3">
-                <h6 class="fw-bold m-0 p-0">Traveler</h6>
-                <p class="m-0 p-0">Your service so good!</p>
-              </div>
-            </div>
-          </div>
-          <div class="border-top pt-2">
-            <div class="feedback-profile d-flex">
-              <img src="\src\assets\image\frog.jpg" alt="" class="profile" />
-              <div class="ml-3">
-                <h6 class="fw-bold m-0 p-0">Traveler</h6>
-                <p class="m-0 p-0">Your service so good!</p>
+                <h6 class="fw-bold m-0 p-0">{{ feedback.owner.name }}</h6>
+                <div id="star" v-if="feedback.rating === 3">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                </div>
+                <div id="star" v-else-if="feedback.rating === 4">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                </div>
+                <div id="star" v-else-if="feedback.rating === 5">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                </div>
+                <p class="m-0 p-0">{{ feedback.content }}</p>
               </div>
             </div>
           </div>
@@ -141,18 +166,21 @@
 <script>
 import axios from 'axios'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-// import '@fortawesome/fontawesome-free/css/all.css'
+import axiosInstance from '@/plugins/axios'
 
 export default {
   data() {
     return {
-
-      rooms: []
+      content: '',
+      rooms: [],
+      feedBacks: [],
+      selectedRating: null
     }
   },
 
   created() {
     this.fetchHotel()
+    this.fetchFeedBack()
   },
   methods: {
     fetchHotel() {
@@ -163,6 +191,36 @@ export default {
         })
         .catch((error) => {
           console.error(error)
+        })
+    },
+    fetchFeedBack() {
+      axios
+        .get(`http://127.0.0.1:8000/api/feedback/${this.$route.params.id}`)
+        .then((response) => {
+          this.feedBacks = response.data
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    submitFeedback() {
+      const payload = {
+        content: this.content,
+        rating: this.selectedRating,
+        related_user_id: this.$route.params.id
+      }
+
+      axiosInstance
+        .post('http://127.0.0.1:8000/api/feedback', payload)
+        .then((response) => {
+          console.log('Feedback submitted:', response.data)
+          this.content = ''
+          this.selectedRating = null
+          this.fetchFeedBack()
+        })
+        .catch((error) => {
+          console.error('Error submitting feedback:', error)
         })
     }
   }
@@ -261,5 +319,9 @@ export default {
 }
 i {
   color: green;
+}
+#star {
+  display: flex;
+  gap: 3px;
 }
 </style>

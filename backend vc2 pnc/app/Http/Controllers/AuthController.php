@@ -12,7 +12,7 @@ use Str;
 
 class AuthController extends Controller
 {
-//Login
+    //Login
     public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -41,7 +41,7 @@ class AuthController extends Controller
             'token_type'    => 'Bearer'
         ]);
     }
-//register
+    //register
     public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -71,15 +71,15 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
-//forgot password
-    public function forgot_password(Request $request){
-        $user=User::where('email', '=', $request->email)->first();
-        if(!empty($user)){
-            $user->remember_token=Str::random(40);
+    //forgot password
+    public function forgot_password(Request $request)
+    {
+        $user = User::where('email', '=', $request->email)->first();
+        if (!empty($user)) {
+            $user->remember_token = Str::random(40);
             $user->save();
-        }
-        else{
-            return redirect()->back()->with('error','Email not found');
+        } else {
+            return redirect()->back()->with('error', 'Email not found');
         }
     }
     public function index(Request $request)
@@ -107,6 +107,33 @@ class AuthController extends Controller
             'data' => $users,
         ]);
     }
+
+    public function getDriver(Request $request, $role): JsonResponse
+    {
+        $user = Auth::user();
+
+        // Ensure the user is authenticated
+        if (!$user) {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+
+        // Get the company ID of the authenticated user
+        $companyId = $user->id;
+
+        // Fetch users by role and company ID
+        $users = User::where('user_role', $role)
+            ->where('company', $companyId)
+            ->get();
+
+        return response()->json([
+            'message' => 'Users retrieved successfully',
+            'data' => $users,
+        ]);
+    }
+
+
 
     public function getAll(): JsonResponse
     {
