@@ -10,7 +10,7 @@
       <nav class="menu mt-4">
         <ul class="nav flex-column">
           <li class="nav-item" v-for="item in menuItems" :key="item.text">
-            <router-link :to="item.path" class="nav-link text-white d-flex align-items-center gap-3">
+            <router-link :to="item.path" class="nav-link text-white d-flex align-items-center gap-3" active-class="active" exact>
               <font-awesome-icon :icon="item.icon" class="me-2 menu-icon" />
               {{ item.text }}
             </router-link>
@@ -62,4 +62,7 @@
     background-color: #3498db;
     transform: translateX(5px);
   }
+  .sidebar .nav-link.active {
+  background-color: #3498db;
+ }
   </style>
