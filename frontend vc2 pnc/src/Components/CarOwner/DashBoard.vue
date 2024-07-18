@@ -9,7 +9,7 @@
               <div class="card-body">
                 <font-awesome-icon :icon="stat.icon" class="stat-icon mb-2 font-size-10 text-primary" />
                 <h5 class="card-title">{{ stat.title }}</h5>
-                <p class="card-text">{{ stat.value }}</p>
+                <p class="card-text text-dark">{{ stat.value }}</p>
               </div>
             </div>
           </div>

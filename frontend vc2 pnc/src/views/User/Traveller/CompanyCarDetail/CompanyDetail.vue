@@ -171,7 +171,7 @@ export default {
   methods: {
     fetchVehicle() {
       axios
-        .get(`http://127.0.0.1:8000/api/vehicles/${this.$route.params.id}`)
+        .get(`http://127.0.0.1:8000/api/getVehicleOneCompany/${this.$route.params.id}`)
         .then((response) => {
           this.cars = response.data
         })

@@ -33,7 +33,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
               <p class="card-text">{{ place.description }}</p>
-              <p class="card-text"><strong>Location:</strong> {{ place.location }}</p>
+              <p class="card-text"><strong>Location:</strong> {{ place.province }}</p>
               <div class="d-flex gap-2">
                 <button class="btn btn-sm btn-warning" @click="showEditDialog(place)">Edit</button>
                 <button class="btn btn-sm btn-danger" @click="deletePlace(place.id)">Delete</button>
