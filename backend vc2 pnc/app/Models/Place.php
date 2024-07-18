@@ -9,7 +9,7 @@ class Place extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'location', 'images'];
+    protected $fillable = ['name', 'description', 'location', 'images','rating'];
 
     protected $casts = [
         'images' => 'json',

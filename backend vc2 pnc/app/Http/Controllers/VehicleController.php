@@ -42,6 +42,11 @@ class VehicleController extends Controller
         $vehicles = Vehicle::where('owner_id', $user->id)->get();
         return response()->json($vehicles);
     }
+    public function getVehicleOneCompany(Request $request, $id)
+    {
+        $vehicles = Vehicle::where('owner_id', $id)->get();
+        return response()->json($vehicles);
+    }
 
     public function getVehicleBooking(Request $request)
     {

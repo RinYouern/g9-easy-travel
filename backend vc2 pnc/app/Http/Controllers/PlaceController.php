@@ -16,6 +16,7 @@ class PlaceController extends Controller
             'description' => 'required|string',
             'location' => 'required|string|max:15000',
             'province' => 'required|string',
+
             'images' => 'required|array',
             'images.*' => 'string',
         ]);
@@ -26,6 +27,7 @@ class PlaceController extends Controller
         $place->description = $validatedData['description'];
         $place->province = $validatedData['province'];
         $place->location = $validatedData['location'];
+        $place->rating = '3.8';
         $place->images = ($validatedData['images']);
         // Save place
         $place->save();
@@ -37,6 +39,19 @@ class PlaceController extends Controller
     {
         return Place::all();
     }
+    public function getTopPlaces()
+    {
+        // Retrieve the top 10 places sorted by rating in descending order
+        $topPlaces = Place::orderBy('rating', 'desc')
+            ->take(10)
+            ->get();
+
+        return response()->json([
+            'message' => 'Top 10 places retrieved successfully',
+            'data' => $topPlaces,
+        ]);
+    }
+
     public function getPlaceById($id)
     {
         // Find the place by ID
