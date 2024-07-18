@@ -15,7 +15,7 @@
       </button>
     </div>
 
-    <table class="table  table-bordered text-center">
+    <table class="table table-bordered text-center">
       <thead class="thead-dark">
         <tr>
           <th scope="col"><strong>Role</strong></th>
@@ -51,21 +51,29 @@
     </table>
 
     <!-- Dialog for Table -->
-    <el-dialog v-model="dialogTableVisible" width="800" style="padding: 5%;">
-  <div class="d-flex justify-content-center">
-    <div class="d-flex align-items-center">
-      <div class="profile-image-container" style="margin-right: 100px;">
-        <img v-if="selectedUser.profile" :src="selectedUser.profile" alt="Profile Picture" class="img-fluid rounded-circle" />
-        <span v-else>No Profile Picture</span>
+    <el-dialog v-model="dialogTableVisible" width="800" style="padding: 5%">
+      <div class="d-flex justify-content-center">
+        <div class="d-flex align-items-center">
+          <div class="profile-image-container" style="margin-right: 100px">
+            <img
+              v-if="selectedUser.profile"
+              :src="selectedUser.profile"
+              alt="Profile Picture"
+              class="img-fluid rounded-circle"
+            />
+            <span v-else>No Profile Picture</span>
+          </div>
+          <div class="user-info-container">
+            <p><strong>Name:</strong> {{ selectedUser.name }}</p>
+            <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+            <p><strong>Password:</strong> {{ selectedUser.password }}</p>
+            <p v-if="selectedUser.user_role !== 'traveler'">
+              <strong>Location:</strong> {{ selectedUser.location }}
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="user-info-container">
-        <p><strong>Name:</strong> {{ selectedUser.name }}</p>
-        <p><strong>Email:</strong> {{ selectedUser.email }}</p>
-        <p><strong>Password:</strong> {{ selectedUser.password }}</p>
-        <p v-if="selectedUser.user_role !== 'traveler'"><strong>Location:</strong> {{ selectedUser.location }}</p>      </div>
-    </div>
-  </div>
-</el-dialog>
+    </el-dialog>
   </div>
 </template>
 
