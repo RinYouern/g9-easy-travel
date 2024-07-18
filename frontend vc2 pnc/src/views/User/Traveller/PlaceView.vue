@@ -29,6 +29,7 @@
             <div class="card-body">
               <star-rating :rating="place.rating"></star-rating>
               <h5 class="card-title">{{ place.name }}</h5>
+              <p class="card-title">{{ place.province }}</p>
               <a :href="'/place-detail/' + place.id" class="btn btn-primary" @click="showId(place.id)">Go Now</a>
             </div>
           </div>
@@ -69,7 +70,7 @@ export default {
     searchVehicles() {
       this.filteredPlaces = this.places.filter(place =>
         place.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        place.location.toLowerCase().includes(this.searchQuery.toLowerCase())
+        place.province.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
   },

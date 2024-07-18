@@ -37,6 +37,7 @@ Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth:sa
 
 //user
 Route::get('/users/role/{role}', [AuthController::class, 'getUsersByRole']);
+Route::get('/users/rate/{role}', [AuthController::class, 'getUsersRate']);
 Route::get('/drivers/{role}', [AuthController::class,'getDriver'])->middleware('auth:sanctum');
 Route::get('/users/all', [AuthController::class, 'getAll']);
 Route::put('/users/{id}', [AuthController::class, 'edit']);
@@ -47,6 +48,7 @@ Route::get('/users/{id}', [AuthController::class, 'showDetail']);
 // routes/api.php
 Route::post('/addVehicle', [VehicleController::class, 'addVehicle'])->middleware('auth:sanctum');
 Route::get('/vehicles', [VehicleController::class, 'getVehiclesByCompany'])->middleware('auth:sanctum');
+Route::get('/getVehicleOneCompany/{id}', [VehicleController::class,'getVehicleOneCompany']);
 Route::get('/vehicles-all', [VehicleController::class, 'getVehicleBooking']);
 Route::get('/vehicles', [VehicleController::class, 'getAllVehicles'])->middleware('auth:sanctum');
 Route::get('/vehicles/{id}', [VehicleController::class, 'show'])->middleware('auth:sanctum');
@@ -66,6 +68,7 @@ Route::get('/vehicles/{userId}', [VehicleController::class, 'getVehicles']);
 //Place 
 Route::post('/places', [PlaceController::class, 'store']);
 Route::get('/getAllPlce', [PlaceController::class, 'getAllPlce']);
+Route::get('/places/top', [PlaceController::class, 'getTopPlaces']);
 Route::get('places/{id}', [PlaceController::class, 'getPlaceById']);
 
 //room

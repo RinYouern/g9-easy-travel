@@ -15,6 +15,11 @@
               <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
             </li>
           </a>
+          <a href="/top-hotel">
+            <li class="d-flex">
+              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+            </li>
+          </a>
           <a href="#">
             <li class="active d-flex">
               <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
@@ -25,26 +30,17 @@
               <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
             </li>
           </a>
-          <a href="/top-hotel">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-            </li>
-          </a>
         </ul>
       </div>
       <div class="container">
         <h1 class="text-dark fw-bold">Rooms Management</h1>
         <div class="d-flex justify-content-between mt-3 mb-3">
-          <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example">
-            <option selected>All floors</option>
-            <option value="1">First floor</option>
-            <option value="2">Second floor</option>
-            <option value="3">Third floor</option>
-          </select>
-          <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">Add Room</button>
+          <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">
+            <span class="material-symbols-outlined">add</span>
+            Add Room
+          </button>
         </div>
         <table class="table shadow rounded">
-
           <thead class="text-center">
             <tr>
               <th scope="col">ID</th>
@@ -54,7 +50,7 @@
               <th scope="col">Active</th>
             </tr>
           </thead>
-          <tbody  class="text-center" >
+          <tbody class="text-center">
             <tr v-for="room in rooms" :key="room.id">
               <th scope="row">{{ room.room_id }}</th>
               <td>{{ room.people }}</td>
@@ -63,8 +59,8 @@
                 {{ room.status === 1 ? 'Available' : 'Not available' }}
               </td>
               <td>
-                <button class="btn btn-success p-2 mx-2">Edit</button>
-                <button class="btn btn-danger p-2">Delete</button>
+                <button class="btn btn-success p-2 mx-2" @click="editRoom(room)">Edit</button>
+                <button class="btn btn-danger p-2" @click="deleteRoom(room.id)">Delete</button>
               </td>
             </tr>
           </tbody>
@@ -80,7 +76,6 @@
 import FormAddRoomView from './form/FormAddRoomView.vue'
 import axios from 'axios'
 
-
 export default {
   components: {
     FormAddRoomView
@@ -91,7 +86,7 @@ export default {
       rooms: []
     }
   },
-  
+
   created() {
     this.getUserRooms()
   },
@@ -107,7 +102,6 @@ export default {
       }
     }
   }
-  
 }
 </script>
 
@@ -122,6 +116,10 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
 }
+.btn_add .material-symbols-outlined {
+  margin-right: 8px;
+  vertical-align: middle;
+}
 .sidebar {
   position: fixed;
   top: 0;
@@ -134,9 +132,10 @@ body {
 }
 
 .sidebar .logo img {
+  margin-top: -10px;
   width: 100px;
   height: 100px;
-  margin-left: 35%;
+  margin-left: 30%;
 }
 
 .sidebar ul {

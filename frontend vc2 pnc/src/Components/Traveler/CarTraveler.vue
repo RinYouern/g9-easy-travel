@@ -1,5 +1,4 @@
 /ticket
-
 <script>
 import StarRating from '@/Components/Traveler/StarRating.vue'
 export default {

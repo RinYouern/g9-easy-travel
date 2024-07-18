@@ -19,6 +19,7 @@ class CreatePlacesTable extends Migration
             $table->text('description');
             $table->text('province');
             $table->text('location');
+            $table->text('rating')->nullable();
             $table->json('images')->nullable(); 
             $table->timestamps();
         });

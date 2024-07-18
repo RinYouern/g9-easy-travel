@@ -192,7 +192,7 @@ body {
   padding: 70px;
 }
 .container {
-  background: rgb(250, 249, 249);
+  background: whitesmoke;;
   height: 60vh;
 }
 

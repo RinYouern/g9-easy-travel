@@ -17,6 +17,11 @@
                 <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
               </li>
             </a>
+            <a href="/top-hotel">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+              </li>
+            </a>
             <a href="/room_managemant">
               <li class="d-flex">
                 <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
@@ -25,11 +30,6 @@
             <a href="/customers_payment">
               <li class="d-flex">
                 <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
-              </li>
-            </a>
-            <a href="/top-hotel">
-              <li class="d-flex">
-                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
               </li>
             </a>
           </ul>
@@ -42,11 +42,10 @@
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
                   <img :src="profilePicture" alt="Profile Picture" class="profile-picture" />
-                  <span>{{ username }}</span>
+                  <!-- <span>{{ username }}</span> -->
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
                   <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
-                  <a href="#"><i class="bx bxs-cog"></i> Settings</a>
                   <a href="/login" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
                 </div>
               </div>
@@ -56,7 +55,7 @@
             <div class="d-flex flex-column">
               <h2 class="text-white fw-bold">Welcome Guy!</h2>
               <p class="text-white">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                Please take and find at the good service from our hotels.
               </p>
             </div>
             <div>
@@ -116,23 +115,22 @@ export default {
   data() {
     return {
       isOpen: false,
-      profilePicture: "/src/assets/image/adminpic/nana.jpg",
-      username: "T-na",
-    };
+      profilePicture: '/src/assets/image/adminpic/nana.jpg',
+      username: 'T-na'
+    }
   },
   methods: {
     toggleDropdown() {
-      this.isOpen = !this.isOpen;
-    },
+      this.isOpen = !this.isOpen
+    }
   },
   logout() {
-      if (confirm("Are you sure you want to logout?")) {
-        // Perform logout actions here
-        console.log("User logged out");
-      }
-     
-    },
-};
+    if (confirm('Are you sure you want to logout?')) {
+      // Perform logout actions here
+      console.log('User logged out')
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -164,9 +162,10 @@ body {
 }
 
 .sidebar .logo img {
+  margin-top: -10px;
   width: 100px;
   height: 100px;
-  margin-left: 35%;
+  margin-left:30%;
 }
 
 .sidebar ul {
@@ -238,27 +237,26 @@ body {
   display: block;
 }
 .dropdown-content {
-    display: block;
-    position: absolute;
-    background-color: #ded9d9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    right: 0;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: black;
-    color: white;
-  }
-  
+  display: block;
+  position: absolute;
+  background-color: #ded9d9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(78, 78, 222);
+  color: white;
+}
 
 .welcome {
   background: #2b3136;
@@ -293,12 +291,12 @@ body {
 }
 
 .stat {
-  background: #e0f7fa;
+  background: #e0f9fa;
   padding: 20px;
   flex-grow: 1;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .stat:hover {

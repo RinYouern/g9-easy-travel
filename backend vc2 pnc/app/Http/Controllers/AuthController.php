@@ -107,6 +107,20 @@ class AuthController extends Controller
             'data' => $users,
         ]);
     }
+    public function getUsersRate(Request $request, $role): JsonResponse
+    {
+        // Retrieve users based on role, sort them by rating in descending order, and limit the results to the top 10
+        $users = User::where('user_role', $role)
+            ->orderBy('rating', 'desc') // Sort by rating in descending order
+            ->take(10) // Limit results to the top 10
+            ->get();
+    
+        return response()->json([
+            'message' => 'Top 10 users retrieved successfully',
+            'data' => $users,
+        ]);
+    }
+    
 
     public function getDriver(Request $request, $role): JsonResponse
     {

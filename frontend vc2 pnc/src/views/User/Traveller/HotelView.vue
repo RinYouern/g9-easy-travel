@@ -3,37 +3,100 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
   />
-  <navbar></navbar>
-  <div class="bg-light">
-    <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
-      <div class="p-5 d-flex flex-column align-items-center justify-content-center" id="bg-warning">
-        <div class="text-center mb-4">
-          <h1 class="text-white">Where to Go?</h1>
-          <p class="text-white">Find vehicles available in Cambodia</p>
-        </div>
-        <div class="d-flex justify-content-center">
-          <input
-            type="text"
-            v-model="vehicle"
-            class="form-control"
-            style="width: 300px"
-            placeholder="Enter your location or vehicle type"
-          />
-          <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
+  <Header></Header>
+  <div class="container d-flex flex-column mt-5">
+    <div
+      class="card d-flex flex-row mt-3"
+      v-for="hotel in hotels"
+      :key="hotel.id"
+      style="margin: auto"
+    >
+      <div class="image-container">
+        <img
+          src="https://ak-d.tripcdn.com/images/220j050000000iape685E_R_960_660_R5_D.jpg"
+          class="img-fluid"
+          alt="Hotel Image"
+        />
+        <div class="image-overlay d-flex justify-content-center align-items-center">
+          <div class="image-text">View Gallery</div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-6" v-for="hotel in filteredHotels" :key="hotel.id">
-        <div class="card">
-          <img src="https://i.pinimg.com/474x/6a/51/59/6a5159c420d54f0daa5d28806073d7f3.jpg" class="card-img-top" :alt="hotel.name">
-          <div class="card-body">
-            <star-rating :rating="hotel.rating"></star-rating>
-            <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
-            <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
-            <a :href="'/hotel-detail/' + hotel.id" class="btn btn-primary" @click="showId(hotel.id)">See Detail</a>
+      <div class="d-flex flex-column justify-content-between p-3" style="width: 100%">
+        <div class="bg-white" style="height: 50%">
+          <div class="d-flex align-items-center">
+            <h1 class="me-2">{{ hotel.name }}</h1>
+            <span class="star text-warning" v-if="hotel.rating == 3">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </span>
+            <span class="star text-warning" v-if="hotel.rating >= 3.5 && hotel.rating < 4">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </span>
+            <span class="star text-warning" v-if="hotel.rating == 4">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+            </span>
+            <span class="star text-warning" v-if="hotel.rating == 4.5">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <i class="bi bi-hand-thumbs-up text-primary">Very Good</i>
+            </span>
+            <span class="star text-warning" v-if="hotel.rating >= 5">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-hand-thumbs-up text-primary">Very Good</i>
+            </span>
+          </div>
+          <div class="d-flex align-items-center">
+            <span class="rate text-white bg-primary p-1 rounded"
+              ><strong>{{ hotel.rating }}/5</strong></span
+            >
+            <span class="text-primary ms-2"><q>Good Look, View</q></span>
+            <span class="ms-2"><q>Good Place</q></span>
+            <span class="ms-2"><q>Good Stay</q></span>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="d-flex">
+              <span class="me-2">Location:</span>
+              <span>{{ hotel.location }}</span>
+              <a href="#" class="text-primary">Show on Map</a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-warning mt-3 p-3 d-flex justify-content-between align-items-center"
+          style="height: 50%"
+        >
+          <div class="d-flex flex-column text-left">
+            <h3>Hotel Booking Guarantee</h3>
+            <div class="d-flex align-items-center">
+              <span class="text-primary">We Price Match</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <span class="text-primary">Hotel Stay Guarantee</span>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-end">
+            <div class="d-flex align-items-center">
+              <span class="text-decoration-line-through me-2">$37</span>
+              <span class="fs-4 fw-bold">$30</span>
+            </div>
+            <div class="text-danger">10% Off</div>
+            <div>Total (incl. taxes): $2</div>
+            <button class="btn btn-primary">Check Availability</button>
           </div>
         </div>
       </div>
@@ -42,15 +105,13 @@
 </template>
 
 <script>
-import Navbar from '@/Components/Traveler/navbarTraveler.vue'
-import StarRating from '@/Components/Traveler/StarRating.vue'
-import axios from 'axios';
+import Header from '@/Components/Traveler/header/header.vue'
+import axios from 'axios'
 
 export default {
   name: 'place-traveler',
   components: {
-    Navbar,
-    StarRating
+    Header
   },
   data() {
     return {
@@ -62,75 +123,66 @@ export default {
   methods: {
     async fetchCompanies() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users/role/hotelOwner');
-        this.hotels = response.data.data;
-        this.filteredHotels = this.hotels; 
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/hotelOwner')
+        this.hotels = response.data.data
+        this.filteredHotels = this.hotels
       } catch (error) {
-        console.error('Error fetching data', error);
+        console.error('Error fetching data', error)
       }
     },
-    searchVehicles() {
-      this.filteredHotels = this.hotels.filter(hotel =>
-        hotel.name.toLowerCase().includes(this.vehicle.toLowerCase()) ||
-        hotel.location.toLowerCase().includes(this.vehicle.toLowerCase())
-      );
-    },
     showId(id) {
-      console.log('Selected hotel ID:', id);
+      console.log('Selected hotel ID:', id)
     }
   },
-  mounted(){
-    this.fetchCompanies();
+  mounted() {
+    this.fetchCompanies()
   }
 }
 </script>
 
 <style scoped>
-.container {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.col-md-2.col-6 {
-  flex: 0 0 20%;
-  max-width: 20%;
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
 .card {
-  width: 100%;
+  width: 80%;
+}
+.image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.card-img-top {
-  height: 120px;
+.image-container img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-#content {
-  height: 350px;
-  background-image: url('@/assets/image/hotel/hotel.jpg');
-  background-size: cover;
-  background-position: center;
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-#bg-warning {
+.image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+.rate {
+  font-size: 0.8rem;
+}
+.star{
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.67);
-  height: 250px;
-  width: 800px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  gap: 2px;
 }
 </style>

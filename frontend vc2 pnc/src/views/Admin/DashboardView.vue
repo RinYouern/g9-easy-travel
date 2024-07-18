@@ -222,7 +222,7 @@
 export default {}
 </script>
 
-<style>
+<style scoped>
 .page-header {
   padding: 1.3rem 1rem;
   background: #e9edf2;
