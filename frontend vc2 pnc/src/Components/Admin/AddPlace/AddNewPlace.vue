@@ -17,6 +17,9 @@
           <el-form-item prop="location">
             <el-input placeholder="Location" v-model="newPlace.location" size="large" />
           </el-form-item>
+          <el-form-item prop="province">
+            <el-input placeholder="province" v-model="newPlace.province" size="large" />
+          </el-form-item>
           <el-form-item >
             <el-upload
               class="upload-demo"
@@ -56,6 +59,7 @@
           id: null,
           name: '',
           description: '',
+          province: '',
           location: '',
           images: []
         },
@@ -63,6 +67,7 @@
           name: { required: true, message: 'Please input the name', trigger: 'blur' },
           description: { required: true, message: 'Please input the description', trigger: 'blur' },
           location: { required: true, message: 'Please input the location', trigger: 'blur' },
+          province: { required: true, message: 'Please input the province', trigger: 'blur' },
           images: { required: true, message: 'Please upload at least one image', trigger: 'change' }
         }
       };

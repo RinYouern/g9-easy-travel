@@ -20,6 +20,8 @@ class AdminSeeder extends Seeder
         $admin = User::create([
             'name'=>'Admin',
             'email'=>'admin@gmail.com',
+            'phone'=>'099443233',
+            'province'=>'Banteay Meanchey',
             'password'=>bcrypt('password'),
             'profile' => 'https://i.pinimg.com/474x/d7/6c/9b/d76c9b94fd9de3f349b1a3f0b6c97b54.jpg',
             'user_role' => 'admin',
@@ -28,35 +30,43 @@ class AdminSeeder extends Seeder
         $traveler = User::create([
             'name'=>'traveler',
             'email'=>'traveler@gmail.com',
+            'phone'=>'099443233',
+            'province'=>'Banteay Meanchey',
             'password'=>bcrypt('password'),
             'profile' => 'https://i.pinimg.com/474x/b0/83/31/b0833156962d005d1ccbee648cba509b.jpg',
             'user_role' => 'traveler',
-            'location' => 'Banteay Meancher',
+            'location' => 'Banteay Meanchey',
         ]);
 
         $carOwner = User::create([
             'name'=>'carowner',
             'email'=>'carowner@gmail.com',
+            'phone'=>'099443233',
+            'province'=>'Banteay Meanchey',
             'password'=>bcrypt('password'),
             'profile' => 'https://i.pinimg.com/474x/4a/62/a6/4a62a648cc346b33ff9fd4163b190941.jpg',
             'user_role' => 'carOwner',
-            'location' => 'Banteay Meancher',
+            'location' => 'Banteay Meanchey',
         ]);
         $hotelOwner = User::create([
             'name'=>'hoteolowner',
             'email'=>'hoteolowner@gmail.com',
+            'phone'=>'099443233',
+            'province'=>'Banteay Meanchey',
             'password'=>bcrypt('password'),
             'profile' => 'https://i.pinimg.com/474x/53/4a/e6/534ae604480231838b643a6c98ed0c98.jpg',
             'user_role' => 'hotelOwner',
-            'location' => 'Banteay Meancher',
+            'location' => 'Banteay Meanchey',
         ]);
         $driver = User::create([
             'name'=>'driver',
             'email'=>'driver@gmail.com',
+            'phone'=>'099443233',
+            'province'=>'Banteay Meanchey',
             'password'=>bcrypt('password'),
             'profile' => 'https://i.pinimg.com/474x/c6/58/26/c65826a93498e1bf18273f7e86eb79fa.jpg',
             'user_role' => 'driver',
-            'location' => 'Banteay Meancher',
+            'location' => 'Banteay Meanchey',
         ]);
         
 

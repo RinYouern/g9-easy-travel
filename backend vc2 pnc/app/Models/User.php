@@ -21,12 +21,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'profile',
         'user_role',
         'company',
         'booking_id',
-        'location'
+        'location',
+        'province',
     ];
 
     public function vehicles()
