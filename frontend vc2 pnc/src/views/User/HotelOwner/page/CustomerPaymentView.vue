@@ -15,6 +15,11 @@
               <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
             </li>
           </a>
+          <a href="/top-hotel">
+            <li class="d-flex">
+              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+            </li>
+          </a>
           <a href="/room_managemant">
             <li class="d-flex">
               <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
@@ -25,61 +30,57 @@
               <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
             </li>
           </a>
-          <a href="/top-hotel">
-              <li class="d-flex">
-                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-              </li>
-            </a>
         </ul>
       </div>
       <div class="container">
         <h1 class="text-dark fw-bold">Customers Payment</h1>
-        <div class="d-flex justify-content-between mt-3 mb-3 ">
-            <select class="form-select w-25 p-2 shadow rounded" aria-label="Default select example" >
-                <option selected>All floors</option>
-                <option value="1">Fist floor</option>
-                <option value="2">Second floor</option>
-                <option value="3">Third floor</option>
-            </select>
-        </div>
-        <table class="table shadow rounded">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Total pay</th>
-                    <th scope="col">Payments</th>
-                    <th scope="col">Active</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Chhinkeo</td>
-                    <td>$ 10.00</td>
-                    <td class="text-success">Paid</td>
-                    <td>
-                        <button class="btn btn-danger p-2">Delete</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Puthireach</td>
-                    <td>$ 10.00</td>
-                    <td class="text-danger">Not yet</td>
-                    <td>
-                        <button class="btn btn-danger p-2">Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+        <table class="table shadow rounded mt-3">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Total pay</th>
+              <th scope="col">Payments</th>
+              <th scope="col">Active</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="customer in customers" :key="customer.id">
+              <th scope="row">{{ customer.id }}</th>
+              <td>{{ customer.name }}</td>
+              <td>$ {{ customer.totalPay }}</td>
+              <td :class="{ 'text-success': customer.paid, 'text-danger': !customer.paid }">
+                {{ customer.paid ? 'Paid' : 'Not yet' }}
+              </td>
+              <td>
+                <button class="btn btn-danger p-2" @click="deleteCustomer(customer.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </body>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      customers: [
+        { id: 1, name: 'Chhinkeo', totalPay: 10, paid: true },
+        { id: 2, name: 'Puthireach', totalPay: 10, paid: false }
+      ]
+    }
+  },
+  methods: {
+    deleteCustomer(id) {
+      this.customers = this.customers.filter((customer) => customer.id !== id)
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -105,11 +106,11 @@ body {
   padding: 20px 0;
 }
 
-.sidebar .logo img{
-    width: 100px;
-    height: 100px;
-    margin-left: 35%;
-    
+.sidebar .logo img {
+  margin-top: -10px;
+  width: 100px;
+  height: 100px;
+  margin-left: 30%;
 }
 
 .sidebar ul {
@@ -137,12 +138,12 @@ body {
   margin-left: 25%;
   padding: 20px;
 }
-.table thead tr th{
-  background-color:  #2b3136;
+.table thead tr th {
+  background-color: #2b3136;
   color: white;
 }
-.btn_add{
-    background-color: #178de7;
-    color: #fff;
+.btn_add {
+  background-color: #178de7;
+  color: #fff;
 }
 </style>
