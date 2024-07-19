@@ -4,93 +4,99 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
   />
   <div>
-    <body>
-      <div class="sidebar">
-        <div class="logo">
-          <img src="/src/assets/image/logo2.png" />
-        </div>
-        <ul>
-          <a href="/hotelowner">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
-            </li>
-          </a>
-          <a href="/top-hotel">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-            </li>
-          </a>
-          <a href="#">
-            <li class="active d-flex">
-              <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
-            </li>
-          </a>
-          <a href="/customers_payment">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
-            </li>
-          </a>
-        </ul>
+    <div class="sidebar">
+      <div class="logo">
+        <img src="/src/assets/image/logo2.png" />
       </div>
-      <div class="container">
-        <h1 class="text-dark fw-bold">Rooms Management</h1>
-        <div class="d-flex justify-content-between mt-3 mb-3">
-          <button class="btn p-2 btn_add shadow rounded" @click="showModal = true">
-            <span class="material-symbols-outlined">add</span>
-            Add Room
-          </button>
-        </div>
-        <table class="table shadow rounded">
-          <thead class="text-center">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">People</th>
-              <th scope="col">Price</th>
-              <th scope="col">Status</th>
-              <th scope="col">Active</th>
-            </tr>
-          </thead>
-          <tbody class="text-center">
-            <tr v-for="room in rooms" :key="room.id">
-              <th scope="row">{{ room.room_id }}</th>
-              <td>{{ room.people }}</td>
-              <td>{{ room.price }}$</td>
-              <td :class="{ 'text-danger': room.status === 0 }">
-                {{ room.status === 1 ? 'Available' : 'Not available' }}
-              </td>
-              <td>
-                <button class="btn btn-success p-2 mx-2" @click="editRoom(room)">Edit</button>
-                <button class="btn btn-danger p-2" @click="deleteRoom(room.id)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <ul>
+        <a href="/hotelowner">
+          <li class="d-flex">
+            <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
+          </li>
+        </a>
+        <a href="/top-hotel">
+          <li class="d-flex">
+            <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+          </li>
+        </a>
+        <a href="#">
+          <li class="active d-flex">
+            <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
+          </li>
+        </a>
+        <a href="/customers_payment">
+          <li class="d-flex">
+            <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
+          </li>
+        </a>
+      </ul>
+    </div>
+    <div class="container">
+      <h1 class="text-dark fw-bold">Rooms Management</h1>
+      <div class="d-flex justify-content-start mt-3 mb-3">
+        <button class="btn p-2 btn_add shadow rounded" @click="showAddModal = true">
+          <span class="material-symbols-outlined">add</span>
+          Add Room
+        </button>
       </div>
+      <table class="table shadow rounded mt-3">
+        <thead class="text-center">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">People</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Active</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr v-for="room in rooms" :key="room.id">
+            <th scope="row">{{ room.room_id }}</th>
+            <td>{{ room.people }}</td>
+            <td>{{ room.price }}$</td>
+            <td :class="{ 'text-danger': room.status === 0 }">
+              {{ room.status === 1 ? 'Available' : 'Not available' }}
+            </td>
+            <td>
+              <button class="btn btn-success p-2 mx-2" @click="showEditRoomModal(room)">Edit</button>
+              <button class="btn btn-danger p-2" @click="deleteRoom(room.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <FormAddRoomView v-if="showModal" @close="showModal = false" />
-    </body>
+    <FormAddRoomView v-if="showAddModal" @close="closeModal" @update="getUserRooms" />
+    <FormEditRoomView
+      v-if="showEditModal"
+      @close="closeModal"
+      :room="selectedRoom"
+      @update="getUserRooms"
+    />
   </div>
 </template>
 
 <script>
 import FormAddRoomView from './form/FormAddRoomView.vue'
+import FormEditRoomView from './form/FormEditRoomView.vue'
 import axios from 'axios'
 
 export default {
   components: {
-    FormAddRoomView
+    FormAddRoomView,
+    FormEditRoomView
   },
   data() {
     return {
-      showModal: false,
-      rooms: []
+      showAddModal: false,
+      showEditModal: false,
+      rooms: [],
+      selectedRoom: null
     }
   },
-
   created() {
     this.getUserRooms()
   },
-
   methods: {
     async getUserRooms() {
       try {
@@ -98,7 +104,23 @@ export default {
         this.rooms = response.data
       } catch (error) {
         console.error('Error fetching user rooms:', error)
-        throw error
+      }
+    },
+    showEditRoomModal(room) {
+      this.selectedRoom = room
+      this.showEditModal = true
+    },
+    closeModal() {
+      this.selectedRoom = null
+      this.showAddModal = false
+      this.showEditModal = false
+    },
+    async deleteRoom(id) {
+      try {
+        await axios.delete(`http://127.0.0.1:8000/api/rooms/${id}`)
+        this.getUserRooms()
+      } catch (error) {
+        console.error('Error deleting room:', error)
       }
     }
   }
@@ -142,7 +164,6 @@ body {
   list-style: none;
   padding: 0;
 }
-
 .sidebar ul li {
   padding: 10px;
   cursor: pointer;
