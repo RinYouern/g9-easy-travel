@@ -18,7 +18,7 @@
           <label for="price" class="text-dark">Price:</label>
           <input type="number" id="price" v-model="room.price" required />
         </div>
-        <button type="submit" class="btn btn_add">Add Room</button>
+        <button type="submit" class="btn btn-primary">Add Room</button>
       </form>
     </div>
   </div>
