@@ -20,6 +20,7 @@ class RoomController extends Controller
     {
         $request->validate([
             'room_id' => 'required|string',
+            'room_type' => 'required|string',
             'people' => 'required|integer',
             'price' => 'required|integer',
             'status' => 'required|boolean',
@@ -28,6 +29,7 @@ class RoomController extends Controller
 
         $room = Room::create([
             'room_id' => $request->room_id,
+            'room_type' => $request->room_type,
             'people' => $request->people,
             'price' => $request->price,
             'status' => $request->status,

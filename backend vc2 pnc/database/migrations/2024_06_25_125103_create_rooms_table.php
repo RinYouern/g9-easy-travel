@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('people');
             $table->integer('price');
             $table->boolean('status');
+            $table->string('room_type');
             $table->unsignedBigInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

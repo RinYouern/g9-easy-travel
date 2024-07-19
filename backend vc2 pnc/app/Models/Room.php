@@ -13,6 +13,7 @@ class Room extends Model
         'room_id',
         'people',
         'price',
+        'room_type',
         'status',
         'owner_id'
     ];
