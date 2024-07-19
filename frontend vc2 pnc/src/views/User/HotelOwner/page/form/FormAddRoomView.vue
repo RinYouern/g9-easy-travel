@@ -18,14 +18,21 @@
           <label for="price" class="text-dark">Price:</label>
           <input type="number" id="price" v-model="room.price" required />
         </div>
-        <button type="submit" class="btn btn-primary">Add Room</button>
+        <div class="form-group">
+          <label for="bed-type" class="text-dark">Room Type:</label>
+          <select id="bed-type" v-model="room.room_type" required>
+            <option value="1">Single Bed</option>
+            <option value="2">Double Bed</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn_add">Add Room</button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import { userStore } from '@/stores/user-list'
 export default {
   data() {
@@ -36,24 +43,25 @@ export default {
         price: 0,
         status: true,
         owner_id: 4,
-      },
-    };
+        room_type: '1',
+      }
+    }
   },
   methods: {
     async addRoom() {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/rooms', this.room);
-        console.log('Room added:', response.data);
-        this.$emit('close'); // Close the modal on success
+        const response = await axios.post('http://127.0.0.1:8000/api/rooms', this.room)
+        console.log('Room added:', response.data)
+        this.$emit('close') // Close the modal on success
       } catch (error) {
-        console.error('Error adding room:', error);
+        console.error('Error adding room:', error)
       }
     },
     fetchUser() {
       this.store.fetchUser()
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
@@ -104,7 +112,8 @@ export default {
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;

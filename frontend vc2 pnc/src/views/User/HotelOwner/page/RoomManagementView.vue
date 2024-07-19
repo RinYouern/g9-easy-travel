@@ -45,6 +45,7 @@
             <th scope="col">ID</th>
             <th scope="col">People</th>
             <th scope="col">Price</th>
+            <th scope="col">Room Type</th>
             <th scope="col">Status</th>
             <th scope="col">Active</th>
           </tr>
@@ -54,6 +55,7 @@
             <th scope="row">{{ room.room_id }}</th>
             <td>{{ room.people }}</td>
             <td>{{ room.price }}$</td>
+            <td>{{ room.room_type }} bad</td>
             <td :class="{ 'text-danger': room.status === 0 }">
               {{ room.status === 1 ? 'Available' : 'Not available' }}
             </td>

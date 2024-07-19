@@ -6,7 +6,13 @@
       <form @submit.prevent="editRoom">
         <div class="form-group">
           <label for="people">People:</label>
-          <input type="number" v-model="formData.people" id="people" class="form-control" required />
+          <input
+            type="number"
+            v-model="formData.people"
+            id="people"
+            class="form-control"
+            required
+          />
         </div>
         <div class="form-group">
           <label for="price">Price:</label>
@@ -29,7 +35,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   props: {
@@ -46,11 +52,11 @@ export default {
   methods: {
     async editRoom() {
       try {
-        await axios.put(`http://127.0.0.1:8000/api/rooms/${this.room.id}`, this.formData);
-        this.$emit('update');
-        this.$emit('close');
+        await axios.put(`http://127.0.0.1:8000/api/rooms/${this.room.id}`, this.formData)
+        this.$emit('update')
+        this.$emit('close')
       } catch (error) {
-        console.error('Error updating room:', error);
+        console.error('Error updating room:', error)
       }
     }
   }
