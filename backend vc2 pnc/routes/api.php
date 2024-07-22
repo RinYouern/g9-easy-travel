@@ -115,3 +115,4 @@ Route::get('/feedback/{id}', [FeedbackController::class,'getFeedbackById']);
 
 // stripe payment
 Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
+Route::get('/payment/list', [StripePaymentController::class, 'listPayments'])->middleware('auth:sanctum');
