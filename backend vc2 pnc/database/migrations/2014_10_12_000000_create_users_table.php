@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('user_role');
             $table->string('company')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('income')->nullable();
             $table->string('location')->nullable();
             $table->string('province')->nullable();
             $table->string('booking_id')->nullable();
