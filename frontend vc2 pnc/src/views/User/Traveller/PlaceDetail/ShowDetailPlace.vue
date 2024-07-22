@@ -1,28 +1,14 @@
 <template>
-  <div>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-    />
+  <!-- <div> -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+  />
+  <Header />
+  <!-- Image display section -->
 
-    <!-- Welcome section -->
-    <div class="welcome-text">
-      <div style="text-align: left; margin-top: -50px">
-        <a href="/place-traveler"
-          ><i class="bi bi-arrow-left-circle" style="font-size: 2.5rem"></i
-        ></a>
-      </div>
-      <div>
-        <h1 class="title">Welcome to {{ places.place.name }}</h1>
-        <p class="description">
-          Explore the grandeur of this ancient temple complex, a testament to the rich cultural
-          heritage of Cambodia.
-        </p>
-      </div>
-    </div>
-
-    <!-- Image display section -->
-    <div id="all" class="d-flex" style="width: 80%; margin: auto">
+  <div class="bg-white p-3" style="width: 90%; margin: auto">
+    <div id="all" class="d-flex">
       <div style="width: 60%">
         <div class="bg-danger" style="height: 400px">
           <img :src="places.place.images[0]" alt="" />
@@ -37,47 +23,164 @@
         </div>
       </div>
     </div>
-
-    <!-- About section -->
-    <div class="about-section">
-      <div class="about-text">
-        <h2 class="section-title">About {{ places.place.name }}</h2>
-        <p class="description">{{ places.place.description }}</p>
-        <p class="section-title m-2">Location</p>
-        <iframe
-          :src="places.place.location"
-          width="950"
-          height="450"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+    <div class="p-2 d-flex">
+      <h5 style="font-size: 20px" class="section-title">{{ places.place.name }}</h5>
+      <p style="font-weight: bold">
+        <strong class="border p-1 bg-warning">{{ places.place.rating }}</strong
+        >/5
+      </p>
+    </div>
+  </div>
+  <div class="bg-white p-3 mt-2" style="width: 90%; margin: auto">
+    <h4 style="font-weight: bold">
+      The Grand Palace Highlights: Must-See Features and Attractions
+    </h4>
+    <p>{{ places.place.description }}</p>
+  </div>
+  <div class="bg-white p-3 mt-2" style="width: 90%; margin: auto">
+    <h4 style="font-weight: bold">See on the map:</h4>
+    <div style="display: flex; gap: 5px">
+      <iframe
+        :src="places.place.location"
+        width="70%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <div
+        class="p-2"
+        style="
+          width: 30%;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          height: 450px;
+          overflow-y: scroll;
+        "
+      >
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">
+            <i class="bi bi-search"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Find a place to go"
+            aria-label="Search"
+            aria-describedby="basic-addon1"
+            v-model="searchCar"
+            @input="onSearch"
+          />
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <div v-for="place in filteredHotels" :key="place.id">
+            <router-link
+              :to="'/hotel-detail/' + place.id"
+              style="display: flex; background-color: gainsboro"
+              class="p-2 mt-2 text-decoration-none"
+            >
+              <img
+                :src="place.profile"
+                class="img-fluid rounded-start"
+                alt="hotel image"
+                style="width: 100px; height: 80px"
+              />
+              <div class="ml-2">
+                <p class="mb-0" style="font-weight: bold">{{ place.name }}</p>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >= 3 && place.rating < 3.5"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </span>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >= 3.5 && place.rating < 4"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </span>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >= 4 && place.rating < 4.5"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <!-- <i class="bi bi-star-half"></i> -->
+                </span>
+                <div style="display: flex; justify-content: space-between">
+                  <p class="mb-0" style="font-weight: bold">300 views</p>
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <footer>
+    <Footer />
+  </footer>
 </template>
 
 <script>
 import axios from 'axios'
+import Header from '@/Components/Traveler/header/headerPlace.vue'
+import Footer from '@/Components/Traveler/header/Footer.vue'
 
 export default {
+  components: {
+    Header,
+    Footer
+  },
   data() {
     return {
-      places: {}
+      places: {},
+      hotels: [],
+      filteredHotels: [],
+      searchCar: ''
     }
   },
   created() {
     this.fetchPlaces()
+    this.fetchCompanies()
   },
   methods: {
     async fetchPlaces() {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/places/${this.$route.params.id}`)
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/places/${this.$route.params.id}`
+        )
         this.places = response.data
       } catch (error) {
         console.error('Error fetching data', error)
       }
+    },
+    async fetchCompanies() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/hotelOwner')
+        this.hotels = response.data.data
+        this.filteredHotels = this.hotels
+      } catch (error) {
+        console.error('Error fetching data', error)
+      }
+    },
+    onSearch() {
+      const searchTerm = this.searchCar.toLowerCase().trim()
+      this.filteredHotels = this.hotels.filter(
+        (place) =>
+          place.name.toLowerCase().includes(searchTerm) ||
+          place.province.toLowerCase().includes(searchTerm)
+      )
     }
   }
 }
@@ -110,13 +213,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.welcome-text {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: black;
-  font-family: 'Playfair Display', serif;
 }
 
 .title {

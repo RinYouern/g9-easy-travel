@@ -3,11 +3,11 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
   />
-  <Header></Header>
+  <Header @search-hotels="onSearchHotels"></Header>
   <div class="container d-flex flex-column mt-5">
     <div
       class="card d-flex flex-row mt-3"
-      v-for="hotel in hotels"
+      v-for="hotel in filteredHotels"
       :key="hotel.id"
       style="margin: auto"
     >
@@ -71,7 +71,7 @@
           <div class="d-flex flex-column">
             <div class="d-flex">
               <span class="me-2">Location:</span>
-              <span>{{ hotel.location }}</span>
+              <span>{{ hotel.province }}</span>
               <a href="#" class="text-primary">Show on Map</a>
             </div>
           </div>
@@ -96,7 +96,11 @@
             </div>
             <div class="text-danger">10% Off</div>
             <div>Total (incl. taxes): $2</div>
-            <button class="btn btn-primary">Check Availability</button>
+            <a :href="'/hotel-detail/' + hotel.id"
+              ><button class="btn btn-primary" @click="showId(hotel.id)">
+                Check Availability
+              </button></a
+            >
           </div>
         </div>
       </div>
@@ -105,7 +109,7 @@
 </template>
 
 <script>
-import Header from '@/Components/Traveler/header/header.vue'
+import Header from '@/Components/Traveler/header/headerHotel.vue'
 import axios from 'axios'
 
 export default {
@@ -132,6 +136,24 @@ export default {
     },
     showId(id) {
       console.log('Selected hotel ID:', id)
+    },
+    onSearchHotels(searchQuery) {
+      if (!searchQuery || typeof searchQuery.province !== 'string') {
+        console.log('Invalid search query:', searchQuery)
+        this.filteredHotels = this.hotels // Show all hotels if no valid search query is provided
+        return
+      }
+
+      console.log('Search query:', searchQuery.province)
+
+      const searchQueryLower = searchQuery.province.toLowerCase()
+
+      this.filteredHotels = this.hotels.filter((hotel) => {
+        const hotelName = hotel.name ? hotel.name.toLowerCase() : ''
+        const hotelProvince = hotel.province ? hotel.province.toLowerCase() : ''
+
+        return hotelName.includes(searchQueryLower) || hotelProvince.includes(searchQueryLower)
+      })
     }
   },
   mounted() {
@@ -181,7 +203,7 @@ export default {
 .rate {
   font-size: 0.8rem;
 }
-.star{
+.star {
   display: flex;
   gap: 2px;
 }

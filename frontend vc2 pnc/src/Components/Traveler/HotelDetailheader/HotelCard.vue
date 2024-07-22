@@ -3,68 +3,103 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
   />
-  <h1 class="fw-bold">List Room</h1>
-  <div class="container mt-3">
-    <div class="group-card shadow">
-      <div class="hotel-card-row" v-for="room in rooms" :key="room.id">
-        <div class="hotel-card">
-          <div class="hotel-image">
-            <img src="@/assets/image/hotel/hotelheader.jpg" alt="" />
-          </div>
-          <div class="hotel-info">
-            <div class="d-flex justify-content-between align-items-center">
-              <h3>Room Id: {{ room.room_id }}</h3>
-              <p style="font-size: 30px" class="text-warning">{{ room.price }} $</p>
-            </div>
-            <p>
-              {{ room.description }}
-              Rooms at Hotel Kostegi provide a flat screen TV and a desk.
-            </p>
-            <div class="d-flex justify-content-evenly">
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Free internet</p>
+  <Header @search-hotels="onSearchHotels"></Header>
+  <hotels :rooms="rooms" :research="research" />
+  <div class="bg-white p-3 mt-2" style="width: 90%; margin: auto">
+    <h4 style="font-weight: bold">See on the map:</h4>
+    <div style="display: flex; gap: 5px">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15635.553652717732!2d104.9361633!3d11.5598565!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951348f58fad3%3A0x43155c323a7e53f5!2sHotel%20Cambodiana!5e0!3m2!1sen!2skh!4v1721382335764!5m2!1sen!2skh"
+        width="70%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+      <div
+        class="p-2"
+        style="
+          width: 30%;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          height: 450px;
+          overflow-y: scroll;
+        "
+      >
+      <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">
+        <i class="bi bi-search"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Find a place to go"
+        aria-label="Search"
+        aria-describedby="basic-addon1"
+        v-model="searchCar"
+        @input="onSearch"
+      />
+    </div>
+        <div style="display: flex; flex-direction: column">
+          <div v-for="place in filteredHotels" :key="place.id">
+            <router-link
+              :to="'/car-detail/' + place.id"
+              style="display: flex; background-color: gainsboro"
+              class="p-2 mt-2 text-decoration-none"
+            >
+              <img
+                :src="place.profile"
+                class="img-fluid rounded-start"
+                alt="hotel image"
+                style="width: 100px; height: 80px"
+              />
+              <div class="ml-2">
+                <p class="mb-0" style="font-weight: bold">{{ place.name }}</p>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >= 3 && place.rating < 3.5"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </span>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >= 3.5 && place.rating < 4"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </span>
+                <span
+                  class="text-warning"
+                  style="display: flex; gap: 1px"
+                  v-if="place.rating >=4  && place.rating < 4.5"
+                >
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <!-- <i class="bi bi-star-half"></i> -->
+                </span>
+                <div style="display: flex; justify-content: space-between">
+                  <p class="mb-0" style="font-weight: bold">300 views</p>
+                </div>
               </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Air conditioning</p>
-              </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Flatscreen TV</p>
-              </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Private bathrooms</p>
-              </div>
-            </div>
-            <div class="d-flex justify-content-evenly">
-              <div class="d-flex mr-2">
-                <i class="bi bi-people"></i>
-                <p class="ml-2">{{ room.people }}</p>
-              </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Bed</p>
-              </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Family rooms</p>
-              </div>
-              <div class="d-flex mr-2">
-                <i class="bi bi-check-circle-fill"></i>
-                <p class="ml-2">Breakfast in the room</p>
-              </div>
-            </div>
-            <a :href="'/booking/' + room.id" class="btn btn-primary" @click="showId(room.id)"
-              >Booking Now
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="feedback-bar mb-2">
+  </div>
+  <div
+    class="hotel-container p-3 bg-white mt-2"
+    style="margin: auto; width: 90%; border-radius: 10px; display: flex; gap: 5px"
+  >
+    <div style="width: 40%">
       <div
         id="feedback-form"
         class="bg-white border rounded grid grid-cols-6 gap-2 rounded-xl p-2 text-sm shadow"
@@ -119,10 +154,12 @@
           </button>
         </div>
       </div>
+    </div>
+    <div style="width: 60%">
       <div
         data-bs-spy="scroll"
         data-bs-target=".list"
-        class="feedback-list mt-4 bg-white p-3 border rounded shadow"
+        class="feedback-list bg-white p-3 border rounded shadow"
       >
         <h3 class="text-dark fw-bold">List Feedback</h3>
         <div class="list">
@@ -161,26 +198,43 @@
       </div>
     </div>
   </div>
+  <footer>
+    <Footer></Footer>
+  </footer>
 </template>
 
 <script>
 import axios from 'axios'
+import Header from '@/Components/Traveler/header/headerHotel.vue'
+import Footer from '@/Components/Traveler/header/Footer.vue'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import hotels from '@/Components/Traveler/HotelDetailheader/HotelsDetails.vue'
 import axiosInstance from '@/plugins/axios'
 
 export default {
+  name: 'HotelDetail',
+  components: {
+    hotels,
+    Footer,
+    Header
+  },
   data() {
     return {
       content: '',
       rooms: [],
       feedBacks: [],
-      selectedRating: null
+      selectedRating: null,
+      research: {},
+      hotels: [],
+      filteredHotels: [],
+      searchCar: '',
     }
   },
 
   created() {
     this.fetchHotel()
     this.fetchFeedBack()
+    this.fetchCompanies()
   },
   methods: {
     fetchHotel() {
@@ -222,12 +276,30 @@ export default {
         .catch((error) => {
           console.error('Error submitting feedback:', error)
         })
+    },
+    async fetchCompanies() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/carowner');
+        this.hotels = response.data.data;
+        this.filteredHotels = this.hotels;
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    },
+    onSearch() {
+      const searchTerm = this.searchCar.toLowerCase().trim()
+      this.filteredHotels = this.hotels.filter(
+        (place) =>
+          place.name.toLowerCase().includes(searchTerm) ||
+          place.province.toLowerCase().includes(searchTerm)
+      )
     }
-  }
+  },
+  
 }
 </script>
 
-<style>
+<style scoped>
 * {
   color: black;
 }
@@ -237,6 +309,9 @@ export default {
 }
 .feedback-bar {
   width: 30%;
+}
+.list-feedback {
+  width: 70%;
 }
 .feedback-profile .profile {
   width: 40px;
