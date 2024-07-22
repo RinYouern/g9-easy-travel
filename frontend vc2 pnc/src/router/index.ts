@@ -202,6 +202,11 @@ const router = createRouter({
       name: 'driverslist',
       component:()=>import('@/views/User/CarOwner/ListDrivers.vue')
     },
+    {
+      path: '/listBookingCars',
+      name: 'listBookingCars',
+      component:()=>import('@/Components/CarOwner/ListBookings.vue')
+    },
 
 
   ]

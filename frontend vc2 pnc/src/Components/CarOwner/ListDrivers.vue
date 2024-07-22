@@ -3,8 +3,14 @@
     <div class="row">
       <sidebar />
       <main class="col-md-9 col-lg-10 main-content p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h4 class="text-left text-black font-weight-bold">
+            Driver list
+          </h4>
+          <button class="btn btn-primary" text-white @click="showAddDialog(driver)">+Add driver</button>
+        </div>
         <div class="align-items-center justify-content-between mb-3">
-          <h2>List Drivers</h2>
+          
           <div class="table-responsive">
             <table class="table table-hover text-center">
               <thead class="table-dark">
@@ -12,7 +18,6 @@
                   <th>Name</th>
                   <th>Phone Number</th>
                   <th>Province</th>
-                  <!-- <th>Company</th> -->
                   <th>Email</th>
                   <th>Actions</th>
                 </tr>
@@ -21,14 +26,16 @@
                 <tr v-for="driver in drivers" :key="driver.id">
                   <td>{{ driver.name }}</td>
                   <td>{{ driver.phoneNumber }}</td>
-                  <td>{{ driver.location }}</td>
-                  <!-- <td>{{ driver.company }}</td> -->
+                  <td>{{ driver.province }}</td>
                   <td>{{ driver.email }}</td>
                   <td>
-                    <button class="btn btn-outline-primary mr-2">
+                    <button class="btn btn-primary mr-2" @click="showEditDialog(driver)">
                       <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button class="btn btn-outline-danger">
+                    <button class="btn btn-primary mr-2" @click="showViewDialog(driver)">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-danger" @click="showDeleteAlert(driver.name)">
                       <i class="bi bi-trash"></i>
                     </button>
                   </td>
@@ -41,12 +48,103 @@
       </main>
     </div>
   </div>
+
+  <!-- Add driver form  -->
+
+  <el-dialog
+    v-model="addDialogVisible"
+    title="Add Driver"
+    width="500"
+    :before-close="handleClose"
+  >
+  <hr>
+    <el-form :model="editForm" label-position="top" :rules="rules" ref="editFormRef">
+      <el-form-item label="Name:" prop="name">
+        <el-input autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Phone Number:" prop="phoneNumber">
+        <el-input  autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Province:" prop="province">
+        <el-input  autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Email:" prop="email">
+        <el-input autocomplete="off" />
+      </el-form-item>
+      
+    </el-form>
+   
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button type="danger" @click="handleClose">Cancel</el-button>
+        <el-button type="primary" @click="updateDriver"> Add </el-button>
+      </div>
+    </template>
+  </el-dialog>
+
+<!-- Edit driver form  -->
+  <el-dialog
+    v-model="editDialogVisible"
+    title="Update Driver Information"
+    width="500"
+    :before-close="handleClose"
+  >
+  <hr>
+    <el-form :model="editForm" label-position="top" :rules="rules" ref="editFormRef">
+      <el-form-item label="Name:" prop="name">
+        <el-input v-model="editForm.name" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Phone Number:" prop="phoneNumber">
+        <el-input v-model="editForm.phone" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Province:" prop="province">
+        <el-input v-model="editForm.province" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="Email:" prop="email">
+        <el-input v-model="editForm.email" autocomplete="off" />
+      </el-form-item>
+      
+    </el-form>
+    <hr>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button type="danger" @click="handleClose">Cancel</el-button>
+        <el-button type="primary" @click="updateDriver"> Save </el-button>
+      </div>
+    </template>
+  </el-dialog>
+  
+<!-- View detail of driver form  -->
+
+  <el-dialog
+    v-model="viewDialogVisible"
+    title="Driver Information Summary"
+    width="500"
+    :before-close="handleClose"
+  >
+  <hr>
+    <div class="view-dialog">
+      <div class="profile-image">
+        <img :src="viewForm.profile" alt="Driver Profile Image" />
+      </div>
+      <hr>
+      <div class="driver-info">
+        <p><strong>Name:</strong> {{ viewForm.name }}</p>
+        <p><strong>Phone Number:</strong> {{ viewForm.phone }}</p>
+        <p><strong>Province:</strong> {{ viewForm.province }}</p>
+        <p><strong>Email:</strong> {{ viewForm.email }}</p>
+        
+      </div>
+    </div>
+  </el-dialog>
 </template>
 
 <script>
 import sidebar from '@/Components/CarOwner/SideBar.vue'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import axiosInstance from '@/plugins/axios'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { ref, reactive } from 'vue'
 
 export default {
   name: 'ListDrivers',
@@ -55,7 +153,40 @@ export default {
   },
   data() {
     return {
-      drivers: []
+      drivers: [
+
+      ],
+      editDialogVisible: false,
+      viewDialogVisible: false,
+      addDialogVisible: false,
+      addForm: {
+        name: '',
+        phone: '',
+        province: '',
+        email: ''
+        
+      },
+      editForm: {
+        name: '',
+        phone: '',
+        province: '',
+        email: ''
+        
+      },
+      viewForm: {
+        name: '',
+        phone: '',
+        province: '',
+        email: '',
+        profile: ''
+      },
+      rules: {
+        name: [{ required: true, message: 'Please input driver name', trigger: 'blur' }],
+        phoneNumber: [{ required: true, message: 'Please input phone number', trigger: 'blur' }],
+        province: [{ required: true, message: 'Please input province', trigger: 'blur' }],
+        email: [{ required: true, message: 'Please input email', trigger: 'blur' }]
+        
+      }
     }
   },
   created() {
@@ -71,13 +202,112 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    showAddDialog(driver) {
+      this.addForm = { ...driver }
+      this.addDialogVisible = true
+    },
+    addDriver() {
+      this.$refs.addFormRef.validate((valid) => {
+        if (valid) {
+          // Update the driver data here
+          this.addDialogVisible = false
+          ElMessage({
+            type: 'success',
+            message: `Driver updated successfully`
+          })
+        }
+      })
+    },
+    showEditDialog(driver) {
+      this.editForm = { ...driver }
+      this.editDialogVisible = true
+    },
+    showViewDialog(driver) {
+      this.viewForm = { ...driver }
+      this.viewDialogVisible = true
+    },
+    updateDriver() {
+      this.$refs.editFormRef.validate((valid) => {
+        if (valid) {
+          // Update the driver data here
+          this.editDialogVisible = false
+          ElMessage({
+            type: 'success',
+            message: `Driver updated successfully`
+          })
+        }
+      })
+    },
+    handleClose() {
+      this.addDialogVisible = false
+      this.editDialogVisible = false
+      this.viewDialogVisible = false
+      
+    },
+    showDeleteAlert(driverName) {
+      ElMessageBox.confirm(
+        `Are you sure you want to delete driver: ${driverName}?`,
+        'Delete Driver',
+        {
+          confirmButtonText: 'Delete',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }
+      )
+        .then(() => {
+          ElMessage({
+            type: 'success',
+            message: `Driver: ${driverName} deleted successfully`
+          })
+        })
+        .catch(() => {
+          ElMessage({
+            type: 'error',
+            message: 'Delete canceled'
+          })
+        })
     }
   }
 }
 </script>
 
 <style scoped>
+
 h2 {
   text-align: start;
 }
+
+.el-form {
+  text-align: left;
+}
+
+.el-form-item {
+  margin-bottom: 20px;
+}
+
+.el-input {
+  width: 100%;
+  /* border: 1px solid grey; */
+}
+.view-dialog {
+ 
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image {
+  margin-right: 20px;
+  
+}
+hr{
+  border:1px solid black;
+}
+
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
 </style>
+

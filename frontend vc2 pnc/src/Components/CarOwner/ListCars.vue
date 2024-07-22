@@ -4,84 +4,77 @@
       <sidebar /> 
       <main class="col-md-9 col-lg-10 main-content p-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h4 class="text-left text-primary font-weight-bold">
-            <i class="fas fa-car mr-2"></i>Vehicles List
+          <h4 class="text-left text-black font-weight-bold">
+            Vehicles List
           </h4>
-          <button class="btn btn-primary" lain @click="dialogTableVisible = true">Add Vehicle</button>
+          <button class="btn btn-primary" lain @click="dialogTableVisible = true">+Add Vehicle</button>
         </div>
         <vehecles/>
       </main>
       
-      <el-dialog v-model="dialogTableVisible" width="800" style="padding: 5%">
-    <h2 class="text-2xl font-bold mb-6 text-center" style="margin-top: -50px">Add Vehicle</h2>
+      <el-dialog v-model="dialogTableVisible" width="600" style="padding: 5%">
+    <h2 class=" font-bold mb-6 text-center" >Add Vehicle</h2>
     <el-form :model="formData" :rules="formRules" ref="vehicleForm" label-width="120px">
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item prop="make" :error="makeError">
+          <el-form prop="make" :error="makeError">
             <el-input placeholder="Make" v-model="formData.make" size="large" />
-            <i class="bx bxs-car"></i>
-          </el-form-item>
+            
+          </el-form>
         </el-col>
         <el-col :span="12">
-          <el-form-item prop="traveler_capacity" :error="travelerCapacityError">
+          <el-form prop="traveler_capacity" :error="travelerCapacityError">
             <el-input placeholder="Traveler Capacity" v-model="formData.traveler_capacity" size="large" type="number" />
-            <i class="bx bxs-user-plus"></i>
-          </el-form-item>
+        
+          </el-form>
         </el-col>
       </el-row>
 
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item prop="year" :error="yearError">
+          <el-form prop="year" :error="yearError">
             <el-input placeholder="Year" v-model="formData.year" size="large" type="number" />
-            <i class="bx bxs-calendar"></i>
-          </el-form-item>
+            
+          </el-form>
         </el-col>
         <el-col :span="12">
-          <el-form-item prop="color" :error="colorError">
+          <el-form prop="color" :error="colorError">
             <el-input placeholder="Color" v-model="formData.color" size="large" />
-            <i class="bx bxs-paint"></i>
-          </el-form-item>
+            
+          </el-form>
         </el-col>
       </el-row>
 
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-form-item prop="size" :error="sizeError">
+          <el-form prop="size" :error="sizeError">
             <el-input placeholder="Size" v-model="formData.size" size="large" />
-            <i class="bx bxs-car-garage"></i>
-          </el-form-item>
+            
+          </el-form>
         </el-col>
         <el-col :span="12">
-          <el-form-item prop="price" :error="priceError">
+          <el-form prop="price" :error="priceError">
             <el-input placeholder="Price" v-model="formData.price" size="large" type="number" />
-            <i class="bx bxs-dollar-circle"></i>
-          </el-form-item>
+            
+          </el-form>
         </el-col>
       </el-row>
 
       <el-row :gutter="20" class="justify-content-center">
         <el-col :span="20">
-          <el-form-item prop="description" :error="descriptionError">
-            <el-input placeholder="Description" v-model="formData.description" size="large" type="textarea" />
-            <i class="bx bxs-edit"></i>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row :gutter="20" class="justify-content-center">
-        <el-col :span="7">
-          <div>
-            <el-button size="large" class="mt-3 w-full" type="danger" @click="dialogTableVisible = false">Cancel</el-button>
-          </div>
-        </el-col>
-        <el-col :span="7">
-          <div>
-            <el-button size="large" class="mt-3 w-full" :loading="isSubmitting" type="primary" @click="onSubmit">Add Vehicle</el-button>
-          </div>
+          <el-form prop="description" :error="descriptionError">
+            <el-input placeholder="Description" v-model="formData.description"  type="textarea" width="50" />
+         
+          </el-form>
         </el-col>
       </el-row>
     </el-form>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button   type="danger" @click="dialogTableVisible = false">Cancel</el-button>
+        <el-button   :loading="isSubmitting" type="primary" @click="onSubmit">Add</el-button>
+      </div>
+    </template>
   </el-dialog>
 
     </div>
@@ -144,3 +137,46 @@ export default {
   }
 }
 </script>
+<style>
+  /* Container styles */
+  /* .container-fluid.dashboard {
+    padding: 20px;
+  } */
+
+  /* Heading styles */
+  h4 {
+    font-size: 24px;
+    font-weight: bold;
+    
+  }
+
+  /* Button styles */
+  .btn-primary {
+    margin-left: 10px;
+  }
+  /* Form styles */
+  .el-form {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .el-input {
+    width: 100%;
+    /* border: 1px solid black; */
+  }
+  .el-button {
+    width: 15%;
+  }
+
+  .dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  /* Validation error styles */
+  .el-form-item__error {
+    color: red;
+    font-size: 12px;
+  }
+</style>
