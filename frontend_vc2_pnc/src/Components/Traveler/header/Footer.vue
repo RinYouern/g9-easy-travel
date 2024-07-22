@@ -1,4 +1,14 @@
 <template>
+   <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+  />
+  <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="style.css" />
   <footer class="footer-distributed">
     <div class="footer-left">
       <h3>Easy<span>Travel</span></h3>

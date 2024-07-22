@@ -29,6 +29,8 @@ class User extends Authenticatable
         'booking_id',
         'location',
         'province',
+        'description',
+        'income'
     ];
 
     public function vehicles()

@@ -3,84 +3,66 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
   />
-  <navbar></navbar>
-  <div class="bg-light">
-    <div id="content" class="content-wrapper d-flex justify-content-center align-items-center">
-      <div class="p-5 d-flex flex-column align-items-center justify-content-center" id="bg-warning">
-        <div class="text-center mb-4">
-          <h1 class="text-white">Where to Go?</h1>
-          <p class="text-white">Find vehicles available in Cambodia</p>
-        </div>
-        <div class="d-flex justify-content-center">
-          <input
-            type="text"
-            v-model="vehicle"
-            class="form-control"
-            style="width: 300px"
-            placeholder="Enter your location or vehicle type"
-          />
-          <button class="btn btn-primary ms-3" @click="searchVehicles">Search</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-6" v-for="hotel in filteredHotels" :key="hotel.id">
-        <div class="card">
-          <img src="https://i.pinimg.com/474x/6c/2a/d5/6c2ad5ed6a685afa26bc2946d2982498.jpg" class="card-img-top" :alt="hotel.name">
-          <div class="card-body">
-            <star-rating :rating="hotel.rating"></star-rating>
-            <h5 class="card-title"><i class="bi bi-building"></i> {{ hotel.name }}</h5>
-            <p class="card-text"><i class="bi bi-geo-alt-fill"></i> {{ hotel.location }}</p>
-            <a :href="'/car-detail/' + hotel.id" class="btn btn-primary" @click="showId(hotel.id)">See Detail</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
+  <Header  @search-cars="onSearchCar"/>
+
+  <ListCars :filteredHotels="filteredHotels"/>
 </template>
 
 <script>
-import Navbar from '@/Components/Traveler/navbarTraveler.vue';
-import StarRating from '@/Components/Traveler/StarRating.vue';
-import axios from 'axios';
+import Header from '@/Components/Traveler/header/headerCar.vue'
+import ListCars from '@/views/User/Traveller/CompanyCarDetail/ListCars.vue'
+import StarRating from '@/Components/Traveler/StarRating.vue'
+import axios from 'axios'
 
 export default {
   name: 'place-traveler',
   components: {
-    Navbar,
-    StarRating
+    Header,
+    StarRating,
+    ListCars
   },
   data() {
     return {
       hotels: [],
       vehicle: '',
       filteredHotels: []
-    };
+    }
   },
   methods: {
     async fetchCompanies() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/users/role/carowner');
-        this.hotels = response.data.data;
-        this.filteredHotels = this.hotels; 
+        const response = await axios.get('http://127.0.0.1:8000/api/users/role/carowner')
+        this.hotels = response.data.data
+        this.filteredHotels = this.hotels
       } catch (error) {
-        console.error('Error fetching data', error);
+        console.error('Error fetching data', error)
       }
     },
-    searchVehicles() {
-      this.filteredHotels = this.hotels.filter(hotel =>
-        hotel.name.toLowerCase().includes(this.vehicle.toLowerCase()) ||
-        hotel.location.toLowerCase().includes(this.vehicle.toLowerCase())
-      );
+    onSearchCar(searchQuery) {
+      if (!searchQuery || typeof searchQuery.province !== 'string') {
+        console.log('Invalid search query:', searchQuery)
+        this.filteredHotels = this.hotels // Show all hotels if no valid search query is provided
+        return
+      }
+
+      console.log('Search query:', searchQuery.province)
+
+      const searchQueryLower = searchQuery.province.toLowerCase()
+
+      this.filteredHotels = this.hotels.filter((hotel) => {
+        const hotelName = hotel.name ? hotel.name.toLowerCase() : ''
+        const hotelProvince = hotel.province ? hotel.province.toLowerCase() : ''
+
+        return hotelName.includes(searchQueryLower) || hotelProvince.includes(searchQueryLower)
+      })
     },
     showId(id) {
-      console.log('Selected hotel ID:', id);
+      console.log('Selected hotel ID:', id)
     }
   },
   mounted() {
-    this.fetchCompanies();
+    this.fetchCompanies()
   }
 }
 </script>
