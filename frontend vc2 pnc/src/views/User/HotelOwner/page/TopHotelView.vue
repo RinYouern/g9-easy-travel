@@ -33,79 +33,52 @@
       </ul>
     </div>
     <div class="container">
-      <h2 class="my-3">TOP HOTELS</h2>
-      <div class="group-card">
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://z.cdrst.com/foto/hotel-sf/54bab/granderesp/moonlight-resort-general-7c5a392.jpg"
-            alt="Hotel 1"
-          />
-          <div class="card-body p-3">
-            <h5 class="card-title">Card title</h5>
-            <p class="hotel-location card-text">KR 12,000</p>
-            <p class="hotel-rating card-text">4.6 <i class="fa fa-star"></i>(51)</p>
-            <p class="hotel-description card-text">Koh Rong Samleom</p>
-            <a href="#" class="btn btn-primary p-2">See availability</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/23/1312/Park-Hyatt-Siem-Reap-P143-Park-View-King.jpg/Park-Hyatt-Siem-Reap-P143-Park-View-King.16x9.jpg?imwidth=1920"
-            alt="Hotel 2"
-          />
-          <div class="card-body p-3">
-            <h5 class="hotel-name card-title">Park Hyatt Siem Reap</h5>
-            <p class="hotel-location card-text">KHR 84,399</p>
-            <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(70)</p>
-            <p class="hotel-description card-text">Siem Reap, Cambodia</p>
-            <a href="#" class="btn btn-primary p-2">See availability</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://cache.marriott.com/content/dam/marriott-renditions/PNHCY/pnhcy-guestroom-2884-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
-            alt="Hotel 3"
-          />
-          <div class="card-body p-3">
-            <h5 class="card-title">Card title</h5>
-            <p class="hotel-location card-text">KHR 592,012</p>
-            <p class="hotel-rating card-text">4.4 <i class="fa fa-star"></i>(614)</p>
-            <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-            <a href="#" class="btn btn-primary p-2">See availability</a>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/420254973.jpg?k=ef0ddf81a60bdcb7e09a8d7d82ccb8a4af8a45f95abee35bf48c32d2c0c6b1a0&o=&hp=1"
-            alt="Hotel 4"
-          />
-          <div class="card-body p-3">
-            <h5 class="card-title">Card title</h5>
-            <p class="hotel-location card-text">KHR 357,320</p>
-            <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(272)</p>
-            <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
+  <h2 class="text-left">Trending destinations</h2>
+  <div class="row flex-nowrap overflow-auto">
+    <div class="col-md-3 mb-4" v-for="item in hotels" :key="item.index">
+      <div class="card">
+        <img :src="item.profile" class="card-img-top" style="height: 100px;" :alt="item.name" />
+        <div class="text-left p-2">
+          <strong>{{ item.name }}</strong>
 
-            <a href="#" class="btn btn-primary p-2">See availability</a>
-          </div>
+          <p style="font-size: small;">{{ item.province }}</p>
+          <p><span class="border p-2 bg-warning rounded-pill">{{ item.rating }}</span> Exceptionals</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
   </body>
 </template>
   
-  <script>
-export default {}
-</script>
-  
-<style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<script>
+import axios from 'axios';
 
-body {
-  font-family: Arial, sans-serif;
+export default {
+  name: 'Sidebar',
+  data() {
+    return {
+      hotels: []
+    };
+  },
+  mounted() {
+    this.fetchTopHotel();
+  },
+  methods: {
+    async fetchTopHotel() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/users/rate/hotelOwner');
+        this.hotels = response.data.data;
+      } catch (error) {
+        console.error('Error fetching top hotels:', error);
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.wrapper {
   display: flex;
 }
 
@@ -124,7 +97,7 @@ body {
   margin-top: -10px;
   width: 100px;
   height: 100px;
-  margin-left:30%;
+  margin-left: 30%;
 }
 
 .sidebar ul {
@@ -145,47 +118,28 @@ body {
   color: white;
 }
 
-.sidebar ul a li.active,
+.sidebar ul a.active,
 .sidebar ul li:hover {
   background: white;
   color: #178de7;
 }
+
 .container {
   margin-left: 27%;
   padding-right: 20px;
   width: 73%;
-}
-.group-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 25px;
 }
 
 .material-symbols-outlined {
   font-size: 24px;
 }
 
-.page-title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-}
-
-.col-md-4 {
-  flex: 0 0 30%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.hotel-card {
+.card {
   width: 100%;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 </style>
