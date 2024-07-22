@@ -132,7 +132,7 @@ export default {
       phone: this.phone,
       arrival_date: this.arrivalDate,
       departure_date: this.departureDate,
-      amount: this.amount, // Convert amount to cents
+      amount: this.amount*100, // Convert amount to cents
     });
 
     const { error, paymentIntent } = await this.stripe.confirmCardPayment(data.clientSecret, {
