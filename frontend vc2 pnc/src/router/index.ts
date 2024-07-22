@@ -104,7 +104,7 @@ const router = createRouter({
     {
       path: '/information',
       name: 'information',
-      component: () => import('@/views/profile/information.vue')
+      component: () => import('../views/User/HotelOwner/page/InformationProfile.vue')
     },
 
     //Form update Information
