@@ -55,7 +55,7 @@ export default {
 }
 
 .stat-card {
-  background-color: rgb(12, 12, 46);
+  background-color:rgb(5, 5, 5);
   border: none;
   height: 95%;
   /* padding: 10px; */

@@ -1,5 +1,5 @@
 <template>
-  <aside class="col-md-3 col-lg-2 bg-dark text-white sidebar">
+  <aside class="col-md-3 col-lg-2 bg-black text-white sidebar">
     <div class="text-center profile-section mt-3">
       <div class="position-relative d-inline-block">
         <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
@@ -98,7 +98,7 @@ export default {
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
   .sidebar .nav-link:hover {
-    background-color: orange;
+    background-color:#3498db ;
     transform: translateX(5px);
   }
   .sidebar .nav-link.active {
