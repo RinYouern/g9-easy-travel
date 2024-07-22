@@ -1,45 +1,84 @@
 <template>
-    <aside class="col-md-3 col-lg-2 bg-dark text-white sidebar">
-      <div class="text-center profile-section mt-4">
-        <div class="position-relative d-inline-block">
-          <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
-
-        </div>
-        <h2>{{ userName }}</h2>
+  <aside class="col-md-3 col-lg-2 bg-dark text-white sidebar">
+    <div class="text-center profile-section mt-3">
+      <div class="position-relative d-inline-block">
+        <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
       </div>
-      <nav class="menu mt-4">
-        <ul class="nav flex-column">
-          <li class="nav-item" v-for="item in menuItems" :key="item.text">
-            <router-link :to="item.path" class="nav-link text-white d-flex align-items-center gap-3">
-              <font-awesome-icon :icon="item.icon" class="me-2 menu-icon" />
-              {{ item.text }}
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        userName: 'Car Company',
-        profileImage: '/src/assets/image/profile.jpg',
-        menuItems: [
-          { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
-          // { text: 'Car Category', icon: 'car', path: '/car-category' },
-          { text: 'List Cars', icon: 'list', path: '/list-car' },
-          { text: 'List of Driver', icon: 'users', path: '/driverslist' },
-          { text: 'Booking Car', icon: 'book', path: '/booking-car' },
-          { text: 'Travelers', icon: 'user-friends', path: '/travelers' },
-          { text: 'Payment', icon: 'dollar-sign', path: '/payment' },
-          // { text: 'Edit Profile', icon: 'edit', path: '/edit-profile' }
-        ]
-      }
-    }
-  }
-  </script>
+      <h2>{{ userName }}</h2>
+    </div>
+    <nav class="menu mt-4" width="50">
+      <ul class="nav flex-column">
+        <li class="nav-item" v-for="item in menuItems" :key="item.text">
+          <router-link
+            v-if="item.text !== 'Logout'"
+            :to="item.path"
+            class="nav-link text-white d-flex align-items-center"
+          >
+            <font-awesome-icon :icon="item.icon" class="me-2 menu-icon" />
+            {{ item.text }}
+          </router-link>
+          <a
+            v-else
+            href="#"
+            class="nav-link text-white d-flex align-items-center gap-3"
+            @click.prevent="showLogoutConfirmation"
+          >
+            <font-awesome-icon :icon="item.icon" class="me-2 menu-icon" />
+            {{ item.text }}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <el-dialog v-model="logoutConfirmation" title="Logout Confirmation">
+    <p>Are you sure you want to logout?</p>
+    <template #footer>
+      <el-button type="danger" @click="logoutConfirmation = false">Cancel</el-button>
+      <el-button type="primary" @click="handleLogout">OK</el-button>
+    </template>
+  </el-dialog>
+</template>
+
+<script>
+import { ElMessage } from 'element-plus';
+
+export default {
+  data() {
+    return {
+      userName: 'Car Company',
+      profileImage: '/src/assets/image/profile.jpg',
+      menuItems: [
+        { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
+        { text: 'List Cars', icon: 'list', path: '/list-car' },
+        { text: 'List of Driver', icon: 'users', path: '/driverslist' },
+        { text: 'Booking Car', icon: 'book', path: '/listBookingCars' },
+        { text: 'Logout', icon: 'sign-out', path: '/login' },
+      ],
+      logoutConfirmation: false,
+    };
+  },
+  methods: {
+    showLogoutConfirmation() {
+      this.logoutConfirmation = true;
+    },
+    handleLogout() {
+      this.logoutConfirmation = false;
+      alert('Logout successful.');
+      // redirect to the login page
+      this.$router.push('/login');
+    },
+    handleCancelLogout() {
+      this.logoutConfirmation = false;
+      alert('Logout failed.');
+    },
+  },
+};
+</script>
+
+<style>
+/* Existing styles */
+</style>
   
   <style>
   .profile-section {

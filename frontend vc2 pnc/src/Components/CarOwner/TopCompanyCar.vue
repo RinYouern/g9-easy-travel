@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-center mb-4">Top Partner</h3>
+  <h3 class="text-center mb-4">Top of Company Partner</h3>
   <table class="table table-striped table-bordered table-hover">
     <thead class="table-dark">
       <tr>
@@ -21,15 +21,35 @@
           <StarRating :rating="item.rating" />
         </td>
         <td>
-          <a :href="item.link" class="btn btn-primary btn-sm">{{ item.buttonText }}</a>
+          <button class="btn btn-primary btn-sm" @click="showViewDialog(item)">{{ item.buttonText }}</button>
         </td>
       </tr>
     </tbody>
   </table>
-  
+
+  <el-dialog
+    v-model="viewDialogVisible"
+    title=" Company Partner Information"
+    width="600px"
+    :before-close="handleClose"
+  >
+  <hr>
+    <div class="view-dialog">
+      <div class="profile-image">
+        <img :src="viewForm.image" :alt="viewForm.name" />
+      </div>
+      
+      <div class="driver-info">
+        <p><strong>Name:</strong> {{ viewForm.name }}</p>
+        <p><strong>Location:</strong> {{ viewForm.location }}</p>
+        <p><strong>Rating:</strong> <StarRating :rating="viewForm.rating" /></p>
+        <!-- <a :href="viewForm.link" class="btn btn-primary btn-sm">{{ viewForm.buttonText }}</a> -->
+      </div>
+    </div>
+  </el-dialog>
 </template>
-  
-  <script>
+
+<script>
 import StarRating from '@/Components/Traveler/StarRating.vue'
 
 export default {
@@ -94,18 +114,45 @@ export default {
           link: '#',
           buttonText: 'View Detail'
         }
-      ]
+        // Rest of the items...
+      ],
+      viewDialogVisible: false,
+      viewForm: {
+        image: '',
+        name: '',
+        location: '',
+        rating: 0,
+        link: '',
+        buttonText: ''
+      }
+    }
+  },
+  methods: {
+    showViewDialog(item) {
+      this.viewForm = {
+        image: item.image,
+        name: item.name,
+        location: item.location,
+        rating: item.rating,
+        link: item.link,
+        buttonText: item.buttonText
+      }
+      this.viewDialogVisible = true
+    },
+    handleClose(done) {
+      this.viewDialogVisible = false
     }
   }
 }
 </script>
-  
+
 <style scoped>
-h3{
+h3 {
   text-align: center;
   color: black;
   font-weight: bold "Times New Roman";
 }
+
 .table-image {
   max-width: 100px;
   height: 100px;
@@ -121,5 +168,45 @@ h3{
 
 .btn {
   font-weight: bold;
+}
+
+.view-dialog {
+  display: flex;
+  align-items: center;
+}
+
+
+.profile-image {
+  margin-right: 20px;
+}
+
+.profile-image img {
+  max-width: 150px;
+  border-radius: 50%;
+}
+.el-form {
+  text-align: left;
+}
+
+.el-form-item {
+  margin-bottom: 20px;
+}
+.el-input {
+  width: 100%;
+}
+.view-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image {
+  margin-right: 20px;
+}
+
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 </style>

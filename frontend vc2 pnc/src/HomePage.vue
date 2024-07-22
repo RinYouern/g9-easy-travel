@@ -12,28 +12,45 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
-        <a class="navbar-brand" style="margin-left: 7%" href="#"><img style="width: 90px"
-            src="/src/assets/image/logo2.png" /></a>
+        <a class="navbar-brand" style="margin-left: 5%" href="#"
+          ><img style="width: 90px" src="/src/assets/image/logo2.png" /><strong
+            style="font-size: 25px; color: orange"
+            >Easy-Travel</strong
+          >
+        </a>
         <div class="d-flex" style="margin-right: 7%">
-          <a href="/login"> <button class="btn btn-primary mx-4">Login</button> </a>
-          <a href="/register"><button class="btn btn-primary">Register</button></a>
+          <a href="/login">
+            <button class="btn btn-primary mx-4">
+              <i class="fa fa-user" style="padding: 5px"></i>Login
+            </button>
+          </a>
+          <a href="/register"
+            ><button class="btn btn-primary">
+              <i class="fa fa-edit" style="padding: 5px"></i>Register
+            </button></a
+          >
         </div>
       </div>
     </nav>
     <main class="bg-image">
       <div class="text-overlay">
         <div class="text-bg-black">
-          <h2>Welcome to our website</h2>
-          <p>Book trips and explore new destinations with ease from anywhere</p>
+          <h2>Welcome to <strong style="color: orange">Easy-Travel</strong></h2>
+          <p>
+            <strong style="color: orange">EasyTravel</strong> offers the largest selection of online
+            booking for bus tickets at the best prices in Cambodia. With numerous bus departures on
+            a daily basis across Cambodia, we are proud to offer a vast selection of online bus
+            tickets and bus service booking options to take you to all of your favourite
+            destinations.
+          </p>
         </div>
       </div>
     </main>
     <div class="title-des">
-      <h3 class="m-4 text-center text-dark">Featured Tours in Cambodia</h3>
+      <h3 class="m-4 text-center text-dark" style="color:black;font-size:30px ">Featured Tours in Cambodia</h3>
       <p class="text-dark text-center mb-4">
-        Explore Cambodia's ancient temples, scenic landscapes, and rich culture with our curated
-        tours. <br />Let our expert guides lead you on an unforgettable adventure through this
-        remarkable Southeast Asian destination.
+        Most popular choices for travellers from Cambodia. These popular destinations have a lot to
+        offer
       </p>
     </div>
     <div class="container image-list">
@@ -67,122 +84,189 @@
       </div>
     </div>
     <div class="title-des">
-      <h3 class="m-4 text-center text-dark">Go beyond your typical</h3>
+      <h3 class="m-4 text-center text-dark" style="color:black;font-size:30px ">Browse by property type</h3>
       <p class="text-dark text-center mb-4">
-        Our hotel offers a unique travel experience with luxurious amenities, exquisite dining, and
-        personalized service in a prime location.<br />
-        Whether for business or leisure, discover comfort and elegance that goes beyond
-        expectations.
+        Pick your point of interest and find a hotel nearby
       </p>
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="hotel-card card border">
-            <img
-              src="https://z.cdrst.com/foto/hotel-sf/54bab/granderesp/moonlight-resort-general-7c5a392.jpg"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
-            />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Moonlight Resort</h3>
-              <p class="hotel-location card-text">KR 12,000</p>
-              <p class="hotel-rating card-text">4.6 <i class="fa fa-star" style="color:orange;"></i>(51)</p>
-              <p class="hotel-description card-text">Koh Rong Samleom</p>
-              <p class="hotel-rating card-text">4.6 <i class="fa fa-star"></i>(51)</p>
-              <p class="hotel-description card-text">Koh Rong Samleom</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="hotel-card card border">
+      <div class="row" >
+        <div class="hotel-card">
+          <div class="image-container">
             <img
               src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/23/1312/Park-Hyatt-Siem-Reap-P143-Park-View-King.jpg/Park-Hyatt-Siem-Reap-P143-Park-View-King.16x9.jpg?imwidth=1920"
-              alt="Hotel 2"
-              class="hotel-image card-img-top"
+              alt="Hotel"
             />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Park Hyatt Siem Reap</h3>
-              <p class="hotel-location card-text">KHR 84,399</p>
-              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(70)</p>
-              <p class="hotel-description card-text">Siem Reap, Cambodia</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">3.7</span> Good <span class="reviews">(620 Reviews)</span>
             </div>
+          </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Park Hyatt Siem Reap</h2>
+            <p class="hotel-category">Siem Reap, Cambodia<span class="stars">★★★★★</span></p>
+            <ul class="amenities">
+              <li>Garden . Internet / Wifi. Parking</li>
+              
+            </ul>
+            <div class="price">KHR 84,399 <a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
           </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="hotel-card card border">
+        <div class="hotel-card">
+          <div class="image-container">
             <img
               src="https://cache.marriott.com/content/dam/marriott-renditions/PNHCY/pnhcy-guestroom-2884-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
-              alt="Hotel 2"
-              class="hotel-image card-img-top"
+              alt="Hotel"
             />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Courtyard Phnom Penh</h3>
-              <p class="hotel-location card-text">KHR 592,012</p>
-              <p class="hotel-rating card-text">4.4 <i class="fa fa-star" style="color:orange;"></i>(614)</p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <p class="hotel-rating card-text">4.4 <i class="fa fa-star"></i>(614)</p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">3.7</span> Good <span class="reviews">(620 Reviews)</span>
             </div>
           </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Courtyard Phnom Penh</h2>
+            <p class="hotel-category">Phnom Penh, Cambodia<span class="stars">★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+             
+            </ul>
+            <div class="price">KHR 592,012<a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
         </div>
-        <div class="col-md-4 mt-4">
-          <div class="hotel-card card border">
+
+        <div class="hotel-card">
+          <div class="image-container">
+            <img
+              src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/23/1312/Park-Hyatt-Siem-Reap-P143-Park-View-King.jpg/Park-Hyatt-Siem-Reap-P143-Park-View-King.16x9.jpg?imwidth=1920"
+              alt="Hotel"
+            />
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">8.1</span>Very Good <span class="reviews">(313 Reviews)</span>
+            </div>
+          </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Frangipani Royal Palace Hotel</h2>
+            <p class="hotel-category">Phnom Penh, Cambodia<span class="stars">★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+              
+            </ul>
+            <div class="price">$44 <a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
+        </div>
+        <div class="hotel-card">
+          <div class="image-container">
             <img
               src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/420254973.jpg?k=ef0ddf81a60bdcb7e09a8d7d82ccb8a4af8a45f95abee35bf48c32d2c0c6b1a0&o=&hp=1"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
+              alt="Hotel"
             />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Sun & Moon, Riverside Hotel</h3>
-              <p class="hotel-location card-text">KHR 357,320</p>
-              <p class="hotel-rating card-text">4.5 <i class="fa fa-star" style="color:orange;"></i>(272)</p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <p class="hotel-rating card-text">4.5 <i class="fa fa-star"></i>(272)</p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
+            <button class="heart-button text-dark bg-white" >&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">3.7</span> Good <span class="reviews">(620 Reviews)</span>
             </div>
           </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Sun & Moon, Riverside Hotel</h2>
+            <p class="hotel-category">Phnom Penh, Cambodia<span class="stars">★★★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+              
+            </ul>
+            <div class="price"> KHR 357,320 <a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
         </div>
-        <div class="col-md-4 mt-4">
-          <div class="hotel-card card border">
+        <div class="hotel-card">
+          <div class="image-container">
             <img
               src="https://images.trvl-media.com/lodging/88000000/87390000/87387400/87387315/65c55b71.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
+              alt="Hotel"
             />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Sunshine Hotel</h3>
-              <p class="hotel-location card-text">KHR 12,000</p>
-              <p class="hotel-rating card-text">7.5 <i class="fa fa-star" style="color:orange;"></i></p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <p class="hotel-rating card-text">7.5 <i class="fa fa-star"></i></p>
-              <p class="hotel-description card-text">Phnom Penh, Cambodia</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">3.7</span> Good <span class="reviews">(620 Reviews)</span>
             </div>
           </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Sunshine Hotel</h2>
+            <p class="hotel-category">Phnom Penh, Cambodia<span class="stars">★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+              
+            </ul>
+            <div class="price"> KHR 12,000<a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
         </div>
-        <div class="col-md-4 mt-4">
-          <div class="hotel-card card border">
+        <div class="hotel-card">
+          <div class="image-container">
             <img
               src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/86/65/6c/family-suite-room-with.jpg?w=700&h=-1&s=1"
-              alt="Hotel 1"
-              class="hotel-image card-img-top"
+              alt="Hotel"
             />
-            <div class="card-body">
-              <h3 class="hotel-name card-title">Montagne Residence</h3>
-              <p class="hotel-location card-text">139,120</p>
-              <p class="hotel-rating card-text">4.8 <i class="fa fa-star" style="color:orange;"></i>(22)</p>
-              <p class="hotel-description card-text">Krong Kampot, Cambodia</p>
-              <p class="hotel-rating card-text">4.8 <i class="fa fa-star"></i>(22)</p>
-              <p class="hotel-description card-text">Krong Kampot, Cambodia</p>
-              <button class="btn btn-primary btn-detail">See availability</button>
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">3.7</span> Good <span class="reviews">(620 Reviews)</span>
             </div>
+          </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Montagne Residence</h2>
+            <p class="hotel-category">Krong Kampot, Cambodia<span class="stars">★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+              
+            </ul>
+            <div class="price">KHR 139,120<a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
+        </div>
+        <div class="hotel-card">
+          <div class="image-container">
+            <img
+              src="https://content.r9cdn.net/rimg/himg/9f/85/19/expedia_group-116488-187475273-504639.jpg?width=1020&height=1020&xhint=540&yhint=333&crop=true&watermarkheight=28&watermarkpadding=10"
+              alt="Hotel"
+            />
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">7.4</span> Good <span class="reviews">(106 Reviews)</span>
+            </div>
+          </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Phnom Penh Hotel</h2>
+            <p class="hotel-category">Monivong Boulevard, Phnom Penh<span class="stars">★★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi</li>
+              
+            </ul>
+            <div class="price">$45<a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
+          </div>
+        </div>
+        <div class="hotel-card">
+          <div class="image-container">
+            <img
+              src="https://www.kayak.com/rimg/himg/6f/ce/32/expedia_group-4706593-026e21-283493.jpg?width=968&height=607&crop=true"
+              alt="Hotel"
+            />
+            <button class="heart-button text-dark bg-white">&#x2661;</button>
+            <div class="rating">
+              <span class="rating-score">8.4</span>Very Good <span class="reviews">(3,045 Reviews)</span>
+            </div>
+          </div>
+          <div class="hotel-info">
+            <h2 class="hotel-name">Hm Grand Central Hotel</h2>
+            <p class="hotel-category"> Village II, Phnom Penh <span class="stars">★★★★</span></p>
+            <ul class="amenities">
+              <li>Internet / Wifi/ TV</li>
+              
+            </ul>
+            <div class="price">$33 <a href="#" class="add-dates">Add dates</a></div>
+            <a href="https://www.booking.com" class="view-deal">View deal</a>
           </div>
         </div>
       </div>
@@ -200,7 +284,7 @@
 
     <footer class="footer-distributed">
       <div class="footer-left">
-        <h3>Easy<span>Travel</span></h3>
+        <h3 style="font-size: 50px">Easy<span style="font-size: 50px">Travel</span></h3>
 
         <p class="footer-links">
           <a href="#">Home</a>
@@ -231,8 +315,8 @@
       <div class="footer-right">
         <p class="footer-company-about">
           <span>Contact Information</span>
-          <strong>Easy Travel</strong> is a website that provides information about travel information for the company that is responsible
-          for traveling in Cambodia.
+          <strong>Easy Travel</strong> is a website that provides information about travel
+          information for the company that is responsible for traveling in Cambodia.
         </p>
         <div class="footer-icons">
           <a href="#"><i class="fa fa-facebook"></i></a>
@@ -251,53 +335,15 @@ export default {}
 </script>
 
 <style scoped>
-i{
-  color: orange
-}
-.modal {
-  display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-}
-
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
 .bg-image {
-  background-image: url('https://www.getvisavietnam.com/wp-content/uploads/2023/10/Angkor-Wat-Cambodia.jpg');
+  background-image: url('https://i.pinimg.com/564x/aa/0d/15/aa0d150da729b48721cdfeb71c95d3cc.jpg');
   background-size: cover;
   background-position: center;
-  height: 85vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .text-overlay {
@@ -311,13 +357,13 @@ i{
 }
 
 .text-bg-black {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.121);
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
 
 .text-bg-black h2 {
-  font-size: 3rem;
+  font-size: 60px;
   margin-bottom: 1rem;
 }
 
@@ -337,7 +383,7 @@ i{
 .item4 {
   grid-area: item4;
 }
-
+/*place*/
 .image-list {
   display: grid;
   grid-template-areas:
@@ -368,7 +414,8 @@ i{
   left: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  color: white;
+  font-size: 25px;
   padding: 10px;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -381,9 +428,17 @@ i{
 .image-item:hover .caption {
   opacity: 1;
 }
+/*hotel*/
 .hotel-card {
+  width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
   transition:
     transform 0.3s,
     box-shadow 0.3s;
@@ -392,14 +447,136 @@ i{
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-.hotel-image {
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
 }
-.hotel-card:hover .hotel-image {
-  transform: scale(1.05);
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
+
+.heart-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.rating {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+}
+
+.rating-score {
+  background-color: orange;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+  font-weight: bold;
+}
+
+.reviews {
+  font-size: 0.7em;
+  margin-left: 4px;
+}
+
+.hotel-info {
+  padding: 16px;
+}
+
+.hotel-name {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.hotel-category {
+  margin: 8px 0;
+  color: #666;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+}
+
+/* Heart button */
+.heart-button {
+  width: 40px;
+  border-radius: 100%;
+}
+
+.stars {
+  margin-left: 8px;
+  color: #ffb400;
+  font-size: 1em;
+}
+
+.amenities {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.amenities li {
+  margin: 4px 0;
+}
+
+.price {
+  margin: 8px 0;
+  font-size: 1em;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.add-dates {
+  margin-left: 8px;
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.add-dates:hover {
+  text-decoration: underline;
+}
+
+.view-deal {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #0073e6;
+  color: #fff;
+  padding: 10px 0;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1em;
+  margin-top: 12px;
+}
+
+.view-deal:hover {
+  background: #005bb5;
+}
+
 
 /*google maps*/
 
@@ -515,7 +692,7 @@ iframe {
   vertical-align: middle;
   margin: 0;
 }
-.footer-distributed .footer-center p:hover{
+.footer-distributed .footer-center p:hover {
   color: orange;
 }
 
