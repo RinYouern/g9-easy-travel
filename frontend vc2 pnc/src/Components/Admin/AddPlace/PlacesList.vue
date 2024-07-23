@@ -32,7 +32,6 @@
             <img :src="place.images.length > 0 ? place.images[0] : 'https://via.placeholder.com/200'" class="card-img-top small-image" alt="Place Image">
             <div class="card-body">
               <h5 class="card-title">{{ place.name }}</h5>
-              <p class="card-text">{{ place.description }}</p>
               <p class="card-text"><strong>Location:</strong> {{ place.province }}</p>
               <div class="d-flex gap-2">
                 <button class="btn btn-sm btn-warning" @click="showEditDialog(place)">Edit</button>

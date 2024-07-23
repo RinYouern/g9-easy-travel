@@ -6,10 +6,6 @@
 
   <div class="container">
     <main>
-      <div class="page-header">
-        <h1>Dashboard</h1>
-      </div>
-
       <div class="page-content">
         <div class="analytics">
           <div class="card">
@@ -64,158 +60,9 @@
             </div>
           </div>
         </div>
-
-        <div class="records table-responsive">
-          <div class="record-header">
-            <div class="add">
-              <span>Entries</span>
-              <select name="" id="">
-                <option value="">ID</option>
-              </select>
-              <button>Add record</button>
-            </div>
-
-            <div class="browse">
-              <input type="search" placeholder="Search" class="record-search" />
-              <select name="" id="">
-                <option value="">Status</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <table width="100%">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th><span class="las la-sort"></span> CLIENT</th>
-                  <th><span class="las la-sort"></span> TOTAL</th>
-                  <th><span class="las la-sort"></span> RETURN DATE</th>
-                  <th><span class="las la-sort"></span> RETURN DATE</th>
-                  <th><span class="las la-sort"></span> BALANCE</th>
-                  <th><span class="las la-sort"></span> ACTIONS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <div class="client">
-                      <div class="client-info">
-                        <small>exty@crossover.org</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$3171</td>
-                  <td>19 April, 2022</td>
-                  <td>19 April, 2022</td>
-                  <td>-$205</td>
-                  <td>
-                    <div class="actions">
-                      <span class="lab la-telegram-plane"></span>
-                      <span class="las la-eye"></span>
-                      <span class="las la-ellipsis-v"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <div class="client">
-                      <div class="client-info">
-                        <small>exty@crossover.org</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$2171</td>
-                  <td>19 April, 2022</td>
-                  <td>19 April, 2022</td>
-                  <td>
-                    <span class="paid">Paid</span>
-                  </td>
-                  <td>
-                    <div class="actions">
-                      <span class="lab la-telegram-plane"></span>
-                      <span class="las la-eye"></span>
-                      <span class="las la-ellipsis-v"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    <div class="client">
-                      <div class="client-info">
-                        <small>bruno@crossover.org</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$3171</td>
-                  <td>19 April, 2022</td>
-                  <td>19 April, 2022</td>
-                  <td>-$205</td>
-                  <td>
-                    <div class="actions">
-                      <span class="lab la-telegram-plane"></span>
-                      <span class="las la-eye"></span>
-                      <span class="las la-ellipsis-v"></span>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>
-                    <div class="client">
-                      <div class="client-info">
-                        <small>exty@crossover.org</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$3171</td>
-
-                  <td>19 April, 2022</td>
-                  <td>19 April, 2022</td>
-                  <td>
-                    <span class="paid">Paid</span>
-                  </td>
-                  <td>
-                    <div class="actions">
-                      <span class="lab la-telegram-plane"></span>
-                      <span class="las la-eye"></span>
-                      <span class="las la-ellipsis-v"></span>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>5</td>
-                  <td>
-                    <div class="client">
-                      <div class="client-info">
-                        <small>exty@crossover.org</small>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$3171</td>
-                  <td>19 April, 2022</td>
-                  <td>19 April, 2022</td>
-                  <td>-$205</td>
-                  <td>
-                    <div class="actions">
-                      <span class="lab la-telegram-plane"></span>
-                      <span class="las la-eye"></span>
-                      <span class="las la-ellipsis-v"></span>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </main>
   </div>
-  
 </template>
 
 <script>

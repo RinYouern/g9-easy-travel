@@ -7,7 +7,9 @@
   />
 
   <div class="admin-aside">
-    <div class="aside-header"></div>
+    <div class="aside-header">
+      <img src="@/assets/image/logo2.png" alt="Logo" style="width: 100px;" />
+    </div>
     <div class="aside-menu">
       <ul>
         <li>

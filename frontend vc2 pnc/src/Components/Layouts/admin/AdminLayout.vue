@@ -1,9 +1,11 @@
 <template>
-  <HeaderMenu />
   <div class="common-layout">
     <el-container>
       <el-aside width="200px"><AsideAdmin></AsideAdmin></el-aside>
-      <el-main><dashboard></dashboard></el-main>
+      <el-main>
+        <HeaderMenu />
+        <dashboard></dashboard>
+      </el-main>
     </el-container>
   </div>
 </template>
