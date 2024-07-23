@@ -49,16 +49,10 @@ export default {
 </script>
 
 <style scoped>
-.dashboard {
-  height: auto;
-  background-color: #f5f5f5;
-}
-
 .stat-card {
   background-color:rgb(5, 5, 5);
   border: none;
   height: 95%;
-  /* padding: 10px; */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition:
