@@ -3,9 +3,7 @@
     <div id="cover">
       <h1>Welcome Driver</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt itaque placeat ut tempore
-        assumenda nostrum, alias et laudantium? Non pariatur rem a ab velit assumenda accusamus
-        tenetur sed reprehenderit ad!
+        We're thrilled to have you as a part of our travel community. As a driver, you are an essential part of our mission to provide exceptional travel experiences to our customers. We are here to support you and ensure you have all the resources you need to excel.
       </p>
     </div>
   </div>
@@ -27,7 +25,7 @@ export default {
 }
 
 h1 {
-  color: white;
+  color: orange;
   font-weight: bold;
   display: flex;
   justify-content: flex-start;
