@@ -1,5 +1,5 @@
 <template>
-  <HeaderMenu />
+  <!-- <HeaderMenu /> -->
   <Header />
   <div class="container">
     <div class="row text-center mt-5">

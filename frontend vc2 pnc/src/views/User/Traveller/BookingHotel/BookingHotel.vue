@@ -1,11 +1,11 @@
 <template>
   <div class="container pt-4">
     <div id="hotel-room-details">
-      <div class="container my-5">
-        <div class="row">
+      <div class="container">
+        <div class="row h-75 pt-3 pl-1">
           <div class="col-md-6">
             <el-carousel :interval="5000" arrow="always">
-              <el-carousel-item v-for="(image, index) in images" :key="index">
+              <el-carousel-item v-for="(image, index) in images" :key="index" class="bg-white">
                 <img :src="image" alt="Carousel Image" class="carousel-image" />
               </el-carousel-item>
             </el-carousel>
@@ -30,58 +30,44 @@
         </div>
       </div>
     </div>
-    <div class="card">
-      <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" v-model="name" required />
+    <div id="app" class="form-payment shadow  bg-white">
+    <form @submit.prevent="submitPayment" id="payment-form">
+      <div class="form-group">
+        <label for="name" class="w-100 fw-bold">Name
+          <input type="text" id="name" v-model="name" class="form-control" placeholder="Your name" required>
+        </label><br>
+        <label for="email" class="w-100 fw-bold">email
+          <input type="email" id="email" v-model="email" class="form-control" placeholder="Your email" required>
+        </label>
+        <label for="phone" class="w-100 fw-bold">Phone
+          <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Your phone number" required>
+        </label><br>
+        <div class="d-flex justify-content-between w-100">
+          <label for="arrival-date" class="arrival fw-bold">Arrival date
+            <input type="date" id="arrival-date" v-model="arrivalDate" class="form-control" required>
+          </label><br>
+          <label for="departure-date" class="departure fw-bold">Departure date
+            <input type="date" id="departure-date" v-model="departureDate" class="form-control" required>
+          </label><br>
         </div>
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="text" id="phone" v-model="phone" required />
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" v-model="email" required />
-        </div>
-        <div class="form-group">
-          <label for="fromDate">Arrival Date</label>
-          <input type="date" id="fromDate" v-model="fromDate" required />
-        </div>
-        <div class="form-group">
-          <label for="toDate">Departure Date</label>
-          <input type="date" id="toDate" v-model="toDate" required />
-        </div>
-        <div class="modal" v-if="showPaymentModal">
-          <div class="modal-content">
-            <h2>Payment Details</h2>
-            <div class="form-group">
-              <label for="cardNumber">Card Number:</label>
-              <input type="text" id="cardNumber" v-model="cardNumber" required />
-            </div>
-            <div class="form-group">
-              <label for="expirationDate">Expiration Date:</label>
-              <input type="text" id="expirationDate" v-model="expirationDate" required />
-            </div>
-            <div class="form-group">
-              <label for="cvv">CVV:</label>
-              <input type="text" id="cvv" v-model="cvv" required />
-            </div>
-            <div class="d-flex">
-              <button type="button" class="btn mr-1" @click="closePaymentModal">Cancel</button>
-              <button type="submit" class="btn ml-1">Pay</button>
-            </div>
-          </div>
-        </div>
-        <button type="button" class="btn" @click="openPaymentModal">Pay Now</button>
-      </form>
-    </div>
+        <label for="amount" class="fw-bold">Amount ($)</label>
+        <input type="number" id="amount" v-model="amount" class="form-control" required>
+      </div>
+      <label for="card-inf" class="fw-bold">Card Info</label>
+      <div id="card-element" class="form-control">
+        <!-- Stripe Card Element will be inserted here -->
+      </div>
+      <button type="submit" class="btn btn-primary mt-3 w-100">Pay Now</button>
+      <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+    </form>
+  </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import { userStore } from '@/stores/user-list'
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
+import { userStore } from '@/stores/user-list';
 
 export default {
   data() {
@@ -90,11 +76,10 @@ export default {
       name: '',
       phone: '',
       email: '',
-      fromDate: '',
-      toDate: '',
-      cardNumber: '',
-      expirationDate: '',
-      cvv: '',
+      stripe: null,
+      elements: null,
+      cardElement: null,
+      amount: 0,
       images: [
         'https://i.pinimg.com/474x/64/40/4f/64404fb92bfa2931fe33f388ce0daf54.jpg',
         'https://i.pinimg.com/474x/11/d9/f1/11d9f140c3301dbcc7bc32626a277dbe.jpg',
@@ -102,79 +87,104 @@ export default {
       ],
       room: {},
       store: userStore()
-    }
+    };
+  },
+  async mounted() {
+    this.initializeStripe();
+    this.fetchRoom();
+    this.fetchUser();
   },
   methods: {
-    openPaymentModal() {
-      this.showPaymentModal = true
-    },
-    closePaymentModal() {
-      this.showPaymentModal = false
-    },
-    async submitForm() {
-      try {
-        // Calculate price based on difference in days
-        const startDate = new Date(this.fromDate)
-        const endDate = new Date(this.toDate)
-        const diffTime = Math.abs(endDate - startDate)
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    async initializeStripe() {
+      this.stripe = await loadStripe('pk_test_51PYLS5CL2uT4u9gQevk9TnyiP8xOVovpGGFwQZaD1gUGzfWE0xJN9X3rFCqnmu4i1g5f9MYzwfyLIRrucLxql1xQ00xYjz24yU'); // Replace with your publishable key
 
-        // Assuming room.price is available from fetchRoom() method
-        const price = diffDays * this.room.price
+      this.elements = this.stripe.elements();
+      this.cardElement = this.elements.create('card', {
+        style: {
+          base: {
+            iconColor: '#666EE8',
+            color: '#31325F',
+            fontWeight: 400,
+            fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+            fontSize: '16px',
+            '::placeholder': {
+              color: '#CFD7E0',
+            },
+          },
+        },
+      });
+      this.cardElement.mount('#card-element');
 
-        const formData = {
-          name: this.name,
-          phone: this.phone,
-          email: this.email,
-          fromDate: this.fromDate,
-          toDate: this.toDate,
-          paid: true,
-          user_id: this.store.users.id,
-          room_id: this.room.id,
-          price: price
+      this.cardElement.on('change', (event) => {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+          displayError.textContent = event.error.message;
+        } else {
+          displayError.textContent = '';
         }
+      });
+    },
+    async submitPayment() {
+  try {
+    const { data } = await axios.post('http://127.0.0.1:8000/api/stripe/payment', {
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+      arrival_date: this.arrivalDate,
+      departure_date: this.departureDate,
+      amount: this.amount*100, // Convert amount to cents
+    });
 
-        await axios.post('http://127.0.0.1:8000/api/bookingRoom', formData)
-        this.resetForm()
-      } catch (error) {
-        console.error('Error submitting form:', error)
+    const { error, paymentIntent } = await this.stripe.confirmCardPayment(data.clientSecret, {
+      payment_method: {
+        card: this.cardElement,
+        billing_details: {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+        },
+      },
+    });
+
+    if (error) {
+      console.error(error.message);
+      const displayError = document.getElementById('card-errors');
+      displayError.textContent = error.message;
+    } else {
+      if (paymentIntent.status === 'succeeded') {
+        console.log('Payment succeeded:', paymentIntent);
+        alert('Payment succeeded!');
       }
-    },
-    resetForm() {
-      this.name = ''
-      this.phone = ''
-      this.email = ''
-      this.fromDate = ''
-      this.toDate = ''
-      this.cardNumber = ''
-      this.expirationDate = ''
-      this.cvv = ''
-    },
+    }
+  } catch (error) {
+    console.error('Error creating payment intent:', error);
+  }
+},
     fetchRoom() {
       axios
         .get(`http://127.0.0.1:8000/api/rooms/${this.$route.params.id}`)
         .then((response) => {
-          this.room = response.data
+          this.room = response.data;
         })
         .catch((error) => {
-          console.error(error)
-        })
+          console.error(error);
+        });
     },
     fetchUser() {
-      this.store.fetchUser()
-    }
+      this.store.fetchUser();
+    },
   },
-  mounted() {
-    this.fetchRoom()
-    this.fetchUser()
-  }
-}
+};
+
+
 </script>
 <style scoped>
+*{
+  color: black;
+}
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
 }
 
@@ -183,7 +193,7 @@ export default {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 800px;
-  height: 90vh;
+  /* height: 90vh; */
 }
 
 .card {
@@ -200,22 +210,29 @@ h1 {
   margin-bottom: 10px;
 }
 
-.form-group {
-  margin-bottom: 10px;
+.form-payment{
+  width: 30%;
+  padding: 20px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
+#card-element {
+  border: 1px solid #ced4da;
+  padding: 10px;
   border-radius: 4px;
+}
+#payment-form {
+  max-width: 500px;
+  margin: auto;
+}
+input.form-control::placeholder {
+  color: #CFD7E0;
+}
+.arrival{
+  width: 49%;
+}
+.departure{
+  width: 49%;
 }
 
 .btn {
@@ -255,7 +272,10 @@ select {
 
 .carousel-image {
   width: 100%;
+  height: 100%;
   height: auto;
+  border: none;
+  border-radius: 5px;
 }
 
 .el-carousel__item h3 {

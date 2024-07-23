@@ -13,10 +13,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top shadow round">
       <div class="container">
         <a class="navbar-brand" style="margin-left: 5%" href="#"
-          ><img style="width: 90px" src="/src/assets/image/logo2.png" /><strong
+          ><img style="width: 90px" src="/src/assets/image/logo2.png" />
             style="font-size: 25px; color: orange"
-            >Easy-Travel</strong
-          >
+           
         </a>
         <div class="d-flex" style="margin-right: 7%">
           <a href="/login">
@@ -109,8 +108,8 @@
               <li>Garden . Internet / Wifi. Parking</li>
               
             </ul>
-            <div class="price">KHR 84,399 <a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">KHR 84,399</div>
+            <a href="/" class="view-deal">View deal</a>
           </div>
         </div>
 
@@ -132,8 +131,8 @@
               <li>Internet / Wifi</li>
              
             </ul>
-            <div class="price">KHR 592,012<a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">KHR 592,012</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
 
@@ -155,8 +154,8 @@
               <li>Internet / Wifi</li>
               
             </ul>
-            <div class="price">$44 <a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">$44</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -177,8 +176,8 @@
               <li>Internet / Wifi</li>
               
             </ul>
-            <div class="price"> KHR 357,320 <a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price"> KHR 357,320</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -199,8 +198,8 @@
               <li>Internet / Wifi</li>
               
             </ul>
-            <div class="price"> KHR 12,000<a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price"> KHR 12,000</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -221,8 +220,8 @@
               <li>Internet / Wifi</li>
               
             </ul>
-            <div class="price">KHR 139,120<a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">KHR 139,120</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -243,8 +242,8 @@
               <li>Internet / Wifi</li>
               
             </ul>
-            <div class="price">$45<a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">$45</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -265,8 +264,8 @@
               <li>Internet / Wifi/ TV</li>
               
             </ul>
-            <div class="price">$33 <a href="#" class="add-dates">Add dates</a></div>
-            <a href="https://www.booking.com" class="view-deal">View deal</a>
+            <div class="price">$33</div>
+            <a href="" class="view-deal">View deal</a>
           </div>
         </div>
       </div>
@@ -336,7 +335,7 @@ export default {}
 
 <style scoped>
 .bg-image {
-  background-image: url('https://i.pinimg.com/564x/aa/0d/15/aa0d150da729b48721cdfeb71c95d3cc.jpg');
+  background-image: url('/src/assets/image/car/background.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -17,11 +17,6 @@
                 <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
               </li>
             </a>
-            <a href="/top-hotel">
-              <li class="d-flex">
-                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-              </li>
-            </a>
             <a href="/room_managemant">
               <li class="d-flex">
                 <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
@@ -30,6 +25,11 @@
             <a href="/customers_payment">
               <li class="d-flex">
                 <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
+              </li>
+            </a>
+            <a href="/top-hotel">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
               </li>
             </a>
           </ul>
@@ -41,11 +41,35 @@
               <span class="material-symbols-outlined text-primary pt-2">notifications</span>
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
-                  <img :src="profilePicture" alt="Profile Picture" class="profile-picture" />
-                  <!-- <span>{{ username }}</span> -->
+                  <img :src="information.users.profile" alt="Profile Picture" class="profile-picture" />
+                  <span class="text-dark">{{ information.users.name }}</span>
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
+                  <b-dropdown right>
+                    <template #button-content>
+                      <img
+                        src="/src/assets/image/logo2.png"
+                        class="rounded-circle"
+                        alt="Profile Image"
+                        width="40"
+                        height="40"
+                      />
+                    </template>
+                    <b-dropdown-item href="#" v-if="isOpen">
+                      <div class="text-center mb-3 w-70">
+                        <img
+                          :src="information.users.profile"
+                          class="image-profile rounded-circle mb-2"
+                          alt="Profile Image"
+                        />
+                        <h5 class="text-dark">{{ information.users.name  }}</h5>
+                        <p class="text-dark">{{ information.users.email }}</p>
+                      </div>
+                    </b-dropdown-item>
+                    <b-dropdown-divider></b-dropdown-divider>
+                  </b-dropdown>
                   <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
+                  <a href="#"><i class="bx bxs-edit icon"></i> Change Password</a>
                   <a href="/login" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
                 </div>
               </div>
@@ -55,17 +79,18 @@
             <div class="d-flex flex-column">
               <h2 class="text-white fw-bold">Welcome Guy!</h2>
               <p class="text-white">
-                Please take and find at the good service from our hotels.
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
               </p>
             </div>
             <div>
               <img src="\src\assets\image\hotel_icon.png" class="hotel_icon" />
             </div>
           </div>
+          
           <div class="stats">
             <div class="stat shadow rounded">
               <span class="material-symbols-outlined">monitoring</span>
-              <h3 class="text-dark">$ 800.00</h3>
+              <h3 class="text-dark">$ {{ totalPrice }}</h3>
               <p>Total Income</p>
             </div>
             <div class="stat shadow rounded">
@@ -79,60 +104,56 @@
               <p>Room not available</p>
             </div>
           </div>
-          <div class="list_customer">
-            <h2 class="text-dark mb-2">List Customers</h2>
-            <table class="table shadow rounded">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Room</th>
-                  <th scope="col">Phone number</th>
-                  <th scope="col">Date of stay</th>
-                  <th scope="col">Date of departure</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Chhinkeo</td>
-                  <td>2C</td>
-                  <td>+855 96 840 4018</td>
-                  <td>6-24-2024</td>
-                  <td>6-26-2024</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
+
     </body>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
+import { userStore } from '@/stores/user-list'
+import { useListBookingOwnerStore } from '@/stores/list-booking-hotel-owner'
+
 export default {
   data() {
     return {
+      listBookingOwner: [],
+      information: userStore(),
+      editMode: false,
       isOpen: false,
-      profilePicture: '/src/assets/image/adminpic/nana.jpg',
-      username: 'T-na'
     }
+  },
+  created() {
+    this.fetchData()
   },
   methods: {
+    fetchUser() {
+      this.information.fetchUser()
+    },
     toggleDropdown() {
       this.isOpen = !this.isOpen
+    },
+    logout() {
+      // Implement logout functionality
+    },
+    async fetchData() {
+      const listBookingOwnerStore = useListBookingOwnerStore()
+      await listBookingOwnerStore.fetchBookings()
+      this.listBookingOwner = listBookingOwnerStore.listBookingOwner
+    },
+  },
+  computed: {
+    totalPrice() {
+      return this.listBookingOwner.reduce((sum, booking) => sum + booking.Price, 0)
     }
   },
-  logout() {
-    if (confirm('Are you sure you want to logout?')) {
-      // Perform logout actions here
-      console.log('User logged out')
-    }
+  mounted() {
+    this.fetchUser()
   }
 }
 </script>
-
 <style scoped>
 * {
   margin: 0;
@@ -162,10 +183,9 @@ body {
 }
 
 .sidebar .logo img {
-  margin-top: -10px;
   width: 100px;
   height: 100px;
-  margin-left:30%;
+  margin-left: 35%;
 }
 
 .sidebar ul {
@@ -207,8 +227,10 @@ body {
 }
 
 .header .profile img {
-  width: 40px;
+  width: 60px;
   border-radius: 50%;
+  margin-top: -14px;
+  margin-left: -12px;
 }
 
 /* Profile drop down  */
@@ -221,7 +243,7 @@ body {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
@@ -237,13 +259,17 @@ body {
   display: block;
 }
 .dropdown-content {
-  display: block;
+  padding: 12px 16px;
   position: absolute;
-  background-color: #ded9d9;
+  background-color: #d9ded9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   right: 0;
+}
+
+.dropdown-content i {
+  margin-right: 8px;
 }
 
 .dropdown-content a {
@@ -254,7 +280,7 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: rgb(78, 78, 222);
+  background-color: black;
   color: white;
 }
 
@@ -282,7 +308,9 @@ body {
   margin-top: -80px;
   width: 250px;
   height: 200px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 .stats {
   display: flex;
@@ -291,13 +319,15 @@ body {
 }
 
 .stat {
-  background: #e0f9fa;
+  background: #e0f7fa;
   padding: 20px;
   flex-grow: 1;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 .stat:hover {
   transform: translateY(-5px);

@@ -5,6 +5,7 @@ use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackHotelController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\PlaceController;
@@ -77,6 +78,7 @@ Route::get('/rooms/{id}', [RoomController::class, 'show']);
 Route::get('/users/{userId}/rooms', [RoomController::class, 'index']);
 Route::put('/rooms/{id}', [RoomController::class, 'update']);
 Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
+Route::middleware('auth:sanctum')->get('/owner/bookings', [BookingHotelController::class, 'showOwnerBookings']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
@@ -111,3 +113,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 // get feedback
 Route::get('/feedback/{id}', [FeedbackController::class,'getFeedbackById']);
+
+// stripe payment
+Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
+Route::get('/payment/list', [StripePaymentController::class, 'listPayments'])->middleware('auth:sanctum');

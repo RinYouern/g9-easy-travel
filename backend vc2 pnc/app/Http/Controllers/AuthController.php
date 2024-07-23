@@ -49,6 +49,8 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'user_role' => 'required|string',
+            'description'=> 'null|string',
+            'income'=> 'null|integer'
         ]);
 
         if ($validator->fails()) {
@@ -60,6 +62,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'user_role' => $request->user_role,
+            'description'=>'good service',
+            'income'=>0,
             'profile' => "https://i.pinimg.com/564x/b0/3d/d5/b03dd59816d5f52d8b8ebf080c0f52c5.jpg"
         ]);
 
