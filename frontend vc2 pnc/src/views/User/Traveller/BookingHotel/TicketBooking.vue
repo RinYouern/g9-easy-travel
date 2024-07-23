@@ -8,7 +8,7 @@
 
 <script setup>
 import recordHotel from '@/Components/Traveler/Bookings/recirdBookingHotel.vue'
-import Navbar from '@/Components/Traveler/navbarTraveler.vue';
+import Navbar from '@/Components/Traveler/header/header.vue';
 import recordCars from '@/Components/Traveler/Bookings/recordBookingCar.vue';
 
 
