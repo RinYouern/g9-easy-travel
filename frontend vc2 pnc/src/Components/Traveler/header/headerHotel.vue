@@ -18,6 +18,9 @@
           <li class="navbar-item">
             <a href="/hotel-traveler" class="navbar-link">Hotels</a>
           </li>
+          <li class="navbar-item">
+              <a href="/ticket" class="navbar-link">Tiket</a>
+            </li>
         </ul>
       </nav>
     </section>
