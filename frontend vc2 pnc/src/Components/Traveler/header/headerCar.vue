@@ -4,7 +4,7 @@
         <div class="m2">
           <img src="/src/assets/image/logo2.png" style="width: 80px" alt="Logo" />
         </div>
-        <nav class="navbar">
+        <nav class="navbar" style="display: flex; width: 90%; justify-content: space-between;">
           <ul class="navbar-menu">
             <li class="navbar-item">
               <a href="/" class="navbar-link">Home</a>
@@ -22,6 +22,9 @@
               <a href="/ticket" class="navbar-link">Tiket</a>
             </li>
           </ul>
+          <div>
+          <img src="https://i.pinimg.com/474x/5f/40/6a/5f406ab25e8942cbe0da6485afd26b71.jpg" alt="" style="width: 40px; height: 40px; border-radius: 50%;">
+        </div>
         </nav>
       </section>
       <section class="search-bar bg-white" style="width: 70%">
