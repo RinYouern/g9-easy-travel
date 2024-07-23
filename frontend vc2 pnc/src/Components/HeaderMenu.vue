@@ -1,10 +1,7 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark  custom-navbar">
       <div class="container">
-        <a class="navbar-brand" style="margin-left: 5%" href="#">
-          <img style="width: 90px" src="/src/assets/image/logo2.png" />
-        </a>
         <div class="collapse navbar-collapse" id="navbarNav" style="margin-right: 7%">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
@@ -25,19 +22,6 @@
               >
                 Logout
               </button>
-            </li>
-            <li class="nav-item">
-              <img
-                src="/src/assets/image/adminpic/titi.jpg"
-                alt="Profile Image"
-                style="
-                  width: 55px;
-                  height: 55px;
-                  border-radius: 50%;
-                  margin-left: 50px;
-                  align-items: center;
-                "
-              />
             </li>
           </ul>
         </div>
@@ -71,8 +55,7 @@ const showLogoutConfirmation = () => {
 const handleLogout = () => {
   logoutConfirmation.value = false
   user.logout()
-  // Optionally you can use router to navigate
-  window.location.href = '/login' // or use this.$router.push('/login')
+  window.location.href = '/login' 
 }
 
 const fetchNotifications = () => {
