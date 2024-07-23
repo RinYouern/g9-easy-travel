@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Room;
 
 class BookingHotelController extends Controller
 {
@@ -184,4 +185,48 @@ class BookingHotelController extends Controller
 
         return response()->json($bookingsData);
     }
+
+    public function showOwnerBookings(Request $request)
+{
+    // Get the authenticated owner
+    $owner = auth()->user();
+
+    if (!$owner) {
+        return response()->json(['error' => 'Unauthenticated'], 401);
+    }
+
+    // Get the rooms owned by the authenticated owner
+    $rooms = Room::where('owner_id', $owner->id)->pluck('id')->toArray();
+
+    // Get the bookings for the rooms owned by the authenticated owner
+    $bookings = BookingHotel::with('user', 'room')
+        ->whereIn('room_id', $rooms)
+        ->get();
+
+    $bookingsData = [];
+    foreach ($bookings as $booking) {
+        $checkInDate = $booking->fromDate;
+        $checkOutDate = $booking->toDate;
+        $nights = Carbon::parse($checkOutDate)->diffInDays(Carbon::parse($checkInDate));
+
+        $data = [
+            'BookerName' => $booking->name,
+            'BookerPhone' => $booking->phone,
+            'BookerEmail' => $booking->email,
+            'CheckinDate' => Carbon::parse($checkInDate)->format('Y-m-d'),
+            'CheckoutDate' => Carbon::parse($checkOutDate)->format('Y-m-d'),
+            'RoomID' => $booking->room->room_id,
+            'Location' => $owner->location,
+            'Profile' => $owner->profile,
+            'HotelName' => $owner->name,
+            'Email' => $owner->email,
+            'Nights' => $nights,
+            'Price' => $booking->price
+        ];
+
+        $bookingsData[] = $data;
+    }
+
+    return response()->json($bookingsData);
+}
 }

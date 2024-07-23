@@ -33,47 +33,18 @@
         </ul>
       </div>
       <div class="container">
-        <h1 class="text-dark fw-bold">Customers Payment</h1>
-        <table class="table shadow rounded mt-3">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Total pay</th>
-              <th scope="col">Payments</th>
-              <th scope="col">Active</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="customer in customers" :key="customer.id">
-              <th scope="row">{{ customer.id }}</th>
-              <td>{{ customer.name }}</td>
-              <td>$ {{ customer.totalPay }}</td>
-              <td :class="{ 'text-success': customer.paid, 'text-danger': !customer.paid }">
-                {{ customer.paid ? 'Paid' : 'Not yet' }}
-              </td>
-              <td>
-                <button class="btn btn-danger p-2" @click="deleteCustomer(customer.id)">
-                  Delete
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <listBooking />
       </div>
+      
     </body>
   </div>
 </template>
 
 <script>
+import listBooking from '@/Components/HotelOwner/Listofcostumer.vue'
 export default {
-  data() {
-    return {
-      customers: [
-        { id: 1, name: 'Chhinkeo', totalPay: 10, paid: true },
-        { id: 2, name: 'Puthireach', totalPay: 10, paid: false }
-      ]
-    }
+  components: {
+    listBooking
   },
   methods: {
     deleteCustomer(id) {
@@ -92,7 +63,6 @@ export default {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #ffffff;
   display: flex;
 }
 .sidebar {
@@ -138,12 +108,5 @@ body {
   margin-left: 25%;
   padding: 20px;
 }
-.table thead tr th {
-  background-color: #2b3136;
-  color: white;
-}
-.btn_add {
-  background-color: #178de7;
-  color: #fff;
-}
+
 </style>
