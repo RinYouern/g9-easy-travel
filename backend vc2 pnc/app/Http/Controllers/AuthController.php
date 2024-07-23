@@ -16,8 +16,8 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'email'     => 'required|string|max:255',
-            'password'  => 'required|string'
+            'email' => 'required|string|max:255',
+            'password' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -32,13 +32,13 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $user   = User::where('email', $request->email)->firstOrFail();
-        $token  = $user->createToken('auth_token')->plainTextToken;
+        $user = User::where('email', $request->email)->firstOrFail();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message'       => 'Login success',
-            'access_token'  => $token,
-            'token_type'    => 'Bearer'
+            'message' => 'Login success',
+            'access_token' => $token,
+            'token_type' => 'Bearer'
         ]);
     }
     //register
@@ -114,13 +114,13 @@ class AuthController extends Controller
             ->orderBy('rating', 'desc') // Sort by rating in descending order
             ->take(10) // Limit results to the top 10
             ->get();
-    
+
         return response()->json([
             'message' => 'Top 10 users retrieved successfully',
             'data' => $users,
         ]);
     }
-    
+
 
     public function getDriver(Request $request, $role): JsonResponse
     {
@@ -163,8 +163,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'sometimes|required|string|min:6',
-            'user_role' => 'required|string',
+            'phone' => 'sometimes|required',
+            'province' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -173,12 +173,13 @@ class AuthController extends Controller
 
         $user = User::findOrFail($id);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
         if ($request->has('password')) {
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($request->input('password'));
         }
-        $user->user_role = $request->user_role;
+        $user->phone = $request->input('phone');
+        $user->province = $request->input('province');
 
         $user->save();
 
@@ -186,17 +187,23 @@ class AuthController extends Controller
             'message' => 'User updated successfully',
             'data' => $user,
         ]);
+
     }
 
     public function delete($id): JsonResponse
     {
-        $user = User::findOrFail($id);
-
-        $user->delete();
-
-        return response()->json([
-            'message' => 'User deleted successfully',
-        ]);
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+    
+            return response()->json([
+                'message' => 'User deleted successfully',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to delete user',
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     public function detail($id): JsonResponse
@@ -211,6 +218,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            "phone" => "required",
+            "province" => "required|string",
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
@@ -224,6 +233,8 @@ class AuthController extends Controller
         $driver = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'province' => $request->province,
             'password' => Hash::make($request->password),
             'user_role' => 'driver',
             'company' => $company->id,
