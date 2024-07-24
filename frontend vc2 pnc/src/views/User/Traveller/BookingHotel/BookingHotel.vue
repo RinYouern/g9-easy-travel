@@ -33,25 +33,63 @@
     <div id="app" class="form-payment shadow bg-white">
       <form @submit.prevent="submitPayment" id="payment-form">
         <div class="form-group">
-          <label for="name" class="w-100 fw-bold">Name
-            <input type="text" id="name" v-model="name" class="form-control" placeholder="Your name" required>
-          </label><br>
-          <label for="email" class="w-100 fw-bold">Email
-            <input type="email" id="email" v-model="email" class="form-control" placeholder="Your email" required>
+          <label for="name" class="w-100 fw-bold"
+            >Name
+            <input
+              type="text"
+              id="name"
+              v-model="name"
+              class="form-control"
+              placeholder="Your name"
+              required
+            /> </label
+          ><br />
+          <label for="email" class="w-100 fw-bold"
+            >Email
+            <input
+              type="email"
+              id="email"
+              v-model="email"
+              class="form-control"
+              placeholder="Your email"
+              required
+            />
           </label>
-          <label for="phone" class="w-100 fw-bold">Phone
-            <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Your phone number" required>
-          </label><br>
+          <label for="phone" class="w-100 fw-bold"
+            >Phone
+            <input
+              type="tel"
+              id="phone"
+              v-model="phone"
+              class="form-control"
+              placeholder="Your phone number"
+              required
+            /> </label
+          ><br />
           <div class="d-flex justify-content-between w-100">
-            <label for="arrival-date" class="arrival fw-bold">Arrival date
-              <input type="date" id="arrival-date" v-model="arrivalDate" class="form-control" required>
-            </label><br>
-            <label for="departure-date" class="departure fw-bold">Departure date
-              <input type="date" id="departure-date" v-model="departureDate" class="form-control" required>
-            </label><br>
+            <label for="arrival-date" class="arrival fw-bold"
+              >Arrival date
+              <input
+                type="date"
+                id="arrival-date"
+                v-model="arrivalDate"
+                class="form-control"
+                required
+              /> </label
+            ><br />
+            <label for="departure-date" class="departure fw-bold"
+              >Departure date
+              <input
+                type="date"
+                id="departure-date"
+                v-model="departureDate"
+                class="form-control"
+                required
+              /> </label
+            ><br />
           </div>
           <label for="amount" class="fw-bold">Amount ($)</label>
-          <input type="number" id="amount" v-model="amount" class="form-control" required>
+          <input type="number" id="amount" v-model="room.price" class="form-control" required />
         </div>
         <label for="card-inf" class="fw-bold">Card Info</label>
         <div id="card-element" class="form-control">
@@ -63,7 +101,7 @@
     </div>
     <div v-if="showSuccess" class="modal">
       <div class="modal-content success">
-        <img src="/src/assets/image/form/success.png" alt="Success"  />
+        <img src="/src/assets/image/form/success.png" alt="Success" />
         <h2>Thank You!</h2>
         <p>Your details have been successfully submitted. Thanks!</p>
         <button @click="closeSuccess" type="button">OK</button>
@@ -132,22 +170,33 @@ export default {
       });
     },
     async submitPayment() {
-      try {
-        await axios.post('http://127.0.0.1:8000/api/stripe/payment', {
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          arrival_date: this.arrivalDate,
-          departure_date: this.departureDate,
-          amount: this.amount * 100,
-        });
-        
-        // Show success dialog
-        this.showSuccess = true;
-      } catch (error) {
-        console.error('Error creating payment intent:', error);
-      }
-    },
+  try {
+    // Calculate the number of nights
+    const arrivalDate = new Date(this.arrivalDate);
+    const departureDate = new Date(this.departureDate);
+    const timeDiff = Math.abs(departureDate - arrivalDate);
+    const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+    // Calculate the amount
+    const amount = this.room.price * nights * 100;
+
+    await axios.post('http://127.0.0.1:8000/api/stripe/payment', {
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+      arrival_date: this.arrivalDate,
+      departure_date: this.departureDate,
+      nights: nights,
+      amount: amount,
+    });
+
+    // Show success dialog
+    this.showSuccess = true;
+  } catch (error) {
+    console.error('Error creating payment intent:', error);
+  }
+},
+
     fetchRoom() {
       axios
         .get(`http://127.0.0.1:8000/api/rooms/${this.$route.params.id}`)
@@ -211,7 +260,7 @@ h1 {
   margin: auto;
 }
 input.form-control::placeholder {
-  color: #CFD7E0;
+  color: #cfd7e0;
 }
 .arrival {
   width: 49%;

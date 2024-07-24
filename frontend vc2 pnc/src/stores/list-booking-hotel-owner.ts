@@ -14,7 +14,7 @@ export const useListBookingOwnerStore = defineStore('listBookingOwner', {
           throw new Error('Access token not found');
         }
 
-        const response = await axiosInstance.get('/owner/bookings', {
+        const response = await axiosInstance.get('/payment/list', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }

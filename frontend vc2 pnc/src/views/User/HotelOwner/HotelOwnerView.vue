@@ -145,7 +145,7 @@ export default {
   },
   computed: {
     totalPrice() {
-      return this.listBookingOwner.reduce((sum, booking) => sum + booking.Price, 0)
+      return this.listBookingOwner.reduce((sum, booking) => sum + booking.amount, 0)
     }
   },
   mounted() {

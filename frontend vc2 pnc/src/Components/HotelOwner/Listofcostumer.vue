@@ -14,11 +14,11 @@
       </thead>
       <tbody class="text-center">
         <tr v-for="customer in listBookingOwner" :key="customer.id">
-          <td>{{ customer.BookerName }}</td>
-          <td>{{ customer.BookerPhone }}</td>
-          <td>{{ customer.BookerEmail }}</td>
-          <td>{{ customer.CheckinDate }} - {{ customer.CheckoutDate }}</td>
-          <td>$ {{ customer.Price }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.arrival_date }} - {{ customer.departure_date }}</td>
+          <td>$ {{ customer.amount }}</td>
           <td>
             <button class="btn btn-danger p-2" @click="deleteCustomer(customer.id)">Delete</button>
           </td>

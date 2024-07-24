@@ -14,13 +14,13 @@
     </thead >
     <tbody class="text-center">
       <tr v-for="booking in store.bookingsRecords" :key="booking.RoomID">
-        <td>{{ booking.HotelName }}</td>
-        <td>{{ booking.Email }}</td>
-        <td>{{ booking.Location }}</td>
-        <td>{{ booking.RoomID }}</td>
-        <td>{{ booking.Nights }}</td>
-        <td>{{ booking.Price }} $</td>
-        <td>{{ booking.CheckinDate }} - {{ booking.CheckoutDate }}</td>
+        <td>{{ booking.name }}</td>
+        <td>{{ booking.email_owner }}</td>
+        <td>{{ booking.province }}</td>
+        <td>{{ booking.room_id }}</td>
+        <td>{{ booking.nights }}</td>
+        <td>{{ booking.amount }} $</td>
+        <td>{{ booking.arrival_date }} - {{ booking.departure_date }}</td>
       </tr>
     </tbody>
   </table>
