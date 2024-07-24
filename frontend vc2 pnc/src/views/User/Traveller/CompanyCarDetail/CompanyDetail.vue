@@ -35,14 +35,14 @@
         <img :src="user.profile" style="width: 480px; height: 300px" alt="" />
         <div class="images" style="display: flex; gap: 5px; flex-direction: column">
           <div class="image" style="display: flex; gap: 5px">
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
+            <img src="https://i.pinimg.com/474x/d9/5c/d0/d95cd04d85043401df2b957eeba934cd.jpg" style="width: 32%; height: 150px" alt="" />
+            <img src="https://i.pinimg.com/474x/be/d9/5f/bed95f67a0643a9dcd08b39554c52f0e.jpg" style="width: 32%; height: 150px" alt="" />
+            <img src="https://i.pinimg.com/474x/be/d9/5f/bed95f67a0643a9dcd08b39554c52f0e.jpg" style="width: 32%; height: 150px" alt="" />
           </div>
           <div class="image" style="display: flex; gap: 5px">
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
-            <img :src="user.profile" style="width: 32%; height: 150px" alt="" />
+            <img src="https://i.pinimg.com/474x/59/31/b1/5931b156b24dae477366c0776639ec2a.jpg" style="width: 32%; height: 150px" alt="" />
+            <img src="https://i.pinimg.com/474x/5a/13/ee/5a13ee89d5b9f64e173205b1c5c0b9a7.jpg" style="width: 32%; height: 150px" alt="" />
+            <!-- <img src="https://i.pinimg.com/474x/e8/5f/64/e85f6419af517bf65a4052662341e885.jpg" style="width: 32%; height: 150px" alt="" /> -->
           </div>
         </div>
       </div>

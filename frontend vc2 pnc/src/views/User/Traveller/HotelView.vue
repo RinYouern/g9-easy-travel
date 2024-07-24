@@ -13,12 +13,12 @@
     >
       <div class="image-container">
         <img
-          src="https://ak-d.tripcdn.com/images/220j050000000iape685E_R_960_660_R5_D.jpg"
+          src="https://i.pinimg.com/474x/7a/a1/94/7aa19415266b8ad0ad570b7d2ecc3e8e.jpg"
           class="img-fluid"
           alt="Hotel Image"
         />
         <div class="image-overlay d-flex justify-content-center align-items-center">
-          <div class="image-text">View Gallery</div>
+          <div class="image-text">{{ hotel.name }}</div>
         </div>
       </div>
       <div class="d-flex flex-column justify-content-between p-3" style="width: 100%">
