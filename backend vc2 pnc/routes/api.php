@@ -125,3 +125,4 @@ Route::get('/payment/list', [StripePaymentController::class, 'listPayments'])->m
 Route::put('/upload/profile', [ProfileController::class, 'uploadProfile'])->middleware('auth:sanctum');
 // Route for updating user profile
 Route::put('/updateprofile', [ProfileController::class, 'updateProfile'])->middleware('auth:sanctum');
+Route::delete('/payments/{id}', [StripePaymentController::class, 'deletePayment']);

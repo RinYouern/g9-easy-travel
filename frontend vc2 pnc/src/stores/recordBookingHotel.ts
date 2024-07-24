@@ -13,7 +13,7 @@ export const listHotelStore = defineStore('listRecords', {
           throw new Error('Access token not found');
         }
 
-        const response = await axiosInstance.get('/user-bookings', {
+        const response = await axiosInstance.get('/payment/list', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
