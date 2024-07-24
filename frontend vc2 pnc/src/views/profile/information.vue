@@ -27,21 +27,14 @@
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div class="d-flex flex-row align-items-center back" @click="goBack">
-                <a href="/"
-                  ><i class="fa fa-arrow-left" style="font-size: 20px; color: black"></i
-                ></a>
+                <i class="fa fa-arrow-left" style="font-size: 20px; color: black :hover:blue"></i>
               </div>
-              <a href="./updateInfo">
-                <button
-                  class="btn btn-primary edit-profile-btn"
-                  v-if="!editMode"
-                  @click="toggleEditMode"
-                >
-                  Edit Profile
-                </button>
-              </a>
+              <button class="btn btn-primary edit-profile-btn" @click="toggleEditMode">
+                <i class="fa" :class="editMode ? 'fa-times' : 'fa-pencil'"></i>
+                {{ editMode ? 'Cancel' : 'Edit Profile' }}
+              </button>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-2" v-if="editMode">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="name">Name</label>
@@ -51,7 +44,7 @@
                       class="form-control"
                       id="name"
                       v-model="information.users.name"
-                      readonly
+                      :readonly="!editMode"
                     />
                     <div class="input-group-append">
                       <span class="input-group-text">
@@ -70,7 +63,7 @@
                       class="form-control"
                       id="email"
                       v-model="information.users.email"
-                      readonly
+                      :readonly="!editMode"
                     />
                     <div class="input-group-append">
                       <span class="input-group-text">
@@ -80,22 +73,80 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mt-3">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="role">Phone</label>
+                  <label for="location">Location</label>
                   <div class="input-group">
                     <input
-                      type="number"
+                      type="text"
                       class="form-control"
-                      id="phone"
-                      v-model="information.users.phone"
-                      readonly
+                      id="location"
+                      v-model="information.users.location"
+                      :readonly="!editMode"
                     />
                     <div class="input-group-append">
                       <span class="input-group-text">
-                        <i class="fa fa-phone"></i>
+                        <i class="fa fa-map-marker"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2" v-else>
+              <!-- Other fields or read-only display can be shown here when not in edit mode -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      v-model="information.users.name"
+                      :readonly="!editMode"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-user-circle"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      v-model="information.users.email"
+                      :readonly="!editMode"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="role">Role</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="role"
+                      v-model="information.users.user_role"
+                      :readonly="!editMode"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="fa fa-user-circle"></i>
                       </span>
                     </div>
                   </div>
@@ -110,7 +161,7 @@
                       class="form-control"
                       id="address"
                       v-model="information.users.location"
-                      readonly
+                      :readonly="!editMode"
                     />
                     <div class="input-group-append">
                       <span class="input-group-text">
@@ -119,6 +170,13 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div v-if="editMode" class="row mt-3">
+              <div class="col-md-12 text-center">
+                <button class="btn btn-success" @click="saveProfile">
+                  <i class="fa fa-save"></i> Save
+                </button>
               </div>
             </div>
           </div>
@@ -136,55 +194,107 @@
   </div>
 </template>
 
+
 <script>
-import { userStore } from '@/stores/user-list'
+import 'element-plus/dist/index.css';
+import { ElNotification } from 'element-plus';
+import { userStore } from '@/stores/user-list';
+import axiosInstance from '@/plugins/axios';
+
 export default {
   data() {
     return {
       information: userStore(),
-      editMode: false
-    }
+      editMode: false,
+      originalData: {},
+      imageBase64: ''
+    };
   },
   methods: {
-    goBack() {},
+    goBack() {
+      this.$router.push({ name: 'hotelowner' });
+    },
     uploadProfile(event) {
-      const file = event.target.files[0]
+      const file = event.target.files[0];
       if (file) {
-        const reader = new FileReader()
+        const reader = new FileReader();
         reader.onload = (e) => {
-          this.profilePic = e.target.result
-          this.saveProfile()
-        }
-        reader.readAsDataURL(file)
+          this.imageBase64 = e.target.result;
+          this.upload();
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    async upload() {
+      try {
+        const response = await axiosInstance.put('/upload/profile', {
+          profile: this.imageBase64,
+        });
+        // Update profile image URL
+        this.information.users.profile = this.imageBase64;
+        // Show success notification
+        ElNotification({
+          title: 'Success',
+          message: 'Profile picture updated successfully!',
+          type: 'success',
+        });
+      } catch(e) {
+        console.log(e);
+        // Show error notification
+        ElNotification({
+          title: 'Error',
+          message: 'Failed to update profile picture.',
+          type: 'error',
+        });
       }
     },
     toggleEditMode() {
       if (this.editMode) {
-        this.name = this.originalData.name
-        this.email = this.originalData.email
-        this.role = this.originalData.role
-        this.address = this.originalData.address
+        // Cancel editing, restore original data
+        this.information.users = { ...this.originalData };
       } else {
-        this.originalData = {
-          name: this.name,
-          email: this.email,
-          role: this.role,
-          address: this.address
-        }
+        // Start editing, store original data
+        this.originalData = { ...this.information.users };
       }
-      this.editMode = !this.editMode
+      this.editMode = !this.editMode;
     },
-    saveProfile() {
-      // Save profile logic
+    async saveProfile() {
+      try {
+        const response = await axiosInstance.put('/updateprofile', {
+          name: this.information.users.name,
+          email: this.information.users.email,
+          location: this.information.users.location,
+        }, {
+          headers: {
+            Authorization: `Bearer ${this.information.token}`
+          }
+        });
+        console.log(response.data);
+        this.editMode = false;
+        // Show success notification
+        ElNotification({
+          title: 'Success',
+          message: 'Profile updated successfully!',
+          type: 'success',
+        });
+      } catch (error) {
+        console.error('Error saving profile:', error);
+        // Show error notification
+        ElNotification({
+          title: 'Error',
+          message: 'Failed to update profile.',
+          type: 'error',
+        });
+      }
     },
     fetchUser() {
-      this.information.fetchUser()
+      this.information.fetchUser();
     }
   },
   mounted() {
-    this.fetchUser()
+    this.fetchUser();
   }
-}
+};
 </script>
 
 <style>
@@ -192,31 +302,26 @@ body {
   padding: 70px;
 }
 .container {
-  background: whitesmoke;;
+  background: rgb(250, 249, 249);
   height: 60vh;
 }
-
 .form-control:focus {
   box-shadow: none;
   border-color: #131111;
 }
-
 .profile-button {
   background: blue;
   box-shadow: none;
   border: none;
 }
-
 .back:hover {
   color: blue;
   cursor: pointer;
 }
-
 .camera-icon {
   position: relative;
   cursor: pointer;
 }
-
 .camera-icon i {
   background: blue;
   position: absolute;
@@ -227,8 +332,8 @@ body {
   padding: 4px;
   border-radius: 50%;
 }
-
 .camera-icon:hover i {
   background-color: rgba(0, 0, 0, 0.8);
 }
 </style>
+
