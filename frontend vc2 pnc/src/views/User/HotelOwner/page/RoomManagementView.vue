@@ -14,11 +14,6 @@
             <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
           </li>
         </a>
-        <a href="/top-hotel">
-          <li class="d-flex">
-            <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-          </li>
-        </a>
         <a href="#">
           <li class="active d-flex">
             <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
@@ -29,17 +24,27 @@
             <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
           </li>
         </a>
+        <a href="/top-hotel">
+          <li class="d-flex">
+            <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+          </li>
+        </a>
+        <a href="/login">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">logout</span>Logout
+              </li>
+            </a>
       </ul>
     </div>
     <div class="container">
-      <h1 class="text-dark fw-bold">Rooms Management</h1>
-      <div class="d-flex justify-content-start mt-3 mb-3">
+      <h1 class="text-dark fw-bold" style="margin-left: -20px">Rooms Management</h1>
+      <div class="d-flex justify-content-start mt-3 mb-3" style="margin-left: -20px">
         <button class="btn p-2 btn_add shadow rounded" @click="showAddModal = true">
           <span class="material-symbols-outlined">add</span>
           Add Room
         </button>
       </div>
-      <table class="table shadow rounded mt-3">
+      <table class="table shadow rounded mt-3" style="margin-left: -20px">
         <thead class="text-center">
           <tr>
             <th scope="col">ID</th>
@@ -60,7 +65,9 @@
               {{ room.status === 1 ? 'Available' : 'Not available' }}
             </td>
             <td>
-              <button class="btn btn-success p-2 mx-2" @click="showEditRoomModal(room)">Edit</button>
+              <button class="btn btn-success p-2 mx-2" @click="showEditRoomModal(room)">
+                Edit
+              </button>
               <button class="btn btn-danger p-2" @click="deleteRoom(room.id)">Delete</button>
             </td>
           </tr>
@@ -149,8 +156,8 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 25%;
-  background: #2b3136;
+  width: 22%;
+  background: black;
   color: #fff;
   padding: 20px 0;
 }
