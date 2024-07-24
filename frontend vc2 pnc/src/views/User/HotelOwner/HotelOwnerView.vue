@@ -42,6 +42,7 @@
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
                   <img :src="information.users.profile" alt="Profile Picture" class="profile-picture" />
+                  <span class="text-dark">{{ information.users.name }}</span>
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
                   <b-dropdown right>
@@ -85,11 +86,10 @@
               <img src="\src\assets\image\hotel_icon.png" class="hotel_icon" />
             </div>
           </div>
-          
           <div class="stats">
             <div class="stat shadow rounded">
               <span class="material-symbols-outlined">monitoring</span>
-              <h3 class="text-dark">$ {{ totalPrice }}</h3>
+              <h3 class="text-dark">$ 800.00</h3>
               <p>Total Income</p>
             </div>
             <div class="stat shadow rounded">
@@ -103,29 +103,47 @@
               <p>Room not available</p>
             </div>
           </div>
+          <div class="list_customer">
+            <h2 class="text-dark mb-2">List Customers</h2>
+            <table class="table shadow rounded">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Phone number</th>
+                  <th scope="col">Date of stay</th>
+                  <th scope="col">Date of departure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Chhinkeo</td>
+                  <td>2C</td>
+                  <td>+855 96 840 4018</td>
+                  <td>6-24-2024</td>
+                  <td>6-26-2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
     </body>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
 import { userStore } from '@/stores/user-list'
-import { useListBookingOwnerStore } from '@/stores/list-booking-hotel-owner'
 
 export default {
   data() {
     return {
-      listBookingOwner: [],
       information: userStore(),
       editMode: false,
-      isOpen: false,
+      isOpen: false
     }
-  },
-  created() {
-    this.fetchData()
   },
   methods: {
     fetchUser() {
@@ -136,16 +154,6 @@ export default {
     },
     logout() {
       // Implement logout functionality
-    },
-    async fetchData() {
-      const listBookingOwnerStore = useListBookingOwnerStore()
-      await listBookingOwnerStore.fetchBookings()
-      this.listBookingOwner = listBookingOwnerStore.listBookingOwner
-    },
-  },
-  computed: {
-    totalPrice() {
-      return this.listBookingOwner.reduce((sum, booking) => sum + booking.Price, 0)
     }
   },
   mounted() {
