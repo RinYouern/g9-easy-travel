@@ -28,6 +28,7 @@
 <script>
 import sidebar from '@/Components/CarOwner/SideBar.vue'
 import TopCompanyCar from '@/Components/CarOwner/TopCompanyCar.vue'
+import { userStore } from '@/stores/user-list'
 export default {
   components: {
     sidebar,
@@ -35,6 +36,7 @@ export default {
   },
   data() {
     return {
+      information: userStore(),
       stats: [
         { title: 'Cars Category', value: 5, icon: 'bus' },
         { title: 'Driver for car', value: 34, icon: 'user-tie' },
@@ -44,6 +46,20 @@ export default {
         { title: 'Earning', value: '$800.00', icon: 'dollar-sign' }
       ]
     }
+  },
+  methods: {
+    fetchUser() {
+      this.information.fetchUser()
+    },
+    toggleDropdown() {
+      this.isOpen = !this.isOpen
+    },
+    logout() {
+      // Implement logout functionality
+    }
+  },
+  mounted() {
+    this.fetchUser()
   }
 }
 </script>
