@@ -42,19 +42,9 @@
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
                   <img :src="information.users.profile" alt="Profile Picture" class="profile-picture" />
-                  <span class="text-dark">{{ information.users.name }}</span>
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
                   <b-dropdown right>
-                    <template #button-content>
-                      <img
-                        src="/src/assets/image/logo2.png"
-                        class="rounded-circle"
-                        alt="Profile Image"
-                        width="40"
-                        height="40"
-                      />
-                    </template>
                     <b-dropdown-item href="#" v-if="isOpen">
                       <div class="text-center mb-3 w-70">
                         <img
@@ -70,7 +60,7 @@
                   </b-dropdown>
                   <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
                   <a href="#"><i class="bx bxs-edit icon"></i> Change Password</a>
-                  <a href="/login" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
+                  <a href="/homepage" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
                 </div>
               </div>
             </div>

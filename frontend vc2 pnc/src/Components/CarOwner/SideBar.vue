@@ -46,14 +46,14 @@ import { ElMessage } from 'element-plus'
 export default {
   data() {
     return {
-      userName: 'Car Owner',
-      profileImage: '/src/assets/image/profile.jpg',
+      userName: '',
+      profileImage: '/src/assets/image/logo2.png',
       menuItems: [
         { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
         { text: 'List Cars', icon: 'list', path: '/list-car' },
         { text: 'List of Driver', icon: 'users', path: '/driverslist' },
         { text: 'Booking Car', icon: 'book', path: '/listBookingCars' },
-        { text: 'Logout', icon: 'sign-out', path: '/login' }
+        { text: 'Logout', icon: 'sign-out', path: '/homepage' }
       ],
       logoutConfirmation: false
     }
@@ -66,7 +66,7 @@ export default {
       this.logoutConfirmation = false
       alert('Logout successful.')
       // redirect to the login page
-      this.$router.push('/login')
+      this.$router.push('/homepage')
     },
     handleCancelLogout() {
       this.logoutConfirmation = false
