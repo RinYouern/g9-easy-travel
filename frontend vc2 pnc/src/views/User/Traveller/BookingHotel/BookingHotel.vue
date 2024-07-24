@@ -30,37 +30,45 @@
         </div>
       </div>
     </div>
-    <div id="app" class="form-payment shadow  bg-white">
-    <form @submit.prevent="submitPayment" id="payment-form">
-      <div class="form-group">
-        <label for="name" class="w-100 fw-bold">Name
-          <input type="text" id="name" v-model="name" class="form-control" placeholder="Your name" required>
-        </label><br>
-        <label for="email" class="w-100 fw-bold">email
-          <input type="email" id="email" v-model="email" class="form-control" placeholder="Your email" required>
-        </label>
-        <label for="phone" class="w-100 fw-bold">Phone
-          <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Your phone number" required>
-        </label><br>
-        <div class="d-flex justify-content-between w-100">
-          <label for="arrival-date" class="arrival fw-bold">Arrival date
-            <input type="date" id="arrival-date" v-model="arrivalDate" class="form-control" required>
+    <div id="app" class="form-payment shadow bg-white">
+      <form @submit.prevent="submitPayment" id="payment-form">
+        <div class="form-group">
+          <label for="name" class="w-100 fw-bold">Name
+            <input type="text" id="name" v-model="name" class="form-control" placeholder="Your name" required>
           </label><br>
-          <label for="departure-date" class="departure fw-bold">Departure date
-            <input type="date" id="departure-date" v-model="departureDate" class="form-control" required>
+          <label for="email" class="w-100 fw-bold">Email
+            <input type="email" id="email" v-model="email" class="form-control" placeholder="Your email" required>
+          </label>
+          <label for="phone" class="w-100 fw-bold">Phone
+            <input type="tel" id="phone" v-model="phone" class="form-control" placeholder="Your phone number" required>
           </label><br>
+          <div class="d-flex justify-content-between w-100">
+            <label for="arrival-date" class="arrival fw-bold">Arrival date
+              <input type="date" id="arrival-date" v-model="arrivalDate" class="form-control" required>
+            </label><br>
+            <label for="departure-date" class="departure fw-bold">Departure date
+              <input type="date" id="departure-date" v-model="departureDate" class="form-control" required>
+            </label><br>
+          </div>
+          <label for="amount" class="fw-bold">Amount ($)</label>
+          <input type="number" id="amount" v-model="amount" class="form-control" required>
         </div>
-        <label for="amount" class="fw-bold">Amount ($)</label>
-        <input type="number" id="amount" v-model="amount" class="form-control" required>
+        <label for="card-inf" class="fw-bold">Card Info</label>
+        <div id="card-element" class="form-control">
+          <!-- Stripe Card Element will be inserted here -->
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 w-100">Pay Now</button>
+        <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+      </form>
+    </div>
+    <div v-if="showSuccess" class="modal">
+      <div class="modal-content success">
+        <img src="/src/assets/image/form/success.png" alt="Success"  />
+        <h2>Thank You!</h2>
+        <p>Your details have been successfully submitted. Thanks!</p>
+        <button @click="closeSuccess" type="button">OK</button>
       </div>
-      <label for="card-inf" class="fw-bold">Card Info</label>
-      <div id="card-element" class="form-control">
-        <!-- Stripe Card Element will be inserted here -->
-      </div>
-      <button type="submit" class="btn btn-primary mt-3 w-100">Pay Now</button>
-      <div id="card-errors" role="alert" class="text-danger mt-2"></div>
-    </form>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -73,6 +81,7 @@ export default {
   data() {
     return {
       showPaymentModal: false,
+      showSuccess: false,
       name: '',
       phone: '',
       email: '',
@@ -96,8 +105,7 @@ export default {
   },
   methods: {
     async initializeStripe() {
-      this.stripe = await loadStripe('pk_test_51PYLS5CL2uT4u9gQevk9TnyiP8xOVovpGGFwQZaD1gUGzfWE0xJN9X3rFCqnmu4i1g5f9MYzwfyLIRrucLxql1xQ00xYjz24yU'); // Replace with your publishable key
-
+      this.stripe = await loadStripe('pk_test_51PYLS5CL2uT4u9gQevk9TnyiP8xOVovpGGFwQZaD1gUGzfWE0xJN9X3rFCqnmu4i1g5f9MYzwfyLIRrucLxql1xQ00xYjz24yU');
       this.elements = this.stripe.elements();
       this.cardElement = this.elements.create('card', {
         style: {
@@ -114,7 +122,6 @@ export default {
         },
       });
       this.cardElement.mount('#card-element');
-
       this.cardElement.on('change', (event) => {
         const displayError = document.getElementById('card-errors');
         if (event.error) {
@@ -125,41 +132,22 @@ export default {
       });
     },
     async submitPayment() {
-  try {
-    const { data } = await axios.post('http://127.0.0.1:8000/api/stripe/payment', {
-      name: this.name,
-      email: this.email,
-      phone: this.phone,
-      arrival_date: this.arrivalDate,
-      departure_date: this.departureDate,
-      amount: this.amount*100, // Convert amount to cents
-    });
-
-    const { error, paymentIntent } = await this.stripe.confirmCardPayment(data.clientSecret, {
-      payment_method: {
-        card: this.cardElement,
-        billing_details: {
+      try {
+        await axios.post('http://127.0.0.1:8000/api/stripe/payment', {
           name: this.name,
           email: this.email,
           phone: this.phone,
-        },
-      },
-    });
-
-    if (error) {
-      console.error(error.message);
-      const displayError = document.getElementById('card-errors');
-      displayError.textContent = error.message;
-    } else {
-      if (paymentIntent.status === 'succeeded') {
-        console.log('Payment succeeded:', paymentIntent);
-        alert('Payment succeeded!');
+          arrival_date: this.arrivalDate,
+          departure_date: this.departureDate,
+          amount: this.amount * 100,
+        });
+        
+        // Show success dialog
+        this.showSuccess = true;
+      } catch (error) {
+        console.error('Error creating payment intent:', error);
       }
-    }
-  } catch (error) {
-    console.error('Error creating payment intent:', error);
-  }
-},
+    },
     fetchRoom() {
       axios
         .get(`http://127.0.0.1:8000/api/rooms/${this.$route.params.id}`)
@@ -173,13 +161,15 @@ export default {
     fetchUser() {
       this.store.fetchUser();
     },
+    closeSuccess() {
+      this.showSuccess = false;
+    }
   },
 };
-
-
 </script>
+
 <style scoped>
-*{
+* {
   color: black;
 }
 .container {
@@ -187,15 +177,12 @@ export default {
   justify-content: center;
   gap: 10px;
 }
-
 #hotel-room-details {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 800px;
-  /* height: 90vh; */
 }
-
 .card {
   background-color: white;
   border-radius: 8px;
@@ -204,13 +191,11 @@ export default {
   width: 400px;
   height: 90vh;
 }
-
 h1 {
   text-align: center;
   margin-bottom: 10px;
 }
-
-.form-payment{
+.form-payment {
   width: 30%;
   padding: 20px;
   border: 1px solid lightgray;
@@ -228,13 +213,12 @@ h1 {
 input.form-control::placeholder {
   color: #CFD7E0;
 }
-.arrival{
+.arrival {
   width: 49%;
 }
-.departure{
+.departure {
   width: 49%;
 }
-
 .btn {
   display: block;
   width: 100%;
@@ -245,11 +229,59 @@ input.form-control::placeholder {
   border-radius: 4px;
   cursor: pointer;
 }
-
 .btn:hover {
   background-color: #0056b3;
 }
+.success {
+  width: 400px;
+  background: #f3f3f7;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: white;
+}
 
+.success img {
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.success h2 {
+  color: black;
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+
+.success p {
+  color: black;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.success button {
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0px;
+  background-color: #007bff;
+  color: #fff;
+  border: 0;
+  outline: none;
+  border-radius: 4px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.success button:hover {
+  background-color: #0056b3;
+}
 .modal {
   position: fixed;
   top: 0;
@@ -260,54 +292,19 @@ input.form-control::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
-
 .modal-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
   width: 80%;
   max-width: 500px;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  height: auto;
-  border: none;
-  border-radius: 5px;
-}
-
-.el-carousel__item h3 {
-  color: #475669;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
   text-align: center;
 }
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  #hotel-room-details {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    height: 100vh;
-  }
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 </style>
