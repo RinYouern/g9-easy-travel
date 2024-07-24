@@ -42,7 +42,6 @@
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
                   <img :src="information.users.profile" alt="Profile Picture" class="profile-picture" />
-                  <span class="text-dark">{{ information.users.name }}</span>
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
                   <b-dropdown right>
@@ -359,4 +358,5 @@ body {
   background-color: #2b3136;
   color: white;
 }
+
 </style>

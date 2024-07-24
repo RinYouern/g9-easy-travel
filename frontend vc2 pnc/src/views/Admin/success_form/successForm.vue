@@ -15,7 +15,6 @@ export default {}
 
 <style>
 .container {
-  background: rgb(51, 75, 107);
   display: flex;
   justify-content: center;
   align-items: center;
