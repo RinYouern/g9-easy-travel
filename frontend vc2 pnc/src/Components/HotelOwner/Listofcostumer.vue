@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-left: -50px">
     <h1 class="text-dark fw-bold">Customers Payment</h1>
     <table class="table mt-3">
       <thead class="text-center">

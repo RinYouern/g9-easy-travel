@@ -10,27 +10,33 @@
           <img src="/src/assets/image/logo2.png" />
         </div>
         <ul>
-          <a href="/hotelowner">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
-            </li>
-          </a>
-          <a href="/top-hotel">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-            </li>
-          </a>
-          <a href="/room_managemant">
-            <li class="d-flex">
-              <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
-            </li>
-          </a>
-          <a href="#">
-            <li class="active d-flex">
-              <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
-            </li>
-          </a>
-        </ul>
+            <a href="/hotelowner">
+              <li class=" d-flex">
+                <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
+              </li>
+            </a>
+            <a href="/room_managemant">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
+              </li>
+            </a>
+            <a href="#">
+              <li class="active d-flex">
+                <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
+              </li>
+            </a>
+            <a href="/top-hotel">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+              </li>
+            </a>
+            <a href="/login">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">logout</span>Logout
+              </li>
+            </a>
+            
+          </ul>
       </div>
       <div class="container">
         <listBooking />
@@ -70,8 +76,8 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 25%;
-  background: #2b3136;
+  width: 22%;
+  background:black;
   color: #fff;
   padding: 20px 0;
 }

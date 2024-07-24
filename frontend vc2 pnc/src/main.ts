@@ -19,6 +19,22 @@ import axios from './plugins/axios'
 import 'uno.css'
 import { configure } from 'vee-validate'
 
+// Stripe initialization
+import { loadStripe } from '@stripe/stripe-js'
+
+let stripe
+const initializeStripe = async (publishableKey: string) => {
+  if (!stripe) {
+    stripe = await loadStripe(publishableKey)
+  }
+  return stripe
+}
+
+// Configure VeeValidate
+configure({
+  validateOnInput: true
+})
+
 const app = createApp(App)
 
 configure({
@@ -31,6 +47,10 @@ app.use(ElementPlus)
 app.use(router.simpleAcl)
 
 app.config.globalProperties.$axios = axios
+
+// Make Stripe available globally
+app.config.globalProperties.$stripe = stripe
+app.config.globalProperties.$initializeStripe = initializeStripe
 
 app.mount('#app')
 app.component('font-awesome-icon', FontAwesomeIcon)

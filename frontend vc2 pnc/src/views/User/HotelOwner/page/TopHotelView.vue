@@ -10,31 +10,37 @@
         <img src="/src/assets/image/logo2.png" />
       </div>
       <ul>
-        <a href="/hotelowner">
-          <li class="d-flex">
-            <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
-          </li>
-        </a>
-        <a href="/top-hotel">
-          <li class="active d-flex">
-            <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
-          </li>
-        </a>
-        <a href="/room_managemant">
-          <li class="d-flex">
-            <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
-          </li>
-        </a>
-        <a href="/customers_payment">
-          <li class="d-flex">
-            <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
-          </li>
-        </a>
-      </ul>
+            <a href="/hotelowner">
+              <li class=" d-flex">
+                <span class="material-symbols-outlined mx-3">dashboard</span>Dashboard
+              </li>
+            </a>
+            <a href="/room_managemant">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">apartment</span>Rooms Management
+              </li>
+            </a>
+            <a href="/customers_payment">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">payments</span>Customers Payment
+              </li>
+            </a>
+            <a href="#">
+              <li class="active d-flex">
+                <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
+              </li>
+            </a>
+            <a href="/login">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">logout</span>Logout
+              </li>
+            </a>
+            
+          </ul>
     </div>
-    <div class="container">
-  <h2 class="text-left">Trending destinations</h2>
-  <div class="row flex-nowrap overflow-auto">
+    <div class="container" >
+  <h2 class="text-left" style="margin-left: -50px">Trending destinations</h2>
+  <div class="row flex-nowrap overflow-auto" style="margin-left: -50px">
     <div class="col-md-3 mb-4" v-for="item in hotels" :key="item.index">
       <div class="card">
         <img :src="item.profile" class="card-img-top" style="height: 100px;" :alt="item.name" />
@@ -87,8 +93,8 @@ export default {
   top: 0;
   left: 0;
   height: 100%;
-  width: 25%;
-  background: #2b3136;
+  width: 22%;
+  background:black;
   color: #fff;
   padding: 20px 0;
 }
@@ -121,7 +127,7 @@ export default {
 .sidebar ul a.active,
 .sidebar ul li:hover {
   background: white;
-  color: #178de7;
+  color:black;
 }
 
 .container {

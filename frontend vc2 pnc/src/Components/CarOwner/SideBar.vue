@@ -1,5 +1,6 @@
 <template>
   <aside class="col-md-3 col-lg-2 bg-black text-white sidebar " >
+
     <div class="text-center profile-section mt-3">
       <div class="position-relative d-inline-block">
         <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
@@ -29,6 +30,7 @@
         </li>
       </ul>
     </nav>
+    
   </aside>
 
   <el-dialog v-model="logoutConfirmation" style="width:30%;color:black">
