@@ -1,23 +1,30 @@
 <template>
     <div class="container">
-      <ul v-if="!loading && !error" class="bookings-list">
-        <li v-for="booking in store.bookingsRecords" :key="booking.RoomID" class="booking-card">
-          <div class="card-header">
-            <h2><strong>Hotel: </strong>{{ booking.HotelName }}</h2>
-            <span class="status"><strong>Email: </strong>{{ booking.Email }}</span>
-            <span><strong>Location:</strong> {{ booking.Location }}</span>
-          </div>
-          <div class="card-body">
-            <p><strong>Room ID:</strong> {{ booking.RoomID }}</p>
-            <p><strong>Nights:</strong> {{ booking.Nights }}</p>
-            <p><strong>Price:</strong> {{ booking.Price }} $</p>
-          </div>
-          <div class="card-footer">
-            <span class="dates"><strong>Date: </strong>{{ booking.CheckinDate }} - {{ booking.CheckoutDate }}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
+  <table class="table table-striped" v-if="!loading && !error">
+    <thead class="text-center">
+      <tr>
+        <th>Hotel</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th>Room ID</th>
+        <th>Nights</th>
+        <th>Price</th>
+        <th>Dates</th>
+      </tr>
+    </thead >
+    <tbody class="text-center">
+      <tr v-for="booking in store.bookingsRecords" :key="booking.RoomID">
+        <td>{{ booking.HotelName }}</td>
+        <td>{{ booking.Email }}</td>
+        <td>{{ booking.Location }}</td>
+        <td>{{ booking.RoomID }}</td>
+        <td>{{ booking.Nights }}</td>
+        <td>{{ booking.Price }} $</td>
+        <td>{{ booking.CheckinDate }} - {{ booking.CheckoutDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   </template>
   
   <script setup>

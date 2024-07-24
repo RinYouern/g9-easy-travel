@@ -1,11 +1,8 @@
 <template>
   <div class="container">
     <h1 class="mt-4 text-dark">Manage Places</h1>
-
-
     <!-- AddNewPlace component -->
     <AddNewPlace />
-
     <!-- PlacesList component with props -->
     <PlacesList :places="places" @edit="editPlace" @delete="deletePlace" />
   </div>

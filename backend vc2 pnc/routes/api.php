@@ -80,6 +80,7 @@ Route::get('/rooms/{id}', [RoomController::class, 'show']);
 Route::get('/users/{userId}/rooms', [RoomController::class, 'index']);
 Route::put('/rooms/{id}', [RoomController::class, 'update']);
 Route::delete('/rooms/{id}', [RoomController::class, 'destroy']);
+Route::middleware('auth:sanctum')->get('/owner/bookings', [BookingHotelController::class, 'showOwnerBookings']);
 
 //booking room 
 Route::post('/bookingRoom', [BookingHotelController::class, 'store']);
