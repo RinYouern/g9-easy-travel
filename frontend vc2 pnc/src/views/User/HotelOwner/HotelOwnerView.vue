@@ -32,36 +32,53 @@
                 <span class="material-symbols-outlined mx-3">hotel</span>Top Hotels
               </li>
             </a>
+            <a href="/login">
+              <li class="d-flex">
+                <span class="material-symbols-outlined mx-3">logout</span>Logout
+              </li>
+            </a>
+            
           </ul>
         </div>
         <div class="main-content">
           <div class="header">
             <h1 class="text-dark fw-bold">Hotel Dashboard</h1>
-            <div class="profile d-flex gap-3">
-              <span class="material-symbols-outlined text-primary pt-2">notifications</span>
+            <div class="profile d-flex gap-5">
+              <nav>
+                <form action="#">
+                  <div class="form-group">
+                    <!-- <input type="text" placeholder="Search..." /> -->
+                    <!-- <i class="bx bx-search icon"></i> -->
+                  </div>
+                </form>
+                <a href="#" class="nav-link">
+                  <i class="bx bxs-bell icon"></i>
+                  <span class="badge">5</span>
+                </a>
+                <a href="#" class="nav-link">
+                  <i class="bx bxs-message-square-dots icon"></i>
+                  <span class="badge">8</span>
+                </a>
+              </nav>
               <div class="profile-dropdown">
                 <div class="profile-btn border:none" @click="toggleDropdown">
-                  <img :src="information.users.profile" alt="Profile Picture" class="profile-picture" />
+                  <img
+                    :src="information.users.profile"
+                    alt="Profile Picture"
+                    class="profile-picture"
+                    style="width: 40px; height: 40px; margin-top: 5px"
+                  />
                 </div>
                 <div class="dropdown-content" v-if="isOpen">
                   <b-dropdown right>
-                    <template #button-content>
-                      <img
-                        src="/src/assets/image/logo2.png"
-                        class="rounded-circle"
-                        alt="Profile Image"
-                        width="40"
-                        height="40"
-                      />
-                    </template>
                     <b-dropdown-item href="#" v-if="isOpen">
-                      <div class="text-center mb-3 w-70">
+                      <div class="text-center mb-3 w-55 mt-3">
                         <img
                           :src="information.users.profile"
-                          class="image-profile rounded-circle mb-2"
+                          class="image-profile rounded-circle"
                           alt="Profile Image"
                         />
-                        <h5 class="text-dark">{{ information.users.name  }}</h5>
+                        <h5 class="text-dark">{{ information.users.name }}</h5>
                         <p class="text-dark">{{ information.users.email }}</p>
                       </div>
                     </b-dropdown-item>
@@ -69,63 +86,85 @@
                   </b-dropdown>
                   <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
                   <a href="#"><i class="bx bxs-edit icon"></i> Change Password</a>
-                  <a href="/login" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
+                  <a href="/homepage" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="welcome d-flex justify-content-around shadow rounded mt-5">
+          <div
+            class="welcome d-flex justify-content-around shadow rounded mt-5"
+            style="margin-left: -50px"
+          >
             <div class="d-flex flex-column">
               <h2 class="text-white fw-bold">Welcome Guy!</h2>
               <p class="text-white">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                Book a hotel in Cambodia online. Hotels from budget to luxury. Good rates. No reservation costs. Read hotel reviews from real guests.
               </p>
             </div>
             <div>
               <img src="\src\assets\image\hotel_icon.png" class="hotel_icon" />
             </div>
           </div>
-          
-          <div class="stats">
+
+          <div class="stats" style="margin-left: -50px">
             <div class="stat shadow rounded">
               <span class="material-symbols-outlined">monitoring</span>
-              <h3 class="text-dark">$ {{ totalPrice }}</h3>
+              <h3>$ {{ totalPrice }}</h3>
               <p>Total Income</p>
             </div>
             <div class="stat shadow rounded">
               <span class="material-symbols-outlined">home_work</span>
-              <h3 class="text-dark">20</h3>
+              <h3>20</h3>
               <p>Total Rooms</p>
             </div>
             <div class="stat shadow rounded">
               <span class="material-symbols-outlined">location_home</span>
-              <h3 class="text-dark">16</h3>
+              <h3>16</h3>
               <p>Room not available</p>
             </div>
           </div>
+          <div class="list_customer">
+            <h2 class="text-dark mb-2">List Customers</h2>
+            <table class="table shadow rounded">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Room</th>
+                  <th scope="col">Phone number</th>
+                  <th scope="col">Date of stay</th>
+                  <th scope="col">Date of departure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Chhinkeo</td>
+                  <td>2C</td>
+                  <td>+855 96 840 4018</td>
+                  <td>6-24-2024</td>
+                  <td>6-26-2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-
     </body>
+    
   </div>
 </template>
 
 <script>
-import { computed } from 'vue'
 import { userStore } from '@/stores/user-list'
-import { useListBookingOwnerStore } from '@/stores/list-booking-hotel-owner'
 
 export default {
   data() {
     return {
-      listBookingOwner: [],
       information: userStore(),
       editMode: false,
-      isOpen: false,
+      isOpen: false
     }
-  },
-  created() {
-    this.fetchData()
   },
   methods: {
     fetchUser() {
@@ -141,7 +180,7 @@ export default {
       const listBookingOwnerStore = useListBookingOwnerStore()
       await listBookingOwnerStore.fetchBookings()
       this.listBookingOwner = listBookingOwnerStore.listBookingOwner
-    },
+    }
   },
   computed: {
     totalPrice() {
@@ -175,8 +214,8 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 25%;
-  background: #2b3136;
+  width: 22%;
+  background: black;
   color: #fff;
   padding: 20px 0;
 }
@@ -201,7 +240,7 @@ body {
 .sidebar ul a li.active,
 .sidebar ul li:hover {
   background: white;
-  color: #178de7;
+  color: black;
 }
 .sidebar ul a {
   text-decoration: none;
@@ -242,15 +281,17 @@ body {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 200px;
+  min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
+  border-radius: 10px;
   z-index: 1;
 }
 
 .profile-dropdown .dropdown-content a {
   color: black;
   padding: 8px 0;
+  font-size: 20px;
   display: block;
 }
 
@@ -266,9 +307,77 @@ body {
   z-index: 1;
   right: 0;
 }
-
+/* NAVBAR */
+nav {
+  background: var(--light);
+  height: 64px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 28px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+nav .toggle-sidebar {
+  font-size: 18px;
+  cursor: pointer;
+}
+nav form {
+  max-width: 400px;
+  width: 100%;
+  margin-right: auto;
+}
+nav .form-group {
+  position: relative;
+}
+nav .form-group input {
+  width: 100%;
+  background: var(--grey);
+  border-radius: 5px;
+  border: 1px solid grey;
+  outline: none;
+  padding: 10px 36px 10px 16px;
+  transition: all 0.3s ease;
+}
+nav .form-group input:focus {
+  box-shadow:
+    0 0 0 1px var(--blue),
+    0 0 0 4px var(--light-blue);
+}
+nav .form-group .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
+  color: var(--dark-grey);
+}
+nav .nav-link {
+  position: relative;
+}
+nav .nav-link .icon {
+  font-size: 18px;
+  color: var(--dark);
+}
+nav .nav-link .badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+}
 .dropdown-content i {
-  margin-right: 8px;
+  margin-right: 15px;
 }
 
 .dropdown-content a {
@@ -284,7 +393,7 @@ body {
 }
 
 .welcome {
-  background: #2b3136;
+  background: black;
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
@@ -318,7 +427,7 @@ body {
 }
 
 .stat {
-  background: #e0f7fa;
+  background: black;
   padding: 20px;
   flex-grow: 1;
   text-align: center;
@@ -339,15 +448,16 @@ body {
 
 .stat h3 {
   margin: 10px 0 0 0;
+  color: orange;
 }
 
 .stat p {
   margin: 5px 0 0 0;
-  color: #555;
+  color:white;
 }
 .stat span {
   font-size: 70px;
-  color: #2b3136;
+  color: blue;
 }
 
 .list_customer {
@@ -358,5 +468,4 @@ body {
   background-color: #2b3136;
   color: white;
 }
-
 </style>

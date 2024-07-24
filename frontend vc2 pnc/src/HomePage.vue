@@ -109,7 +109,7 @@
               
             </ul>
             <div class="price">KHR 84,399</div>
-            <a href="/" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
 
@@ -132,7 +132,7 @@
              
             </ul>
             <div class="price">KHR 592,012</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
 
@@ -155,7 +155,7 @@
               
             </ul>
             <div class="price">$44</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -177,7 +177,7 @@
               
             </ul>
             <div class="price"> KHR 357,320</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -199,7 +199,7 @@
               
             </ul>
             <div class="price"> KHR 12,000</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -221,7 +221,7 @@
               
             </ul>
             <div class="price">KHR 139,120</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -243,7 +243,7 @@
               
             </ul>
             <div class="price">$45</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
         <div class="hotel-card">
@@ -265,7 +265,7 @@
               
             </ul>
             <div class="price">$33</div>
-            <a href="" class="view-deal">View deal</a>
+            <a href="/login" class="view-deal">View deal</a>
           </div>
         </div>
       </div>
@@ -336,14 +336,13 @@ export default {}
 
 <style scoped>
 .bg-image {
-  background-image: url('/src/assets/image/car/background.jpeg');
+  background-image: url('/src/assets/image/car/bg.webp');
   background-size: cover;
   background-position: center;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .text-overlay {
@@ -357,7 +356,7 @@ export default {}
 }
 
 .text-bg-black {
-  background-color: rgba(0, 0, 0, 0.121);
+  background-color: rgba(0, 0, 0, 0.492);
   padding: 1.5rem;
   border-radius: 0.5rem;
 }

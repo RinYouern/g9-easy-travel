@@ -1,5 +1,6 @@
 <template>
   <aside class="col-md-3 col-lg-2 bg-black text-white sidebar " >
+
     <div class="text-center profile-section mt-3">
       <div class="position-relative d-inline-block">
         <img :src="profileImage" alt="Profile Image" class="rounded-circle profile-img mb-2 w-50" />
@@ -29,6 +30,7 @@
         </li>
       </ul>
     </nav>
+    
   </aside>
 
   <el-dialog v-model="logoutConfirmation" style="width:30%;color:black">
@@ -46,14 +48,14 @@ import { ElMessage } from 'element-plus'
 export default {
   data() {
     return {
-      userName: 'Car Owner',
-      profileImage: '/src/assets/image/profile.jpg',
+      userName: '',
+      profileImage: '/src/assets/image/logo2.png',
       menuItems: [
         { text: 'Dashboard', icon: 'tachometer-alt', path: '/' },
         { text: 'List Cars', icon: 'list', path: '/list-car' },
         { text: 'List of Driver', icon: 'users', path: '/driverslist' },
         { text: 'Booking Car', icon: 'book', path: '/listBookingCars' },
-        { text: 'Logout', icon: 'sign-out', path: '/login' }
+        { text: 'Logout', icon: 'sign-out', path: '/homepage' }
       ],
       logoutConfirmation: false
     }
@@ -66,7 +68,7 @@ export default {
       this.logoutConfirmation = false
       alert('Logout successful.')
       // redirect to the login page
-      this.$router.push('/login')
+      this.$router.push('/homepage')
     },
     handleCancelLogout() {
       this.logoutConfirmation = false

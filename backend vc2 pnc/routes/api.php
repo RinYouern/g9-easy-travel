@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingHotelController;
 use App\Models\BookingHotel;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Increase rating for a specific feedback by ID
     Route::post('/feedback/increase-rating/{id}', [FeedbackController::class, 'increaseRating']);
+
 });
 // get feedback
 Route::get('/feedback/{id}', [FeedbackController::class,'getFeedbackById']);
@@ -117,3 +120,8 @@ Route::get('/feedback/{id}', [FeedbackController::class,'getFeedbackById']);
 // stripe payment
 Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
 Route::get('/payment/list', [StripePaymentController::class, 'listPayments'])->middleware('auth:sanctum');
+
+//upload profile image
+Route::put('/upload/profile', [ProfileController::class, 'uploadProfile'])->middleware('auth:sanctum');
+// Route for updating user profile
+Route::put('/updateprofile', [ProfileController::class, 'updateProfile'])->middleware('auth:sanctum');

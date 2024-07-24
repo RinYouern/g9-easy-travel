@@ -23,11 +23,36 @@
                 Logout
               </button>
             </li>
+            <div class="profile-dropdown">
+                <div class="profile-btn border:none" @click="toggleDropdown">
+                  <img :src="user.users.profile" alt="Profile Picture" class="profile-picture" style="width: 40px; height: 40px; margin-top: 10px; margin-left: 25px" />
+                </div>
+                <div class="dropdown-content" v-if="isOpen">
+                  <b-dropdown right>
+                    <b-dropdown-item href="#" v-if="isOpen">
+                      <div class="text-center mb-3 w-70">
+                        <img
+                          :src="user.users.profile"
+                          class="image-profile rounded-circle mb-2"
+                          alt="Profile Image"
+                        />
+                        <h5 class="text-dark">{{ user.users.name  }}</h5>
+                        <p class="text-dark">{{ user.users.email }}</p>
+                      </div>
+                    </b-dropdown-item>
+                    <b-dropdown-divider></b-dropdown-divider>
+                  </b-dropdown>
+                  <a href="/information"><i class="bx bxs-user-circle icon"></i> Profile</a>
+                  <a href="#"><i class="bx bxs-setting icon"></i> Setting</a>
+                  <a href="/homepage" @click="logout"><i class="bx bxs-log-out-circle"></i> Logout</a>
+                </div>
+              </div>
+            <!-- </div> -->
+          <!-- </div> -->
           </ul>
         </div>
       </div>
     </nav>
-
     <!-- Logout Confirmation Modal -->
     <el-dialog v-model="logoutConfirmation" title="Logout Confirmation">
       <p>Are you sure you want to logout?</p>
@@ -55,13 +80,14 @@ const showLogoutConfirmation = () => {
 const handleLogout = () => {
   logoutConfirmation.value = false
   user.logout()
-  window.location.href = '/login' 
+  window.location.href = '/homepage' 
 }
 
 const fetchNotifications = () => {
   // Function to handle showing notifications
   alert('Show notifications')
 }
+
 </script>
 
 <style>
