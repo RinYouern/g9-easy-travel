@@ -14,8 +14,8 @@
                 <tr>
                   <th>Name</th>
                   <th>Phone Number</th>
+                   <th>Email</th>
                   <th>Province</th>
-                  <th>Email</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -23,8 +23,9 @@
                 <tr v-for="driver in drivers" :key="driver.id">
                   <td>{{ driver.name }}</td>
                   <td>{{ driver.phone }}</td>
+                   <td>{{ driver.email }}</td>
                   <td>{{ driver.province }}</td>
-                  <td>{{ driver.email }}</td>
+                 
                   <td>
                     <button class="btn btn-primary mr-2" @click="showEditDialog(driver)">
                       <i class="bi bi-pencil-square"></i>
@@ -120,6 +121,7 @@
         <div class="profile-image">
           <img :src="viewForm.profile" alt="Driver Profile Image" />
         </div>
+        <hr>
         <div class="driver-info">
           <p><strong>Name:</strong> {{ viewForm.name }}</p>
           <p><strong>Phone Number:</strong> {{ viewForm.phone }}</p>
